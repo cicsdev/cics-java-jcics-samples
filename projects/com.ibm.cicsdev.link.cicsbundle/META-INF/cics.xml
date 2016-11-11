@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.link.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="0" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+    <meta_directives>
+        <timestamp>2016-11-04T15:14:04.215Z</timestamp>
+    </meta_directives>
+    <define name="com.ibm.cicsdev.link" type="http://www.ibm.com/xmlns/prod/cics/bundle/OSGIBUNDLE" path="com.ibm.cicsdev.link.osgibundle"/>
+</manifest>

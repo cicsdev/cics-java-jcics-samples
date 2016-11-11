@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.tdq.resources.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="0" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+    <meta_directives>
+        <timestamp>2016-11-11T11:00:30.401Z</timestamp>
+    </meta_directives>
+    <define name="JTD1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTD1.transaction"/>
+    <define name="JAVATDQ1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATDQ1.program"/>
+    <define name="JAVATDQ2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATDQ2.program"/>
+    <define name="JAVATDQ3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATDQ3.program"/>
+    <define name="JTD2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTD2.transaction"/>
+    <define name="JTD3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTD3.transaction"/>
+</manifest>

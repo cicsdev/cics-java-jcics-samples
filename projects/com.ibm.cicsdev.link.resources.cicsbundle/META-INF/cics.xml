@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.link.resources.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="0" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+    <meta_directives>
+        <timestamp>2016-11-11T10:54:14.028Z</timestamp>
+    </meta_directives>
+    <define name="JOL1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JOL1.transaction"/>
+    <define name="JAVALIN1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVALIN1.program"/>
+    <define name="JOL2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JOL2.transaction"/>
+    <define name="JOL3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JOL3.transaction"/>
+    <define name="JAVALIN2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVALIN2.program"/>
+    <define name="JAVALIN3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVALIN3.program"/>
+</manifest>
