@@ -4,7 +4,7 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 
 ## Eclipse projects
-Java source code for the following classes is provided in the corresponding plugin projects in the projects directory  
+Java source code for the following classes is provided in the corresponding Eclipse plugin projects in the projects directory  
 
 ### Project com.ibm.cicsdev.link
 
@@ -33,7 +33,7 @@ work to code in Java.
 * TSQCommon - Super class used to provide common services for the TSQ samples 
 
 ## CICS bundle projects
-The following CICS bundle projects are provided to support deployment of the Java projects and the associated CICS resource definitions
+The following Eclipse CICS bundle projects are provided to support deployment of the Java projects and the associated CICS resource definitions
 
 * Project com.ibm.cicsdev.link.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.link Java samples
 * Project com.ibm.cicsdev.link.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.link sample
@@ -49,7 +49,7 @@ The following CICS bundle projects are provided to support deployment of the Jav
 * etc/TSQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TDQ sample.
 * src/Cobol/EC01.cbl - Sample CICS COBOL application that returns the date and time in a COMMAREA.
 * src/Cobol/EDUCHAN.cbl - A sample CICS COBOL that returns the date and time using channels and containers
-* EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
+* EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
 * TdqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TDQExample3.
 * TsqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TSQExample3.
 
