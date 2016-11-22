@@ -10,12 +10,14 @@
       ******************************************************************
       *                                                                *
       * Module Name        EDUCHAN.CBL                                 *
+      * Version            1.0                                         *
+      * Date               22/10/2016                                  *
       *                                                                *
       * CICS back-end channel/container sample                         *
       *                                                                *
       * This program expects to be invoked with a CHAR container named *
       * INPUTDATA and returns the following containers:                *
-      * A CHAR containing containing the reversed input string         *
+      * A CHAR container containing the reversed input string          *
       * A CHAR container containing the time                           *
       * A BIT container containing the CICS return code from reading   *
       * the input container                                            *

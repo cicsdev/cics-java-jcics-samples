@@ -48,7 +48,7 @@ The following Eclipse CICS bundle projects are provided to support deployment of
 * etc/TDQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TSQ sample.
 * etc/TSQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TDQ sample.
 * src/Cobol/EC01.cbl - Sample CICS COBOL application that returns the date and time in a COMMAREA.
-* src/Cobol/EDUCHAN.cbl - A sample CICS COBOL that returns the date and time using channels and containers
+* src/Cobol/EDUCHAN.cbl - A sample CICS COBOL that returns the date and time and reversed input using channels and containers
 * EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
 * TdqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TDQExample3.
 * TsqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TSQExample3.
