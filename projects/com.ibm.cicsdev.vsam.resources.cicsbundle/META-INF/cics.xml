@@ -3,4 +3,15 @@
     <meta_directives>
         <timestamp>2016-12-13T15:49:54.727Z</timestamp>
     </meta_directives>
+    <define name="JAVAVKS1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS1.program"/>
+    <define name="JAVAVKS2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS2.program"/>
+    <define name="JAVAVKS3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS3.program"/>
+    <define name="JVK1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK1.transaction"/>
+    <define name="JVK2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK2.transaction"/>
+    <define name="JVK3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK3.transaction"/>
+    <define name="SMPLXMPL" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="SMPLXMPL.file"/>
+    <define name="JAVAVKS4" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS4.program"/>
+    <define name="JVK4" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK4.transaction"/>
+    <define name="JAVAVKS5" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS5.program"/>
+    <define name="JVK5" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK5.transaction"/>
 </manifest>

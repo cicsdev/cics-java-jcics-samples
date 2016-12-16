@@ -9,3 +9,8 @@ Import-Package: com.ibm.cics.server;version="[1.401.0,2.0.0)",
  com.ibm.jzos.fields;resolution:=optional
 Bundle-ClassPath: lib/vsam.jar,
  .
+CICS-MainClass: com.ibm.cicsdev.vsam.KsdsExample1,
+ com.ibm.cicsdev.vsam.KsdsExample2,
+ com.ibm.cicsdev.vsam.KsdsExample3,
+ com.ibm.cicsdev.vsam.KsdsExample4,
+ com.ibm.cicsdev.vsam.KsdsExample5
