@@ -9,10 +9,10 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
 import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 
 /**
- * Simple example to demonstrate adding a record to a VSAM KSDS file using JCICS.
+ * Simple example to demonstrate adding a record to a VSAM ESDS file using JCICS.
  * 
  * This class is just the driver of the test. The main JCICS work is done in the
- * superclass {@link KsdsExampleCommon}.
+ * superclass {@link EsdsExampleCommon}.
  */
 public class EsdsExample1
 {

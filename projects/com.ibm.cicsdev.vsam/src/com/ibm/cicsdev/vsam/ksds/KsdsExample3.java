@@ -17,7 +17,7 @@ public class KsdsExample3
     /**
      * Name of the file resource to use.
      */
-    private static final String FILE_NAME = "SMPLXMPL";
+    private static final String FILE_NAME = "XMPLKSDS";
 
     /**
      * Main entry point to a CICS OSGi program.
