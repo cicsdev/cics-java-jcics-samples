@@ -1,4 +1,4 @@
-package com.ibm.cicsdev.vsam.helper;
+package com.ibm.cicsdev.vsam;
 
 import java.math.BigDecimal;
 import java.util.Calendar;

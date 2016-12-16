@@ -27,7 +27,7 @@ public abstract class VsamExampleCommon
      * 
      * </ul>
      */
-    protected void commitUnitOfWork()
+    public void commitUnitOfWork()
     {
         try {
             // Issue a CICS syncpoint

@@ -1,18 +1,19 @@
-package com.ibm.cicsdev.vsam;
+package com.ibm.cicsdev.vsam.esds;
 
 import java.text.MessageFormat;
 
 import com.ibm.cics.server.KSDS;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
-import com.ibm.cicsdev.vsam.helper.StockPartHelper;
+import com.ibm.cicsdev.vsam.StockPartHelper;
+import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 
 
 /**
  * Simple example to demonstrate reading and writing to a VSAM KSDS
  * file using JCICS.
  */
-public class KsdsExample3
+public class EsdsExample3
 {
     /**
      * Name of the file resource to use.

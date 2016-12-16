@@ -1,11 +1,12 @@
-package com.ibm.cicsdev.vsam;
+package com.ibm.cicsdev.vsam.esds;
 
 import java.text.MessageFormat;
 
 import com.ibm.cics.server.KSDS;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
-import com.ibm.cicsdev.vsam.helper.StockPartHelper;
+import com.ibm.cicsdev.vsam.StockPartHelper;
+import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 
 
 /**
@@ -14,7 +15,7 @@ import com.ibm.cicsdev.vsam.helper.StockPartHelper;
  * This class is just the driver of the test. The main JCICS work is done in the
  * superclass {@link KsdsExampleCommon}.
  */
-public class KsdsExample2
+public class EsdsExample2
 {
     /**
      * Name of the file resource to use.

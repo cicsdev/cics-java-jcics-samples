@@ -1,4 +1,4 @@
-package com.ibm.cicsdev.vsam;
+package com.ibm.cicsdev.vsam.ksds;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -16,7 +16,8 @@ import com.ibm.cics.server.RecordNotFoundException;
 import com.ibm.cics.server.SearchType;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
-import com.ibm.cicsdev.vsam.helper.StockPartHelper;
+import com.ibm.cicsdev.vsam.StockPartHelper;
+import com.ibm.cicsdev.vsam.VsamExampleCommon;
 
 
 public class KsdsExampleCommon extends VsamExampleCommon
