@@ -2,11 +2,9 @@ package com.ibm.cicsdev.vsam.esds;
 
 import java.text.MessageFormat;
 
-import com.ibm.cics.server.KSDS;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
-import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 
 /**
  * Simple example to demonstrate adding a record to a VSAM ESDS file using JCICS.
@@ -17,11 +15,6 @@ import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 public class EsdsExample1
 {
     /**
-     * Name of the file resource to use.
-     */
-    private static final String FILE_NAME = "SMPLXMPL";
-
-    /**
      * Main entry point to a CICS OSGi program.
      * 
      * The FQ name of this class should be added to the CICS-MainClass entry in
@@ -31,14 +24,10 @@ public class EsdsExample1
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample1");
+        task.out.println(" - Starting EsdsExample1");
 
-        // Create a reference to the file
-        KSDS file = new KSDS();        
-        file.setName(FILE_NAME);
-
-        // Create a new instance of the common KSDS class
-        KsdsExampleCommon ex = new KsdsExampleCommon(file);
+        // Create a new instance of the common ESDS class
+        EsdsExampleCommon ex = new EsdsExampleCommon();
         
         // Create a new random record for writing to the file        
         StockPart sp = StockPartHelper.generate();

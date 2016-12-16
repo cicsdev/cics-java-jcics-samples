@@ -13,4 +13,9 @@ CICS-MainClass: com.ibm.cicsdev.vsam.ksds.KsdsExample1,
  com.ibm.cicsdev.vsam.ksds.KsdsExample2,
  com.ibm.cicsdev.vsam.ksds.KsdsExample3,
  com.ibm.cicsdev.vsam.ksds.KsdsExample4,
- com.ibm.cicsdev.vsam.ksds.KsdsExample5
+ com.ibm.cicsdev.vsam.ksds.KsdsExample5,
+ com.ibm.cicsdev.vsam.esds.EsdsExample1,
+ com.ibm.cicsdev.vsam.esds.EsdsExample2,
+ com.ibm.cicsdev.vsam.esds.EsdsExample3,
+ com.ibm.cicsdev.vsam.esds.EsdsExample5
+ 

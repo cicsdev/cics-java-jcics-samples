@@ -2,7 +2,6 @@ package com.ibm.cicsdev.vsam.esds;
 
 import java.text.MessageFormat;
 
-import com.ibm.cics.server.KSDS;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -18,11 +17,6 @@ import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 public class EsdsExample2
 {
     /**
-     * Name of the file resource to use.
-     */
-    private static final String FILE_NAME = "SMPLXMPL";
-
-    /**
      * Main entry point to a CICS OSGi program.
      * 
      * The FQ name of this class should be added to the CICS-MainClass entry in
@@ -32,14 +26,10 @@ public class EsdsExample2
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample2");
-
-        // Create a reference to the file
-        KSDS file = new KSDS();
-        file.setName(FILE_NAME);
+        task.out.println(" - Starting EsdsExample2");
 
         // Create a new instance of this class
-        KsdsExampleCommon ex = new KsdsExampleCommon(file);
+        EsdsExampleCommon ex = new EsdsExampleCommon();
         
         // Add a new record to the file so we have something to work with
         StockPart spNew = StockPartHelper.generate();

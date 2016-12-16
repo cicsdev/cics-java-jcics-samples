@@ -22,6 +22,11 @@ import com.ibm.cicsdev.vsam.VsamExampleCommon;
 public class EsdsExampleCommon extends VsamExampleCommon
 {
     /**
+     * Name of the file resource to use.
+     */
+    private static final String FILE_NAME = "XMPLESDS";
+
+    /**
      * A field to hold a reference to the VSAM ESDS file this
      * instance will access. 
      */
@@ -29,17 +34,15 @@ public class EsdsExampleCommon extends VsamExampleCommon
     
     /**
      * Constructor to initialise the sample class.
-     * 
-     * @param file - reference to the VSAM ESDS file we will
-     * be manipulating in this example.
      */    
-    public EsdsExampleCommon(ESDS file)
+    public EsdsExampleCommon()
     {
-        this.esds = file;
+        this.esds = new ESDS();
+        this.esds.setName(FILE_NAME);        
     }
 
     /**
-     * Provides a simple example of adding a record to a VSAM esds file.
+     * Provides a simple example of adding a record to a VSAM ESDS file.
      */
     public void addRecord(StockPart sp)
     {
@@ -47,11 +50,8 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // Get the flat byte structure from the JZOS object
             byte[] record = sp.getByteBuffer();
             
-            // Get a byte array containing the key for this record
-            byte[] key = StockPartHelper.getKey(sp);
-            
-            // Write the record into the file at the specified key
-            this.esds.write(key, record);
+            // Write the record into the file (records in ESDS always in order of adding)
+            this.esds.write(record);
         }
         catch (DuplicateRecordException dre) {
             

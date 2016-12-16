@@ -2,7 +2,6 @@ package com.ibm.cicsdev.vsam.ksds;
 
 import java.text.MessageFormat;
 
-import com.ibm.cics.server.KSDS;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -15,11 +14,6 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
 public class KsdsExample3
 {
     /**
-     * Name of the file resource to use.
-     */
-    private static final String FILE_NAME = "XMPLKSDS";
-
-    /**
      * Main entry point to a CICS OSGi program.
      * 
      * The FQ name of this class should be added to the CICS-MainClass entry in
@@ -31,12 +25,8 @@ public class KsdsExample3
         Task task = Task.getTask();
         task.out.println(" - Starting KsdsExample3");
 
-        // Create a reference to the file
-        KSDS file = new KSDS();
-        file.setName(FILE_NAME);
-
-        // Create a new instance of this class
-        KsdsExampleCommon ex = new KsdsExampleCommon(file);
+        // Create a new instance of the common example class
+        KsdsExampleCommon ex = new KsdsExampleCommon();
 
         
         /*

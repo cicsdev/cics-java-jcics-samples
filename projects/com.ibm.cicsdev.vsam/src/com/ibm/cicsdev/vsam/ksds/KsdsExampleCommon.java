@@ -23,6 +23,11 @@ import com.ibm.cicsdev.vsam.VsamExampleCommon;
 public class KsdsExampleCommon extends VsamExampleCommon
 {
     /**
+     * Name of the file resource to use.
+     */
+    private static final String FILE_NAME = "XMPLKSDS";
+
+    /**
      * A field to hold a reference to the VSAM KSDS file this
      * instance will access. 
      */
@@ -30,13 +35,11 @@ public class KsdsExampleCommon extends VsamExampleCommon
     
     /**
      * Constructor to initialise the sample class.
-     * 
-     * @param file - reference to the VSAM KSDS file we will
-     * be manipulating in this example.
      */    
-    public KsdsExampleCommon(KSDS file)
+    public KsdsExampleCommon()
     {
-        this.ksds = file;
+        this.ksds = new KSDS();
+        this.ksds.setName(FILE_NAME);        
     }
 
     /**
