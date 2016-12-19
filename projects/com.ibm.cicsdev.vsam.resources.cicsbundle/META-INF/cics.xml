@@ -3,15 +3,38 @@
     <meta_directives>
         <timestamp>2016-12-13T15:49:54.727Z</timestamp>
     </meta_directives>
+    <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
     <define name="JAVAVKS1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS1.program"/>
     <define name="JAVAVKS2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS2.program"/>
     <define name="JAVAVKS3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS3.program"/>
     <define name="JAVAVKS4" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS4.program"/>
     <define name="JAVAVKS5" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVKS5.program"/>
+    <define name="JAVAVES1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVES1.program"/>
+    <define name="JAVAVES2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVES2.program"/>
+    <define name="JAVAVES3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVES3.program"/>
+    <define name="JAVAVES4" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVES4.program"/>
+    <define name="JAVAVES5" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVES5.program"/>
+    <define name="JAVAVRR1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVRR1.program"/>
+    <define name="JAVAVRR2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVRR2.program"/>
+    <define name="JAVAVRR3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVRR3.program"/>
+    <define name="JAVAVRR4" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVRR4.program"/>
+    <define name="JAVAVRR5" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVAVRR5.program"/>
     <define name="JVK1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK1.transaction"/>
     <define name="JVK2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK2.transaction"/>
     <define name="JVK3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK3.transaction"/>
     <define name="JVK4" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK4.transaction"/>
     <define name="JVK5" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVK5.transaction"/>
+    <define name="JVE1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVE1.transaction"/>
+    <define name="JVE2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVE2.transaction"/>
+    <define name="JVE3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVE3.transaction"/>
+    <define name="JVE4" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVE4.transaction"/>
+    <define name="JVE5" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVE5.transaction"/>
+    <define name="JVR1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR1.transaction"/>
+    <define name="JVR2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR2.transaction"/>
+    <define name="JVR3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR3.transaction"/>
+    <define name="JVR4" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR4.transaction"/>
+    <define name="JVR5" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR5.transaction"/>
     <define name="XMPLKSDS" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="XMPLKSDS.file"/>
+    <define name="XMPLESDS" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="XMPLESDS.file"/>
+    <define name="XMPLRRDS" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="XMPLRRDS.file"/>
 </manifest>
