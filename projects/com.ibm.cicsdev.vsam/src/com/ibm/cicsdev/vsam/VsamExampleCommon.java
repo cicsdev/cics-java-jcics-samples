@@ -6,11 +6,6 @@ import com.ibm.cics.server.Task;
 
 
 
-/*
- * http://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.idad400/exa1.htm
- * https://www.ibm.com/support/knowledgecenter/SSLTBW_1.13.0/com.ibm.zos.r13.idai200/defclu.htm
- * 
- */
 public abstract class VsamExampleCommon
 {
     /**

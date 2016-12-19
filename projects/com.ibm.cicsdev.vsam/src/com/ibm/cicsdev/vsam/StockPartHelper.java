@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.ibm.cicsdev.bean.StockPart;
 
 /**
- * Generates a random record for testing purposes.
+ * Provides various routines that assist in the creation of sample data.
  * 
  * This class serves no purpose in the application interface to CICS. It is merely provided
  * to generate random data, without any requirements to pre-load datasets with sample data.
@@ -80,7 +80,12 @@ public class StockPartHelper
         return getKey(sp);
     }
 
-    
+    /**
+     * Generates a byte array representing the lowest possible key.
+     * 
+     * @return a byte array representing the lowest possible key for
+     * a {@link StockPart} instance.
+     */
     public static byte[] getKeyZero() {
         
         // Create a new StockPart instance
@@ -94,9 +99,10 @@ public class StockPartHelper
     }
     
     /**
-     * Helper method.
+     * Extracts the key from the supplied {@link StockPart} instance as
+     * a byte array, suitable for use in a keyed VSAM file.
      * 
-     * @param sp
+     * @param sp the StockPart instance to use.
      * 
      * @return a byte array which can be used as a key to identify the
      * supplied StockPart record.
@@ -114,11 +120,21 @@ public class StockPartHelper
         return key;
     }
     
-    public static byte[] getKey(int key)
+    /**
+     * Extracts the key from the supplied part ID, which represents a
+     * {@link StockPart} instance, as a byte array, suitable for use
+     * in a keyed VSAM file.
+     * 
+     * @param partId the part ID to reference.
+     *
+     * @return a byte array which can be used as a key to identify the
+     * supplied StockPart record.
+     */
+    public static byte[] getKey(int partId)
     {
         // Create a new StockPart instance and delegate
         StockPart sp = new StockPart();
-        sp.setPartId(key);
+        sp.setPartId(partId);
         return getKey(sp);
     }
     
