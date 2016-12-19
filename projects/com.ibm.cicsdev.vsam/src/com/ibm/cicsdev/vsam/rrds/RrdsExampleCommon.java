@@ -1,6 +1,5 @@
 package com.ibm.cicsdev.vsam.rrds;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import com.ibm.cics.server.RecordHolder;
 import com.ibm.cics.server.RecordNotFoundException;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
-import com.ibm.cicsdev.vsam.StockPartHelper;
 import com.ibm.cicsdev.vsam.VsamExampleCommon;
 
 public class RrdsExampleCommon extends VsamExampleCommon
@@ -53,18 +51,29 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // Read each record, deleting as we go
             for ( long l = 1; l < Integer.MAX_VALUE; l++ ) {
                 
-                // Lock this record for deletion
+                // Lock this record and delete
                 this.rrds.readForUpdate(l, rh);
-                
-                // Delete
                 this.rrds.delete();
             }
         }
         catch (RecordNotFoundException rnfe) {
             // Normal exit from loop - record ID not found
-            rnfe.printStackTrace();
         }
+        catch (InvalidRequestException ire) {
+            
+            // Invalid request may occur for several reasons - find out the root cause
+            // See the CICS API documentation for READ UPDATE to see the full list
+            if ( ire.getRESP2() == 20 ) {
+                // File not readable or updateable
+                String strMsg = "Read, update, or delete operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
+            }
+            
+            // Throw an exception to rollback the current UoW
+            throw new RuntimeException(ire);
+        }        
         catch (CicsConditionException cce) {
+            // Crude error handling - propagate an exception back to caller
             throw new RuntimeException(cce);
         }
     }
