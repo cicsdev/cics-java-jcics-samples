@@ -27,7 +27,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
      * A field to hold a reference to the VSAM ESDS file this
      * instance will access. 
      */
-    protected final ESDS esds;
+    private final ESDS esds;
     
     /**
      * Constructor to initialise the sample class.
@@ -186,12 +186,12 @@ public class EsdsExampleCommon extends VsamExampleCommon
     /**
      * Provides an example of browsing a VSAM dataset.
      * 
-     * @param startRBA
+     * @param rbaStart
      * @param count
      * 
      * @return a list of StockPart objects
      */
-    public List<StockPart> browse(long startRBA, int count)
+    public List<StockPart> browse(long rbaStart, int count)
     {
         // The list instance to return
         List<StockPart> list = new ArrayList<>(count);
@@ -201,7 +201,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
         
         try {            
             // Start the browse of the file
-            ESDS_Browse esdsBrowse = this.esds.startBrowse(startRBA);
+            ESDS_Browse esdsBrowse = this.esds.startBrowse(rbaStart);
             
             // Loop until we reach maximum count
             for ( int i = 0; i < count; i++ ) {

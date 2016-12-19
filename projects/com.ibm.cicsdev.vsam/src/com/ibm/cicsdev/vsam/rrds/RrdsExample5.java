@@ -1,6 +1,5 @@
 package com.ibm.cicsdev.vsam.rrds;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 import com.ibm.cics.server.Task;
@@ -8,10 +7,18 @@ import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
 /**
- * Simple example to demonstrate browsing a VSAM KSDS file using JCICS.
+ * Simple example to demonstrate browsing a VSAM RRDS file using JCICS.
+ * 
+ * This class is just the driver of the test. The main JCICS work is done in the
+ * common class {@link RrdsExampleCommon}.
  */
 public class RrdsExample5 
 {
+    /**
+     * Number of records to add and then browse through.
+     */
+    private static final int RECORDS_TO_BROWSE = 5;
+    
     /**
      * Main entry point to a CICS OSGi program.
      * 
@@ -22,35 +29,32 @@ public class RrdsExample5
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample5");
+        task.out.println(" - Starting RrdsExample5");
+        task.out.println("VSAM RRDS file browse example");
 
         // Create a new instance of the common example class
         RrdsExampleCommon ex = new RrdsExampleCommon();
 
+        // Unlike the KSDS and ESDS examples, we need an empty file before we start
+        ex.emptyFile();
+        
+        // We will always start from RRN 1
+        long rrnStart = 1;
+        
         
         /*
-         * Create at least 5 records in the file so we have something to work with.
+         * Create some records in the file so we have something to work with.
          */
         
-        // Keep track of the lowest generated key
-        int key = Integer.MAX_VALUE;
-        
-        // Add 5 records, keeping track of the lowest key
-        for ( int i = 0; i < 5; i++ ) {
+        // Add records
+        for ( long rrn = 1; rrn <= RECORDS_TO_BROWSE; rrn++ ) {
             
             // Add a new record to the file 
             StockPart sp = StockPartHelper.generate();
-            ex.addRecord(sp);
-            
-            // Get the key of the new record
-            int newKey = sp.getPartId();
+            ex.addRecord(rrn, sp);
             
             // Write out the key and description
-            String strMsg = "Wrote to key {0}";
-            task.out.println( MessageFormat.format(strMsg, newKey) );
-            
-            // Decide if this is lowest key so far
-            key = newKey < key ? newKey : key;
+            task.out.println( String.format("Wrote to RRN 0x%016X", rrn) );
         }
         
         // Commit the unit of work to harden the inserts to the file
@@ -60,25 +64,21 @@ public class RrdsExample5
         /*
          * Browse through the file, starting at the lowest key.
          * 
-         * Note the next five records we find may not necessarily be the five we
-         * added above. It will depend on what existing records were already in 
-         * the KSDS file. 
-         * 
-         * The above code will have guaranteed that at least five records exist.
+         * The above code will have guaranteed that sufficient records exist.
          */
         
-        // Browse through five records, starting at the lowest known key
-        List<StockPart> list = ex.browse(key, 5);
+        // Browse through five records, starting at the initial RRN
+        List<StockPart> list = ex.browse(rrnStart, RECORDS_TO_BROWSE);
         
         // Iterate over this list
         for ( StockPart sp : list ) {
             
             // Display the description
-            String strMsg = "Read record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Read record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Completion message
-        task.out.println("Completed KsdsExample5");
+        task.out.println("Completed RrdsExample5");
     }
 }

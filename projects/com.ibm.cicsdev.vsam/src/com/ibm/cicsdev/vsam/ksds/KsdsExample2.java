@@ -26,7 +26,7 @@ public class KsdsExample2
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting KsdsExample2");
-        task.out.println("Record read example");
+        task.out.println("VSAM KSDS record read example");
 
         // Create a new instance of the common example class
         KsdsExampleCommon ex = new KsdsExampleCommon();

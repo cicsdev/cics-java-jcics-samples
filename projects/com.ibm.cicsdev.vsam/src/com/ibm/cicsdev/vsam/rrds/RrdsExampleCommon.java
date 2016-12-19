@@ -8,12 +8,10 @@ import com.ibm.cics.server.CicsConditionException;
 import com.ibm.cics.server.DuplicateRecordException;
 import com.ibm.cics.server.EndOfFileException;
 import com.ibm.cics.server.InvalidRequestException;
-import com.ibm.cics.server.KeyHolder;
-import com.ibm.cics.server.KeyedFileBrowse;
 import com.ibm.cics.server.RRDS;
+import com.ibm.cics.server.RRDS_Browse;
 import com.ibm.cics.server.RecordHolder;
 import com.ibm.cics.server.RecordNotFoundException;
-import com.ibm.cics.server.SearchType;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -30,7 +28,7 @@ public class RrdsExampleCommon extends VsamExampleCommon
      * A field to hold a reference to the VSAM rrds file this
      * instance will access. 
      */
-    protected final RRDS rrds;
+    private final RRDS rrds;
     
     /**
      * Constructor to initialise the sample class.
@@ -42,16 +40,44 @@ public class RrdsExampleCommon extends VsamExampleCommon
     }
 
     /**
+     * Loops through all the records in the file, deleting them as we go.
+     * Not expected to be very useful in a real-world scenario, but makes
+     * coding an RRDS example much easier, as we know the file will be in
+     * a known state before we begin the real update logic. 
+     */
+    public void emptyFile()
+    {
+        RecordHolder rh = new RecordHolder();
+        
+        try {
+            // Read each record, deleting as we go
+            for ( long l = 1; l < Integer.MAX_VALUE; l++ ) {
+                
+                // Lock this record for deletion
+                this.rrds.readForUpdate(l, rh);
+                
+                // Delete
+                this.rrds.delete();
+            }
+        }
+        catch (RecordNotFoundException rnfe) {
+            // Normal exit from loop - record ID not found
+            rnfe.printStackTrace();
+        }
+        catch (CicsConditionException cce) {
+            throw new RuntimeException(cce);
+        }
+    }
+    
+    
+    /**
      * Provides a simple example of adding a record to a VSAM rrds file.
      */
-    public void addRecord(StockPart sp)
+    public void addRecord(long rrn, StockPart sp)
     {
         try {
             // Get the flat byte structure from the JZOS object
             byte[] record = sp.getByteBuffer();
-            
-            // Use the part ID as the record number
-            long rrn = sp.getPartId();
             
             // Write the record into the file at the specified RRN
             this.rrds.write(rrn, record);
@@ -59,8 +85,8 @@ public class RrdsExampleCommon extends VsamExampleCommon
         catch (DuplicateRecordException dre) {
             
             // Collision on the generated key
-            String strMsg = "Tried to insert duplicate key {0}"; 
-            Task.getTask().out.println( MessageFormat.format(strMsg, sp.getPartId()) );
+            String strMsg = "Tried to insert duplicate record at RRN 0x%016X"; 
+            Task.getTask().out.println( String.format(strMsg, rrn) );
             throw new RuntimeException(dre);
         }
         catch (InvalidRequestException ire) {
@@ -69,8 +95,8 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for WRITE to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not addable
-                String strMsg = "Add operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.rrds.getName()) );
+                String strMsg = "Add operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -91,17 +117,14 @@ public class RrdsExampleCommon extends VsamExampleCommon
      * 
      * @param key
      */
-    public StockPart updateRecord(int key, String strDescription)
+    public StockPart updateRecord(long rrn, String strDescription)
     {
         try {            
-            // Use the StockPartHelper class to get a byte[] from this key 
-            byte[] keyBytes = StockPartHelper.getKey(key);
-
             // Holder object to receive the data
             RecordHolder rh = new RecordHolder();
 
-            // Read the record at the specified key and lock
-//            this.rrds.readForUpdate(keyBytes, SearchType.EQUAL, rh);
+            // Read the record at the specified RRN and lock
+            this.rrds.readForUpdate(rrn, rh);
 
             // Create a StockPart instance from the record
             byte[] readBytes = rh.getValue();
@@ -116,20 +139,20 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // Return the updated StockPart instance
             return sp;
         }
-//        catch (RecordNotFoundException rnfe) {
-//            // Initial read failed - key not found in file
-//            String strMsg = "Record with key {0} not found in file";
-//            Task.getTask().out.println( MessageFormat.format(strMsg, key) );            
-//            throw new RuntimeException(rnfe);
-//        }
+        catch (RecordNotFoundException rnfe) {
+            // Initial read failed - key not found in file
+            String strMsg = "Record with RRN 0x%016X not found in file";
+            Task.getTask().out.println( String.format(strMsg, rrn) );            
+            throw new RuntimeException(rnfe);
+        }
         catch (InvalidRequestException ire) {
             
             // Invalid request may occur for several reasons - find out the root cause
             // See the CICS API documentation for READ UPDATE to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Read or update operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.rrds.getName()) );
+                String strMsg = "Read or update operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -151,18 +174,14 @@ public class RrdsExampleCommon extends VsamExampleCommon
      * @return a {@link StockPart} instance representing the record in the VSAM file
      * identified by the specified key.
      */
-    public StockPart readRecord(int key)
+    public StockPart readRecord(long rrn)
     {        
-        // Use the StockPartHelper class to get a byte[] from this key 
-        byte[] keyBytes = StockPartHelper.getKey(key);
-
-        /*
         try {            
             // Holder object to receive the data
             RecordHolder rh = new RecordHolder();
 
-            // Read the record identified by the supplied key 
-            this.rrds.read(keyBytes, SearchType.EQUAL, rh);
+            // Read the record identified by the supplied RRN 
+            this.rrds.read(rrn, rh);
 
             // Create a StockPart instance from the record
             return new StockPart( rh.getValue() );
@@ -173,8 +192,8 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for READ to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Read operation not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.rrds.getName()) );
+                String strMsg = "Read operation not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -182,19 +201,17 @@ public class RrdsExampleCommon extends VsamExampleCommon
         }
         catch (RecordNotFoundException rnfe) {
             // The supplied record was not found
-            String strMsg = "Record with key {0} was not found";
-            Task.getTask().out.println( MessageFormat.format(strMsg, key) );
+            String strMsg = "Record with RRN 0x%016X was not found";
+            Task.getTask().out.println( String.format(strMsg, rrn) );
             throw new RuntimeException(rnfe);
         }
         catch (CicsConditionException cce) {
             // Some other CICS failure
             throw new RuntimeException(cce);
         }
-        */
-        return StockPartHelper.generate();
     }
     
-    public StockPart deleteRecord(int key)
+    public StockPart deleteRecord(long rrn)
     {
         // The record as it stood before deletion
         StockPart sp;
@@ -203,24 +220,20 @@ public class RrdsExampleCommon extends VsamExampleCommon
          * Lock the record for an update.
          */
 
-        /*
-        try {            
-            // Use the StockPartHelper class to get a byte[] from this key 
-            byte[] keyBytes = StockPartHelper.getKey(key);
-
+        try {
             // Holder object to receive the data
             RecordHolder rh = new RecordHolder();
 
             // Read the record at the specified key and lock
-            this.rrds.readForUpdate(keyBytes, SearchType.EQUAL, rh);
+            this.rrds.readForUpdate(rrn, rh);
             
             // Convert to a StockPart object
             sp = new StockPart( rh.getValue() );
         }
         catch (RecordNotFoundException rnfe) {
             // Initial read failed - key not found in file
-            String strMsg = "Record with key {0} not found in file";
-            Task.getTask().out.println( MessageFormat.format(strMsg, key) );            
+            String strMsg = "Record with RRN 0x%016X not found in file";
+            Task.getTask().out.println( String.format(strMsg, rrn) );            
             throw new RuntimeException(rnfe);
         }
         catch (InvalidRequestException ire) {
@@ -229,8 +242,8 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for READ UPDATE to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Read or update operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.rrds.getName()) );
+                String strMsg = "Read or update operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -240,7 +253,7 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // Some other CICS failure
             throw new RuntimeException(cce);
         }
-        */
+
         
         /*
          * Now perform the delete.
@@ -251,7 +264,7 @@ public class RrdsExampleCommon extends VsamExampleCommon
             this.rrds.delete();
             
             // Return the record as it stood before deletion
-            return StockPartHelper.generate(); // sp;
+            return sp;
         }
         catch (InvalidRequestException ire) {
             
@@ -259,8 +272,8 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for DELETE to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Delete operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.rrds.getName()) );
+                String strMsg = "Delete operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -281,28 +294,23 @@ public class RrdsExampleCommon extends VsamExampleCommon
      * 
      * @return a list of StockPart objects
      */
-    public List<StockPart> browse(int startKey, int count)
+    public List<StockPart> browse(long rrnStart, int count)
     {
         // The list instance to return
         List<StockPart> list = new ArrayList<>(count);
         
         // Holder object to receive the data
         RecordHolder rh = new RecordHolder();
-        KeyHolder kh = new KeyHolder();
         
-        // Start a browse of the file at the supplied key
-        byte[] key = StockPartHelper.getKey(startKey);
-
-        /*
         try {            
             // Start the browse of the file
-            KeyedFileBrowse kfb = this.rrds.startBrowse(key, SearchType.GTEQ);
+            RRDS_Browse rrdsBrowse = this.rrds.startBrowse(rrnStart);
             
             // Loop until we reach maximum count
             for ( int i = 0; i < count; i++ ) {
                 
-                // Read a record from the file
-                kfb.next(rh, kh);
+                // Read a record from the file (discard the returned RRN)
+                rrdsBrowse.next(rh);
                 
                 // Get the record and convert to a StockPart
                 StockPart sp = new StockPart( rh.getValue() );
@@ -312,7 +320,7 @@ public class RrdsExampleCommon extends VsamExampleCommon
             }
         }
         catch (RecordNotFoundException rnfe) {
-            // Initial browse failed - no records matching GTEQ condition
+            // No records matching the supplied RRN
         }
         catch (EndOfFileException eof) {
             // Normal termination of loop - no further records
@@ -323,8 +331,8 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for STARTBR to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Browse operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.rrds.getName()) );
+                String strMsg = "Browse operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.rrds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -334,8 +342,6 @@ public class RrdsExampleCommon extends VsamExampleCommon
             // Some other CICS failure
             throw new RuntimeException(cce);
         }
-        
-        */
         
         // Return the list
         return list;

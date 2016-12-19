@@ -18,7 +18,7 @@ public class EsdsExample4
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting KsdsExample4");
-        task.out.println("Record delete example");
+        task.out.println("VSAM ESDS record delete example");
         
         // VSAM ESDS does not allow record deletion
         task.out.println("Record deletion not permitted for VSAM ESDS files");

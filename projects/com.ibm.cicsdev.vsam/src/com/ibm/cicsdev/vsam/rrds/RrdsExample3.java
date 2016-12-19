@@ -1,15 +1,14 @@
 package com.ibm.cicsdev.vsam.rrds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
-
 /**
- * Simple example to demonstrate reading and writing to a VSAM KSDS
- * file using JCICS.
+ * Simple example to demonstrate updating a record in a VSAM RRDS file using JCICS.
+ * 
+ * This class is just the driver of the test. The main JCICS work is done in the
+ * common class {@link RrdsExampleCommon}.
  */
 public class RrdsExample3
 {
@@ -23,34 +22,35 @@ public class RrdsExample3
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample3");
+        task.out.println(" - Starting RrdsExample3");
+        task.out.println("VSAM RRDS record update example");
 
         // Create a new instance of the common example class
         RrdsExampleCommon ex = new RrdsExampleCommon();
 
+        // Unlike the KSDS and ESDS examples, we need an empty file before we start
+        ex.emptyFile();
+        
+        // We will always add and read RRN 1
+        long rrn = 1;
+        
         
         /*
          * Create a record in the file so we have something to work with.
          */
         
-        // Keep track of the key of the new record
-        int key;
-
         // Scoping of local variables
         {
             // Add a new record to the file 
             StockPart sp = StockPartHelper.generate();
-            ex.addRecord(sp);
+            ex.addRecord(rrn, sp);
             
             // Commit the unit of work
             ex.commitUnitOfWork();
          
-            // Get hold of the new part ID
-            key = sp.getPartId();
-            
             // Write out the key and description
-            String strMsg = "Wrote to key {0} with description {1}";
-            task.out.println( MessageFormat.format(strMsg, key, sp.getDescription()) );
+            String strMsg = "Wrote to RRN 0x%016X with description %s";
+            task.out.println( String.format(strMsg, rrn, sp.getDescription().trim()) );
         }
         
         
@@ -64,16 +64,16 @@ public class RrdsExample3
             String strDesc = StockPartHelper.generateDescription();
 
             // Now update the known record with a specified description
-            StockPart sp = ex.updateRecord(key, strDesc);
+            StockPart sp = ex.updateRecord(rrn, strDesc);
             
             // Display the updated description
-            String strMsg = "Updated record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Updated record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Unit of work containing the update will be committed at normal end of task
         
         // Completion message
-        task.out.println("Completed KsdsExample3");
+        task.out.println("Completed RrdsExample3");
     }
 }

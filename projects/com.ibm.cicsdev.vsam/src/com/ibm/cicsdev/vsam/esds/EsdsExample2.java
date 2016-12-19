@@ -25,7 +25,7 @@ public class EsdsExample2
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting EsdsExample2");
-        task.out.println("Record read example");
+        task.out.println("VSAM ESDS record read example");
 
         // Create a new instance of the common ESDS class
         EsdsExampleCommon ex = new EsdsExampleCommon();

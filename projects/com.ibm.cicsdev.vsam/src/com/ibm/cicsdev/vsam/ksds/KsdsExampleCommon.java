@@ -31,7 +31,7 @@ public class KsdsExampleCommon extends VsamExampleCommon
      * A field to hold a reference to the VSAM KSDS file this
      * instance will access. 
      */
-    protected final KSDS ksds;
+    private final KSDS ksds;
     
     /**
      * Constructor to initialise the sample class.
