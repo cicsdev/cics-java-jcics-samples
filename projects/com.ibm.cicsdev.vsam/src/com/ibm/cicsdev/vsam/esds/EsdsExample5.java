@@ -1,6 +1,5 @@
 package com.ibm.cicsdev.vsam.esds;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 import com.ibm.cics.server.Task;
@@ -15,6 +14,11 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
  */
 public class EsdsExample5 
 {
+    /**
+     * Number of records to add and then browse through.
+     */
+    private static final int RECORDS_TO_BROWSE = 5;
+    
     /**
      * Main entry point to a CICS OSGi program.
      * 
@@ -33,28 +37,26 @@ public class EsdsExample5
 
         
         /*
-         * Create at least 5 records in the file so we have something to work with.
+         * Create some records in the file so we have something to work with.
          */
         
-        // Keep track of the lowest generated key
-        int key = Integer.MAX_VALUE;
+        // ESDS records are always stored in the sequence they were added
+        long rbaFirst = -1;
         
-        // Add 5 records, keeping track of the lowest key
-        for ( int i = 0; i < 5; i++ ) {
+        // Add 5 records
+        for ( int i = 0; i < RECORDS_TO_BROWSE; i++ ) {
             
             // Add a new record to the file 
             StockPart sp = StockPartHelper.generate();
-            ex.addRecord(sp);
+            long rba = ex.addRecord(sp);
             
-            // Get the key of the new record
-            int newKey = sp.getPartId();
+            // Write out the RBA of the new record
+            task.out.println( String.format("Wrote to RBA 0x%016X", rba) );
             
-            // Write out the key and description
-            String strMsg = "Wrote to key {0}";
-            task.out.println( MessageFormat.format(strMsg, newKey) );
-            
-            // Decide if this is lowest key so far
-            key = newKey < key ? newKey : key;
+            // Keep track of the RBA of the first insert
+            if ( rbaFirst == -1 ) {
+                rbaFirst = rba;
+            }
         }
         
         // Commit the unit of work to harden the inserts to the file
@@ -62,27 +64,23 @@ public class EsdsExample5
         
 
         /*
-         * Browse through the file, starting at the lowest key.
-         * 
-         * Note the next five records we find may not necessarily be the five we
-         * added above. It will depend on what existing records were already in 
-         * the KSDS file. 
+         * Browse through the file, starting at the lowest RBA.
          * 
          * The above code will have guaranteed that at least five records exist.
          */
         
         // Browse through five records, starting at the lowest known key
-        List<StockPart> list = ex.browse(key, 5);
+        List<StockPart> list = ex.browse(rbaFirst, RECORDS_TO_BROWSE);
         
         // Iterate over this list
         for ( StockPart sp : list ) {
             
             // Display the description
-            String strMsg = "Read record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Read record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Completion message
-        task.out.println("Completed KsdsExample5");
+        task.out.println("Completed EsdsExample5");
     }
 }

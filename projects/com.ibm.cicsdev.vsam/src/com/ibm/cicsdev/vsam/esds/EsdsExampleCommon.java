@@ -7,16 +7,13 @@ import java.util.List;
 import com.ibm.cics.server.CicsConditionException;
 import com.ibm.cics.server.DuplicateRecordException;
 import com.ibm.cics.server.ESDS;
+import com.ibm.cics.server.ESDS_Browse;
 import com.ibm.cics.server.EndOfFileException;
 import com.ibm.cics.server.InvalidRequestException;
-import com.ibm.cics.server.KeyHolder;
-import com.ibm.cics.server.KeyedFileBrowse;
 import com.ibm.cics.server.RecordHolder;
 import com.ibm.cics.server.RecordNotFoundException;
-import com.ibm.cics.server.SearchType;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
-import com.ibm.cicsdev.vsam.StockPartHelper;
 import com.ibm.cicsdev.vsam.VsamExampleCommon;
 
 public class EsdsExampleCommon extends VsamExampleCommon
@@ -189,32 +186,28 @@ public class EsdsExampleCommon extends VsamExampleCommon
     /**
      * Provides an example of browsing a VSAM dataset.
      * 
-     * @param startKey
+     * @param startRBA
      * @param count
      * 
      * @return a list of StockPart objects
      */
-    public List<StockPart> browse(int startKey, int count)
+    public List<StockPart> browse(long startRBA, int count)
     {
         // The list instance to return
         List<StockPart> list = new ArrayList<>(count);
         
         // Holder object to receive the data
         RecordHolder rh = new RecordHolder();
-        KeyHolder kh = new KeyHolder();
-        
-        // Start a browse of the file at the supplied key
-        byte[] key = StockPartHelper.getKey(startKey);
         
         try {            
             // Start the browse of the file
-            KeyedFileBrowse kfb = this.esds.startBrowse(key, SearchType.GTEQ);
+            ESDS_Browse esdsBrowse = this.esds.startBrowse(startRBA);
             
             // Loop until we reach maximum count
             for ( int i = 0; i < count; i++ ) {
                 
-                // Read a record from the file
-                kfb.next(rh, kh);
+                // Read a record from the file (discard the returned RBA)
+                esdsBrowse.next(rh);
                 
                 // Get the record and convert to a StockPart
                 StockPart sp = new StockPart( rh.getValue() );
@@ -224,7 +217,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
             }
         }
         catch (RecordNotFoundException rnfe) {
-            // Initial browse failed - no records matching GTEQ condition
+            // Initial browse failed - no records matching the supplied RBA
         }
         catch (EndOfFileException eof) {
             // Normal termination of loop - no further records
