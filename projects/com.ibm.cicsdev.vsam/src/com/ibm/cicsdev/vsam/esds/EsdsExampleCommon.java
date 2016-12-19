@@ -1,6 +1,5 @@
 package com.ibm.cicsdev.vsam.esds;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,13 @@ import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.VsamExampleCommon;
 
+/**
+ * Example class to demonstrate various operations which may be
+ * useful when manipulating VSAM ESDS files.
+ * 
+ * Records in an ESDS file are located using their Relative Byte
+ * Address (RBA).
+ */
 public class EsdsExampleCommon extends VsamExampleCommon
 {
     /**
@@ -30,23 +36,28 @@ public class EsdsExampleCommon extends VsamExampleCommon
     private final ESDS esds;
     
     /**
-     * Constructor to initialise the sample class.
+     * Constructor to initialise the reference to the sample file.
      */    
     public EsdsExampleCommon()
     {
+        // Create a new ESDS instance and initialise
         this.esds = new ESDS();
         this.esds.setName(FILE_NAME);        
     }
 
     /**
      * Provides a simple example of adding a record to a VSAM ESDS file.
+     * 
+     * @param sp the {@link StockPart} instance to write to the file.
+     * 
+     * @return the RBA for the new record.
      */
     public long addRecord(StockPart sp)
     {
+        // Get the flat byte structure from the JZOS object
+        byte[] record = sp.getByteBuffer();
+        
         try {
-            // Get the flat byte structure from the JZOS object
-            byte[] record = sp.getByteBuffer();
-            
             // Write the record into the file (records in ESDS always in order of adding)
             long rba = this.esds.write(record);
             
@@ -56,8 +67,8 @@ public class EsdsExampleCommon extends VsamExampleCommon
         catch (DuplicateRecordException dre) {
             
             // Collision on the generated key
-            String strMsg = "Tried to insert duplicate key {0}"; 
-            Task.getTask().out.println( MessageFormat.format(strMsg, sp.getPartId()) );
+            String strMsg = "Tried to insert duplicate key 0x%016X"; 
+            Task.getTask().out.println( String.format(strMsg, sp.getPartId()) );
             throw new RuntimeException(dre);
         }
         catch (InvalidRequestException ire) {
@@ -66,8 +77,8 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for WRITE to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not addable
-                String strMsg = "Add operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.esds.getName()) );
+                String strMsg = "Add operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.esds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -80,13 +91,17 @@ public class EsdsExampleCommon extends VsamExampleCommon
     }
 
     /**
-     * Provides a simple example of updating a single record in a VSAM esds file.
+     * Provides a simple example of updating a single record in a VSAM ESDS file.
      * 
-     * This method uses the supplied part ID to locate and lock a record using
-     * the readForUpdate() method, generates a new description for the part, and
-     * then writes the new record back to the file using the rewrite() method.
+     * This method uses the supplied RBA to locate and lock a record using
+     * the readForUpdate() method, uses the supplied description to update the
+     * record that has been read, and then writes the new record back to the file
+     * using the rewrite() method.
      * 
-     * @param rba
+     * @param rba the RBA of the record to update.
+     * @param strDescription the new description to store in the VSAM file.
+     * 
+     * @return the updated {@link StockPart} instance.
      */
     public StockPart updateRecord(long rba, String strDescription)
     {
@@ -94,7 +109,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // Holder object to receive the data
             RecordHolder rh = new RecordHolder();
 
-            // Read the record at the specified key and lock
+            // Read the record at the specified RBA and lock
             this.esds.readForUpdate(rba, rh);
 
             // Create a StockPart instance from the record
@@ -122,8 +137,8 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for READ UPDATE to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Read or update operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.esds.getName()) );
+                String strMsg = "Read or update operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.esds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -134,11 +149,9 @@ public class EsdsExampleCommon extends VsamExampleCommon
             throw new RuntimeException(cce);
         }
     }
-
-
     
     /**
-     * Provides a simple example of reading a single record from a VSAM esds file.
+     * Provides a simple example of reading a single record from a VSAM ESDS file.
      * 
      * @param rba the RBA of the record to locate in the VSAM file.
      * 
@@ -163,7 +176,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for READ to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Read operation not permitted for file %s.";
+                String strMsg = "Read operation not permitted for file %s";
                 Task.getTask().out.println( String.format(strMsg, this.esds.getName()) );
             }
             
@@ -181,15 +194,14 @@ public class EsdsExampleCommon extends VsamExampleCommon
             throw new RuntimeException(cce);
         }
     }
-    
-    
+
     /**
-     * Provides an example of browsing a VSAM dataset.
+     * Provides an example of browsing a VSAM ESDS dataset.
      * 
-     * @param rbaStart
-     * @param count
+     * @param rbaStart the RBA from which the browse should begin.
+     * @param count the maximum number of records to return.
      * 
-     * @return a list of StockPart objects
+     * @return a list of StockPart objects.
      */
     public List<StockPart> browse(long rbaStart, int count)
     {
@@ -228,8 +240,8 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for STARTBR to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Browse operations not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.esds.getName()) );
+                String strMsg = "Browse operations not permitted for file %s";
+                Task.getTask().out.println( String.format(strMsg, this.esds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
@@ -242,6 +254,5 @@ public class EsdsExampleCommon extends VsamExampleCommon
         
         // Return the list
         return list;
-   }
-
+    }
 }
