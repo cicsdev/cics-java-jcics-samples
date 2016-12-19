@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?><cicsdefinitionfile xmlns="http://www.ibm.com/xmlns/prod/CICS/smw2int" add="YES" browse="YES" delete="YES" dsname="IBURNET.JAVAED.TEST.RRDS.STOCK" name="XMPLRRDS" read="YES" update="YES"/>
+<?xml version="1.0" encoding="UTF-8"?><cicsdefinitionfile xmlns="http://www.ibm.com/xmlns/prod/CICS/smw2int" add="YES" browse="YES" delete="YES" dsname="JAVAED.TEST.RRDS.STOCK" name="XMPLRRDS" read="YES" update="YES"/>
