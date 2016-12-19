@@ -9,6 +9,9 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
 
 /**
  * Simple example to demonstrate browsing a VSAM KSDS file using JCICS.
+ * 
+ * This class is just the driver of the test. The main JCICS work is done in the
+ * common class {@link KsdsExampleCommon}.
  */
 public class KsdsExample5 
 {

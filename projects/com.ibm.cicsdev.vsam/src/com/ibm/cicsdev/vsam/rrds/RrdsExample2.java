@@ -1,10 +1,11 @@
-package com.ibm.cicsdev.vsam.ksds;
+package com.ibm.cicsdev.vsam.rrds;
 
 import java.text.MessageFormat;
 
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
+import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 
 
 /**
@@ -13,7 +14,7 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
  * This class is just the driver of the test. The main JCICS work is done in the
  * superclass {@link KsdsExampleCommon}.
  */
-public class KsdsExample2
+public class RrdsExample2
 {
     /**
      * Main entry point to a CICS OSGi program.
@@ -25,11 +26,10 @@ public class KsdsExample2
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample2");
-        task.out.println("Record read example");
+        task.out.println(" - Starting EsdsExample2");
 
-        // Create a new instance of the common example class
-        KsdsExampleCommon ex = new KsdsExampleCommon();
+        // Create a new instance of this class
+        RrdsExampleCommon ex = new RrdsExampleCommon();
         
         // Add a new record to the file so we have something to work with
         StockPart spNew = StockPartHelper.generate();

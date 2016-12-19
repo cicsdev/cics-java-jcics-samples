@@ -1,7 +1,5 @@
 package com.ibm.cicsdev.vsam.esds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -10,7 +8,7 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
  * Simple example to demonstrate adding a record to a VSAM ESDS file using JCICS.
  * 
  * This class is just the driver of the test. The main JCICS work is done in the
- * superclass {@link EsdsExampleCommon}.
+ * common class {@link EsdsExampleCommon}.
  */
 public class EsdsExample1
 {
@@ -25,6 +23,7 @@ public class EsdsExample1
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting EsdsExample1");
+        task.out.println("Record addition example");
 
         // Create a new instance of the common ESDS class
         EsdsExampleCommon ex = new EsdsExampleCommon();
@@ -33,15 +32,14 @@ public class EsdsExample1
         StockPart sp = StockPartHelper.generate();
         
         // Add a new record to the file
-        ex.addRecord(sp);
+        long rba = ex.addRecord(sp);
         
-        // Write out the part ID
-        String strMsg = "Wrote record with key {0}.";
-        task.out.println( MessageFormat.format(strMsg, sp.getPartId()) );
+        // Write out the RBA of the new record
+        task.out.println( String.format("Wrote record with RBA 0x%016X", rba) );
         
         // Unit of work containing the write will be committed at normal end of task
         
         // Completion message
-        task.out.println("Completed KsdsExample1");
+        task.out.println("Completed EsdsExample1");
     }
 }

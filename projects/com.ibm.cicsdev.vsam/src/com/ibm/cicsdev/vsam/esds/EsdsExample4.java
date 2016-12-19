@@ -1,5 +1,6 @@
 package com.ibm.cicsdev.vsam.esds;
 
+import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.vsam.ksds.KsdsExample4;
 
 
@@ -12,4 +13,17 @@ import com.ibm.cicsdev.vsam.ksds.KsdsExample4;
  */
 public class EsdsExample4 
 {
+    public static void main(String[] args)
+    {
+        // Get details about our current CICS task
+        Task task = Task.getTask();
+        task.out.println(" - Starting KsdsExample4");
+        task.out.println("Record delete example");
+        
+        // VSAM ESDS does not allow record deletion
+        task.out.println("Record deletion not permitted for VSAM ESDS files");
+        
+        // Completion message
+        task.out.println("Completed EsdsExample4");
+    }
 }

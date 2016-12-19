@@ -7,8 +7,10 @@ import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
 /**
- * Simple example to demonstrate deleting a record from a VSAM KSDS
- * file using JCICS.
+ * Simple example to demonstrate deleting a record from a VSAM KSDS file using JCICS.
+ * 
+ * This class is just the driver of the test. The main JCICS work is done in the
+ * common class {@link KsdsExampleCommon}.
  */
 public class KsdsExample4 
 {

@@ -1,7 +1,5 @@
 package com.ibm.cicsdev.vsam.esds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -9,10 +7,10 @@ import com.ibm.cicsdev.vsam.ksds.KsdsExampleCommon;
 
 
 /**
- * Simple example to demonstrate reading a record from a VSAM KSDS file using JCICS.
+ * Simple example to demonstrate reading a record from a VSAM ESDS file using JCICS.
  * 
  * This class is just the driver of the test. The main JCICS work is done in the
- * superclass {@link KsdsExampleCommon}.
+ * common class {@link KsdsExampleCommon}.
  */
 public class EsdsExample2
 {
@@ -27,34 +25,32 @@ public class EsdsExample2
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting EsdsExample2");
+        task.out.println("Record read example");
 
-        // Create a new instance of this class
+        // Create a new instance of the common ESDS class
         EsdsExampleCommon ex = new EsdsExampleCommon();
         
         // Add a new record to the file so we have something to work with
         StockPart spNew = StockPartHelper.generate();
-        ex.addRecord(spNew);
-        
-        // Keep track of the key
-        int key = spNew.getPartId();
-        
-        // Write out the original description
-        task.out.println( MessageFormat.format("Wrote record with key {0}", key) );
+        long rba = ex.addRecord(spNew);
         
         // Commit the current unit of work harden new record to the file
         ex.commitUnitOfWork();
             
+        // Write out the RBA of the record we have just written
+        task.out.println( String.format("Wrote record with RBA 0x%016X", rba) );
+        
         // Now read the record with the specified key
-        StockPart spRead = ex.readRecord(key);
+        StockPart spRead = ex.readRecord(rba);
             
         // Did we read successfully?
         if ( spRead != null ) {
             // Display the read description
-            String strMsg = "Read record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, spRead.getDescription()) );
+            String strMsg = "Read record with description %s";
+            task.out.println( String.format(strMsg, spRead.getDescription().trim()) );
         }
         
         // Completion message
-        task.out.println("Completed KsdsExample2");
+        task.out.println("Completed EsdsExample2");
     }
 }

@@ -1,15 +1,14 @@
 package com.ibm.cicsdev.vsam.esds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
-
 /**
- * Simple example to demonstrate reading and writing to a VSAM KSDS
- * file using JCICS.
+ * Simple example to demonstrate updating  a record in a VSAM ESDS file using JCICS.
+ * 
+ * This class is just the driver of the test. The main JCICS work is done in the
+ * common class {@link EsdsExampleCommon}.
  */
 public class EsdsExample3
 {
@@ -24,8 +23,9 @@ public class EsdsExample3
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting KsdsExample3");
+        task.out.println("Record update example");
 
-        // Create a new instance of the common example class
+        // Create a new instance of the common ESDS class
         EsdsExampleCommon ex = new EsdsExampleCommon();
 
         
@@ -33,24 +33,21 @@ public class EsdsExample3
          * Create a record in the file so we have something to work with.
          */
         
-        // Keep track of the key of the new record
-        int key;
+        // Keep track of the RBA of the new record
+        long rba;
 
         // Scoping of local variables
         {
             // Add a new record to the file 
             StockPart sp = StockPartHelper.generate();
-            ex.addRecord(sp);
+            rba = ex.addRecord(sp);
             
             // Commit the unit of work
             ex.commitUnitOfWork();
          
-            // Get hold of the new part ID
-            key = sp.getPartId();
-            
-            // Write out the key and description
-            String strMsg = "Wrote to key {0} with description {1}";
-            task.out.println( MessageFormat.format(strMsg, key, sp.getDescription()) );
+            // Write out the RBA and description
+            String strMsg = "Wrote to RBA 0x%016X with description %s";
+            task.out.println( String.format(strMsg, rba, sp.getDescription().trim()) );
         }
         
         
@@ -63,17 +60,17 @@ public class EsdsExample3
             // Generate a new part description
             String strDesc = StockPartHelper.generateDescription();
 
-            // Now update the known record with a specified description
-            StockPart sp = ex.updateRecord(key, strDesc);
+            // Update the known record with a specified description
+            StockPart sp = ex.updateRecord(rba, strDesc);
             
             // Display the updated description
-            String strMsg = "Updated record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Updated record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Unit of work containing the update will be committed at normal end of task
         
         // Completion message
-        task.out.println("Completed KsdsExample3");
+        task.out.println("Completed EsdsExample3");
     }
 }

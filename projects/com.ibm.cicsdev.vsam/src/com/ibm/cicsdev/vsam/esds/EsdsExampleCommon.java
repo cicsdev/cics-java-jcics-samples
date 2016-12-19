@@ -44,14 +44,17 @@ public class EsdsExampleCommon extends VsamExampleCommon
     /**
      * Provides a simple example of adding a record to a VSAM ESDS file.
      */
-    public void addRecord(StockPart sp)
+    public long addRecord(StockPart sp)
     {
         try {
             // Get the flat byte structure from the JZOS object
             byte[] record = sp.getByteBuffer();
             
             // Write the record into the file (records in ESDS always in order of adding)
-            this.esds.write(record);
+            long rba = this.esds.write(record);
+            
+            // Return the new RBA for this record
+            return rba;
         }
         catch (DuplicateRecordException dre) {
             
@@ -86,19 +89,16 @@ public class EsdsExampleCommon extends VsamExampleCommon
      * the readForUpdate() method, generates a new description for the part, and
      * then writes the new record back to the file using the rewrite() method.
      * 
-     * @param key
+     * @param rba
      */
-    public StockPart updateRecord(int key, String strDescription)
+    public StockPart updateRecord(long rba, String strDescription)
     {
         try {            
-            // Use the StockPartHelper class to get a byte[] from this key 
-            byte[] keyBytes = StockPartHelper.getKey(key);
-
             // Holder object to receive the data
             RecordHolder rh = new RecordHolder();
 
             // Read the record at the specified key and lock
-            this.esds.readForUpdate(keyBytes, SearchType.EQUAL, rh);
+            this.esds.readForUpdate(rba, rh);
 
             // Create a StockPart instance from the record
             byte[] readBytes = rh.getValue();
@@ -115,8 +115,8 @@ public class EsdsExampleCommon extends VsamExampleCommon
         }
         catch (RecordNotFoundException rnfe) {
             // Initial read failed - key not found in file
-            String strMsg = "Record with key {0} not found in file";
-            Task.getTask().out.println( MessageFormat.format(strMsg, key) );            
+            String strMsg = "Record with RBA 0x%016X not found in file";
+            Task.getTask().out.println( String.format(strMsg, rba) );            
             throw new RuntimeException(rnfe);
         }
         catch (InvalidRequestException ire) {
@@ -143,22 +143,19 @@ public class EsdsExampleCommon extends VsamExampleCommon
     /**
      * Provides a simple example of reading a single record from a VSAM esds file.
      * 
-     * @param key the key of the record to locate in the VSAM file.
+     * @param rba the RBA of the record to locate in the VSAM file.
      * 
      * @return a {@link StockPart} instance representing the record in the VSAM file
      * identified by the specified key.
      */
-    public StockPart readRecord(int key)
+    public StockPart readRecord(long rba)
     {        
-        // Use the StockPartHelper class to get a byte[] from this key 
-        byte[] keyBytes = StockPartHelper.getKey(key);
-
         try {            
             // Holder object to receive the data
             RecordHolder rh = new RecordHolder();
 
-            // Read the record identified by the supplied key 
-            this.esds.read(keyBytes, SearchType.EQUAL, rh);
+            // Read the record identified by the supplied RBA 
+            this.esds.read(rba, rh);
 
             // Create a StockPart instance from the record
             return new StockPart( rh.getValue() );
@@ -169,17 +166,17 @@ public class EsdsExampleCommon extends VsamExampleCommon
             // See the CICS API documentation for READ to see the full list
             if ( ire.getRESP2() == 20 ) {
                 // File not readable or updateable
-                String strMsg = "Read operation not permitted for file {0}";
-                Task.getTask().out.println( MessageFormat.format(strMsg, this.esds.getName()) );
+                String strMsg = "Read operation not permitted for file %s.";
+                Task.getTask().out.println( String.format(strMsg, this.esds.getName()) );
             }
             
             // Throw an exception to rollback the current UoW
             throw new RuntimeException(ire);
         }
         catch (RecordNotFoundException rnfe) {
-            // The supplied record was not found
-            String strMsg = "Record with key {0} was not found";
-            Task.getTask().out.println( MessageFormat.format(strMsg, key) );
+            // The requested record was not found
+            String strMsg = "Record with RBA 0x%016X was not found";
+            Task.getTask().out.println( String.format(strMsg, rba) );
             throw new RuntimeException(rnfe);
         }
         catch (CicsConditionException cce) {

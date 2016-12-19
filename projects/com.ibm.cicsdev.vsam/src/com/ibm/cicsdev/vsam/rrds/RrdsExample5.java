@@ -1,4 +1,4 @@
-package com.ibm.cicsdev.vsam.esds;
+package com.ibm.cicsdev.vsam.rrds;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -8,12 +8,9 @@ import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
 /**
- * Simple example to demonstrate browsing a VSAM ESDS file using JCICS.
- * 
- * This class is just the driver of the test. The main JCICS work is done in the
- * common class {@link EsdsExampleCommon}.
+ * Simple example to demonstrate browsing a VSAM KSDS file using JCICS.
  */
-public class EsdsExample5 
+public class RrdsExample5 
 {
     /**
      * Main entry point to a CICS OSGi program.
@@ -26,10 +23,9 @@ public class EsdsExample5
         // Get details about our current CICS task
         Task task = Task.getTask();
         task.out.println(" - Starting KsdsExample5");
-        task.out.println("File browse example");
 
         // Create a new instance of the common example class
-        EsdsExampleCommon ex = new EsdsExampleCommon();
+        RrdsExampleCommon ex = new RrdsExampleCommon();
 
         
         /*

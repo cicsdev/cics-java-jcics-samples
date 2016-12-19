@@ -1,4 +1,4 @@
-package com.ibm.cicsdev.vsam.ksds;
+package com.ibm.cicsdev.vsam.rrds;
 
 import java.text.MessageFormat;
 
@@ -6,13 +6,12 @@ import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
+
 /**
- * Simple example to demonstrate updating a record in a VSAM KSDS file using JCICS.
- * 
- * This class is just the driver of the test. The main JCICS work is done in the
- * common class {@link KsdsExampleCommon}.
+ * Simple example to demonstrate reading and writing to a VSAM KSDS
+ * file using JCICS.
  */
-public class KsdsExample3
+public class RrdsExample3
 {
     /**
      * Main entry point to a CICS OSGi program.
@@ -27,7 +26,7 @@ public class KsdsExample3
         task.out.println(" - Starting KsdsExample3");
 
         // Create a new instance of the common example class
-        KsdsExampleCommon ex = new KsdsExampleCommon();
+        RrdsExampleCommon ex = new RrdsExampleCommon();
 
         
         /*

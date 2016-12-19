@@ -1,18 +1,16 @@
-package com.ibm.cicsdev.vsam.ksds;
-
-import java.text.MessageFormat;
+package com.ibm.cicsdev.vsam.rrds;
 
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
 /**
- * Simple example to demonstrate adding a record to a VSAM KSDS file using JCICS.
+ * Simple example to demonstrate adding a record to a VSAM RRDS file using JCICS.
  * 
  * This class is just the driver of the test. The main JCICS work is done in the
- * common class {@link KsdsExampleCommon}.
+ * superclass {@link RrdsExampleCommon}.
  */
-public class KsdsExample1
+public class RrdsExample1
 {
     /**
      * Main entry point to a CICS OSGi program.
@@ -24,25 +22,23 @@ public class KsdsExample1
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample1");
-        task.out.println("Record addition example");
+        task.out.println(" - Starting RrdsExample1");
 
-        // Create a new instance of the common KSDS class
-        KsdsExampleCommon ex = new KsdsExampleCommon();
+        // Create a new instance of the common ESDS class
+        RrdsExampleCommon ex = new RrdsExampleCommon();
         
-        // Create a new random record for writing to the file        
+        // Create a new random record for writing to the file
         StockPart sp = StockPartHelper.generate();
         
         // Add a new record to the file
         ex.addRecord(sp);
         
-        // Write out the part ID
-        String strMsg = "Wrote record with key {0}.";
-        task.out.println( MessageFormat.format(strMsg, sp.getPartId()) );
+        // Write out the new RBA
+        task.out.println( String.format("Wrote record with RBA 0x%016X") );
         
         // Unit of work containing the write will be committed at normal end of task
         
         // Completion message
-        task.out.println("Completed KsdsExample1");
+        task.out.println("Completed EsdsExample1");
     }
 }
