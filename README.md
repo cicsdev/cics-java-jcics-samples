@@ -66,6 +66,7 @@ The following Eclipse CICS bundle projects are provided to support deployment of
 * EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
 * TdqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TDQExample3.
 * TsqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TSQExample3.
+* vsam.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in all the VSAM samples.
 
 
 ## Pre-reqs
