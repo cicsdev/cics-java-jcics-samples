@@ -1,0 +1,15 @@
+
+ DEFINE PROGRAM(JAVASYN1) GROUP(JCICSAMP)
+        DESCRIPTION(Java synchronization sample)
+        CONCURRENCY(REQUIRED) API(CICSAPI) DYNAMIC(NO)
+        JVM(YES) JVMSERVER(DFHJVMS) DATALOCATION(ANY)
+        JVMCLASS(com.ibm.cicsdev.serialize.SerializeExample1)
+
+ DEFINE TRANSACTION(JSY1) GROUP(JCICSAMP) PROGRAM(JAVASYN1)
+        DESCRIPTION(Java synchronization sample)
+        TASKDATALOC(ANY)
+
+ DEFINE BUNDLE(JCICSYNC) GROUP(JCICSAMP)
+        DESCRIPTION(JCICS synchronization sample)
+        BUNDLEDIR(/u/cics1/com.ibm.cicsdev.serialize.cicsbundle_1.0.0)
+
