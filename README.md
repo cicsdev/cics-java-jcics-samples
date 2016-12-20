@@ -32,17 +32,6 @@ work to code in Java.
 * TSQExample4 - An extension of the TSQExample3 sample program, which populates a TSQ, updates items within the queue, then reads them back to confirm.
 * TSQCommon - Super class used to provide common services for the TSQ samples 
 
-### Project com.ibm.cicsdev.vsam
-
-Provides examples for using VSAM files from a JCICS environment. All examples have a ESDS, KSDS, and RRDS variant. The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
-
-* Example1 - Writes a single record to a file.
-* Example2 - Reads a single record from a file.
-* Example3 - Updates a single record in a file.
-* Example4 - Deletes a single record in a file (not ESDS).
-* Example5 - Browses a VSAM file.
-* ExampleCommon - Various routines that perform the various JCICS calls.
-
 ## CICS bundle projects
 The following Eclipse CICS bundle projects are provided to support deployment of the Java projects and the associated CICS resource definitions
 
@@ -52,21 +41,17 @@ The following Eclipse CICS bundle projects are provided to support deployment of
 * Project com.ibm.cicsdev.tsq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tsq sample
 * Project com.ibm.cicsdev.tdq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tdq samples
 * Project com.ibm.cicsdev.tdq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tdq sample
-* Project com.ibm.cicsdev.vsam.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.vsam samples
-* Project com.ibm.cicsdev.vsam.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.vsam sample
 
 
 ## Supporting files
 * etc/Link/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the Link sample.
 * etc/TDQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TSQ sample.
 * etc/TSQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TDQ sample.
-* etc/VSAM/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the VSAM sample.
 * src/Cobol/EC01.cbl - Sample CICS COBOL application that returns the date and time in a COMMAREA.
 * src/Cobol/EDUCHAN.cbl - A sample CICS COBOL that returns the date and time and reversed input using channels and containers
 * EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
 * TdqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TDQExample3.
 * TsqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TSQExample3.
-* vsam.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in all the VSAM samples.
 
 
 ## Pre-reqs
