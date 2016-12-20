@@ -14,6 +14,10 @@ Java source code for the following classes is provided in the corresponding Ecli
 * LinkProgCommon - Super class used to provide common service for the LinkProg samples  
 * LinkServerEduchan - A Java version of the EDUCHAN COBOL program used as the back-end to LinkProg3     
 
+### Project com.ibm.cicsdev.serialize
+
+* SerializeExample1 - A simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
+
 ### Project com.ibm.cicsdev.tdq
 
 * TDQCommon - Super class used to provide common services for the TDQ samples 
@@ -48,10 +52,12 @@ The following Eclipse CICS bundle projects are provided to support deployment of
 
 * Project com.ibm.cicsdev.link.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.link Java samples
 * Project com.ibm.cicsdev.link.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.link sample
-* Project com.ibm.cicsdev.tsq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tsq samples
-* Project com.ibm.cicsdev.tsq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tsq sample
+* Project com.ibm.cicsdev.serialize.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.serialize samples
+* Project com.ibm.cicsdev.serialize.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.serialize sample
 * Project com.ibm.cicsdev.tdq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tdq samples
 * Project com.ibm.cicsdev.tdq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tdq sample
+* Project com.ibm.cicsdev.tsq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tsq samples
+* Project com.ibm.cicsdev.tsq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tsq sample
 * Project com.ibm.cicsdev.vsam.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.vsam samples
 * Project com.ibm.cicsdev.vsam.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.vsam sample
 
@@ -79,7 +85,6 @@ The following Eclipse CICS bundle projects are provided to support deployment of
     
 
 ## Configuration
-
 
 The sample Java classes are designed to be added to an OSGi bundle and deployed into a CICS OSGi JVM server, but can also be used as the basis for extending Web applications deployed into a Liberty JVM server. 
 
