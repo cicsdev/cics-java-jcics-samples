@@ -34,7 +34,4 @@
     <define name="JVR3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR3.transaction"/>
     <define name="JVR4" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR4.transaction"/>
     <define name="JVR5" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JVR5.transaction"/>
-    <define name="XMPLKSDS" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="XMPLKSDS.file"/>
-    <define name="XMPLESDS" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="XMPLESDS.file"/>
-    <define name="XMPLRRDS" type="http://www.ibm.com/xmlns/prod/cics/bundle/FILE" path="XMPLRRDS.file"/>
 </manifest>
