@@ -5,7 +5,10 @@ import com.ibm.cics.server.RolledBackException;
 import com.ibm.cics.server.Task;
 
 
-
+/**
+ * An abstract class that provides services common across all of the VSAM
+ * sample classes.
+ */
 public abstract class VsamExampleCommon
 {
     /**

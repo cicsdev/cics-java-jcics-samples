@@ -5,7 +5,7 @@ import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
 
 /**
- * Simple example to demonstrate updating  a record in a VSAM ESDS file using JCICS.
+ * Simple example to demonstrate updating a record in a VSAM ESDS file using JCICS.
  * 
  * This class is just the driver of the test. The main JCICS work is done in the
  * common class {@link EsdsExampleCommon}.
@@ -22,7 +22,7 @@ public class EsdsExample3
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample3");
+        task.out.println(" - Starting EsdsExample3");
         task.out.println("VSAM ESDS record update example");
 
         // Create a new instance of the common ESDS class

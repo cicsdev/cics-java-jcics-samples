@@ -1,7 +1,5 @@
 package com.ibm.cicsdev.vsam.ksds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -39,7 +37,7 @@ public class KsdsExample2
         int key = spNew.getPartId();
         
         // Write out the original description
-        task.out.println( MessageFormat.format("Wrote record with key {0}", key) );
+        task.out.println( String.format("Wrote record with key 0x%08X", key) );
         
         // Commit the current unit of work harden new record to the file
         ex.commitUnitOfWork();
@@ -47,12 +45,9 @@ public class KsdsExample2
         // Now read the record with the specified key
         StockPart spRead = ex.readRecord(key);
             
-        // Did we read successfully?
-        if ( spRead != null ) {
-            // Display the read description
-            String strMsg = "Read record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, spRead.getDescription()) );
-        }
+        // Display the read description
+        String strMsg = "Read record with description %s";
+        task.out.println( String.format(strMsg, spRead.getDescription().trim()) );
         
         // Completion message
         task.out.println("Completed KsdsExample2");

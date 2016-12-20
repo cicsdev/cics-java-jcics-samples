@@ -1,7 +1,5 @@
 package com.ibm.cicsdev.vsam.ksds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -37,8 +35,7 @@ public class KsdsExample1
         ex.addRecord(sp);
         
         // Write out the part ID
-        String strMsg = "Wrote record with key {0}.";
-        task.out.println( MessageFormat.format(strMsg, sp.getPartId()) );
+        task.out.println( String.format("Wrote record with key 0x%08X", sp.getPartId()) );
         
         // Unit of work containing the write will be committed at normal end of task
         

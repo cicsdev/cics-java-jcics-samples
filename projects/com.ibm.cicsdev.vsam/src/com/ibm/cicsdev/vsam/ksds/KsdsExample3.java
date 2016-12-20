@@ -1,7 +1,5 @@
 package com.ibm.cicsdev.vsam.ksds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -51,8 +49,8 @@ public class KsdsExample3
             key = sp.getPartId();
             
             // Write out the key and description
-            String strMsg = "Wrote to key {0} with description {1}";
-            task.out.println( MessageFormat.format(strMsg, key, sp.getDescription()) );
+            String strMsg = "Wrote to key 0x%08X with description %s";
+            task.out.println( String.format(strMsg, key, sp.getDescription().trim()) );
         }
         
         
@@ -69,8 +67,8 @@ public class KsdsExample3
             StockPart sp = ex.updateRecord(key, strDesc);
             
             // Display the updated description
-            String strMsg = "Updated record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Updated record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Unit of work containing the update will be committed at normal end of task

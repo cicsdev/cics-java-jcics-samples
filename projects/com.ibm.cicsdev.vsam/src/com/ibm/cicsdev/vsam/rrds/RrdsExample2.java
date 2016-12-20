@@ -39,21 +39,18 @@ public class RrdsExample2
         StockPart spNew = StockPartHelper.generate();
         ex.addRecord(rrn, spNew);
         
-        // Write out the original description
+        // Write out the RRN of the new record
         task.out.println( String.format("Wrote record with RRN 0x%016X", rrn) );
         
-        // Commit the current unit of work harden new record to the file
+        // Commit the current unit of work to harden new record to the file
         ex.commitUnitOfWork();
             
         // Now read the record with the specified key
         StockPart spRead = ex.readRecord(rrn);
-            
-        // Did we read successfully?
-        if ( spRead != null ) {
-            // Display the read description
-            String strMsg = "Read record with description %s";
-            task.out.println( String.format(strMsg, spRead.getDescription().trim()) );
-        }
+
+        // Display the read description
+        String strMsg = "Read record with description %s";
+        task.out.println( String.format(strMsg, spRead.getDescription().trim()) );
         
         // Completion message
         task.out.println("Completed RrdsExample2");

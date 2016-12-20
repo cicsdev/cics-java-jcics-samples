@@ -47,7 +47,7 @@ public class RrdsExample5
          */
         
         // Add records
-        for ( long rrn = 1; rrn <= RECORDS_TO_BROWSE; rrn++ ) {
+        for ( long rrn = rrnStart; rrn <= RECORDS_TO_BROWSE; rrn++ ) {
             
             // Add a new record to the file 
             StockPart sp = StockPartHelper.generate();
@@ -67,7 +67,7 @@ public class RrdsExample5
          * The above code will have guaranteed that sufficient records exist.
          */
         
-        // Browse through five records, starting at the initial RRN
+        // Browse through the records, starting at the initial RRN
         List<StockPart> list = ex.browse(rrnStart, RECORDS_TO_BROWSE);
         
         // Iterate over this list

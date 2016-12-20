@@ -1,7 +1,5 @@
 package com.ibm.cicsdev.vsam.ksds;
 
-import java.text.MessageFormat;
-
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.StockPart;
 import com.ibm.cicsdev.vsam.StockPartHelper;
@@ -50,9 +48,8 @@ public class KsdsExample4
             // Get hold of the new part ID
             key = sp.getPartId();
             
-            // Write out the key and description
-            String strMsg = "Wrote to key {0}";
-            task.out.println( MessageFormat.format(strMsg, key) );
+            // Write out the key
+            task.out.println( String.format("Wrote to key 0x%08X", key) );
         }
         
 
@@ -66,8 +63,8 @@ public class KsdsExample4
             StockPart sp = ex.deleteRecord(key);
             
             // Display the result
-            String strMsg = "Deleted record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Deleted record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Unit of work containing the delete will be committed at normal end of task

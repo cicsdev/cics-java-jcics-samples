@@ -1,6 +1,5 @@
 package com.ibm.cicsdev.vsam.ksds;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 import com.ibm.cics.server.Task;
@@ -15,6 +14,11 @@ import com.ibm.cicsdev.vsam.StockPartHelper;
  */
 public class KsdsExample5 
 {
+    /**
+     * Number of records to add and then browse through.
+     */
+    private static final int RECORDS_TO_BROWSE = 5;
+    
     /**
      * Main entry point to a CICS OSGi program.
      * 
@@ -33,14 +37,14 @@ public class KsdsExample5
 
         
         /*
-         * Create at least 5 records in the file so we have something to work with.
+         * Create some records in the file so we have something to work with.
          */
         
         // Keep track of the lowest generated key
         int key = Integer.MAX_VALUE;
         
-        // Add 5 records, keeping track of the lowest key
-        for ( int i = 0; i < 5; i++ ) {
+        // Add records, keeping track of the lowest key
+        for ( int i = 0; i < RECORDS_TO_BROWSE; i++ ) {
             
             // Add a new record to the file 
             StockPart sp = StockPartHelper.generate();
@@ -50,8 +54,7 @@ public class KsdsExample5
             int newKey = sp.getPartId();
             
             // Write out the key and description
-            String strMsg = "Wrote to key {0}";
-            task.out.println( MessageFormat.format(strMsg, newKey) );
+            task.out.println( String.format("Wrote to key 0x%08X", newKey) );
             
             // Decide if this is lowest key so far
             key = newKey < key ? newKey : key;
@@ -64,22 +67,23 @@ public class KsdsExample5
         /*
          * Browse through the file, starting at the lowest key.
          * 
-         * Note the next five records we find may not necessarily be the five we
+         * Note the next n records we find may not necessarily be the n records we
          * added above. It will depend on what existing records were already in 
          * the KSDS file. 
          * 
-         * The above code will have guaranteed that at least five records exist.
+         * The above code will have guaranteed that at least RECORDS_TO_BROWSE
+         * records exist.
          */
         
-        // Browse through five records, starting at the lowest known key
-        List<StockPart> list = ex.browse(key, 5);
+        // Browse through the records, starting at the lowest known key
+        List<StockPart> list = ex.browse(key, RECORDS_TO_BROWSE);
         
         // Iterate over this list
         for ( StockPart sp : list ) {
             
             // Display the description
-            String strMsg = "Read record with description {0}";
-            task.out.println( MessageFormat.format(strMsg, sp.getDescription()) );
+            String strMsg = "Read record with description %s";
+            task.out.println( String.format(strMsg, sp.getDescription().trim()) );
         }
         
         // Completion message

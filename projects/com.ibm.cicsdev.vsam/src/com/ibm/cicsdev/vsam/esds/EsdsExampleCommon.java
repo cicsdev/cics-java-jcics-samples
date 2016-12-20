@@ -58,7 +58,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
         byte[] record = sp.getByteBuffer();
         
         try {
-            // Write the record into the file (records in ESDS always in order of adding)
+            // Write the record into the file
             long rba = this.esds.write(record);
             
             // Return the new RBA for this record
@@ -67,7 +67,7 @@ public class EsdsExampleCommon extends VsamExampleCommon
         catch (DuplicateRecordException dre) {
             
             // Collision on the generated key
-            String strMsg = "Tried to insert duplicate key 0x%016X"; 
+            String strMsg = "Tried to insert duplicate record 0x%016X"; 
             Task.getTask().out.println( String.format(strMsg, sp.getPartId()) );
             throw new RuntimeException(dre);
         }

@@ -34,21 +34,18 @@ public class EsdsExample2
         StockPart spNew = StockPartHelper.generate();
         long rba = ex.addRecord(spNew);
         
-        // Commit the current unit of work harden new record to the file
+        // Commit the current unit of work to harden new record to the file
         ex.commitUnitOfWork();
             
         // Write out the RBA of the record we have just written
         task.out.println( String.format("Wrote record with RBA 0x%016X", rba) );
         
-        // Now read the record with the specified key
+        // Now read the record with the specified RBA
         StockPart spRead = ex.readRecord(rba);
             
-        // Did we read successfully?
-        if ( spRead != null ) {
-            // Display the read description
-            String strMsg = "Read record with description %s";
-            task.out.println( String.format(strMsg, spRead.getDescription().trim()) );
-        }
+        // Display the read description
+        String strMsg = "Read record with description %s";
+        task.out.println( String.format(strMsg, spRead.getDescription().trim()) );
         
         // Completion message
         task.out.println("Completed EsdsExample2");

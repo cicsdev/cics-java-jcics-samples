@@ -29,7 +29,7 @@ public class EsdsExample5
     {
         // Get details about our current CICS task
         Task task = Task.getTask();
-        task.out.println(" - Starting KsdsExample5");
+        task.out.println(" - Starting EsdsExample5");
         task.out.println("VSAM ESDS file browse example");
 
         // Create a new instance of the common example class
@@ -66,10 +66,10 @@ public class EsdsExample5
         /*
          * Browse through the file, starting at the lowest RBA.
          * 
-         * The above code will have guaranteed that at least five records exist.
+         * The above code will have guaranteed sufficient records exist.
          */
         
-        // Browse through five records, starting at the lowest known key
+        // Browse through the records, starting at the lowest known RBA
         List<StockPart> list = ex.browse(rbaFirst, RECORDS_TO_BROWSE);
         
         // Iterate over this list
