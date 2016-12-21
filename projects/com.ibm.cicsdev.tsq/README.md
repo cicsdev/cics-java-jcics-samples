@@ -1,9 +1,7 @@
 com.ibm.cicsdev.tsq
 ===
 
-Provides examples for using VSAM files from a JCICS environment.
-All examples have a ESDS, KSDS, and RRDS variant.
-The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
+Provides examples for accessing temporary storage queues (TSQ) from a JCICS environment.
 
 * `TSQExample1` - a simple class that writes Java strings to a TSQ and then reads them back.
 * `TSQExample2` - an alternative implementation of `TSQExample1`, that writes and reads Java strings, but performs all of the byte array to string conversion manually. This avoids the pre-requisite of CICS TS V5.1, but is slightly more work to code in Java.
@@ -15,7 +13,7 @@ The numbered example classes are driving classes, with the ExampleCommon classes
 ## Supporting files
 
 * `lib/TsqRecord.jar` - a pre-built JAR containing the JZOS generated record that maps the copybook structure used in `TSQExample3` (includes source). 
-* [`/etc/TSQ`](../../etc/TSQ) - contains sample JCL to define the required VSAM files, and the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
+* [`/etc/TSQ`](../../etc/TSQ) - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
     
 
 ## Running the Example
