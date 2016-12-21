@@ -1,8 +1,6 @@
 com.ibm.cicsdev.vsam
 ===
 
-## Supplied sample programs
-
 Provides examples for using VSAM files from a JCICS environment.
 All examples have a ESDS, KSDS, and RRDS variant.
 The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
@@ -12,7 +10,7 @@ The numbered example classes are driving classes, with the ExampleCommon classes
 * `*Example3` - Updates a single record in a file.
 * `*Example4` - Deletes a single record in a file (not ESDS).
 * `*Example5` - Browses a VSAM file.
-* `*ExampleCommon` - Various routines that perform the various JCICS calls.
+* `*ExampleCommon` - Various routines that perform the required JCICS calls.
 
 ## Supporting files
 

@@ -3,6 +3,18 @@ cics-java-jcics-samples
 Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM server environment
 
 
+
+## Samples overview
+
+* `com.ibm.cicsdev.link` - Performing CICS LINK operations using both commareas, and channels and containers.
+* `com.ibm.cicsdev.serialize` - Serializing access to a common resource using the CICS ENQ and DEQ mechanism.
+* `com.ibm.cicsdev.tdq` - Accessing transient data queues.
+* `com.ibm.cicsdev.terminal` - Reading in data from a terminal for an OSGi application.
+* `com.ibm.cicsdev.tsq` - Accessing temporary storage queues.
+* `com.ibm.cicsdev.vsam` - Accessing KSDS, ESDS, and RRDS VSAM files.
+
+
+
 ## Eclipse projects
 Java source code for the following classes is provided in the corresponding Eclipse plugin projects in the projects directory  
 

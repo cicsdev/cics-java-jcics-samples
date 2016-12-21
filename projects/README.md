@@ -9,14 +9,6 @@ Complete Eclipse projects demonstrating how to use the JCICS API in an OSGi JVM 
 * `com.ibm.cicsdev.*.cicsbundle` - Eclipse project for a CICS bundle that can be deployed into a CICS region.
 * `com.ibm.cicsdev.*.resources.cicsbundle` - Eclipse project for a CICS bundle that defines the required program and transaction resources for the sample.
 
-## Samples overview
-
-* `com.ibm.cicsdev.link` - Performing CICS LINK operations using both commareas, and channels and containers.
-* `com.ibm.cicsdev.serialize` - Serializing access to a common resource using the CICS ENQ and DEQ mechanism.
-* `com.ibm.cicsdev.tdq` - Accessing transient data queues.
-* `com.ibm.cicsdev.terminal` - Reading in data from a terminal for an OSGi application.
-* `com.ibm.cicsdev.tsq` - Accessing temporary storage queues.
-* `com.ibm.cicsdev.vsam` - Accessing KSDS, ESDS, and RRDS VSAM files.
 
 ## Eclipse projects
 Java source code for the following classes is provided in the corresponding Eclipse plugin projects in the projects directory  
