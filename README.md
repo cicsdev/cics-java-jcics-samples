@@ -71,6 +71,7 @@ The following Eclipse CICS bundle projects are provided to support deployment of
 ## Supporting files
 * etc/Link/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the Link sample.
 * etc/TDQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TSQ sample.
+* etc/Terminal/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the terminal sample.
 * etc/TSQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TDQ sample.
 * etc/VSAM/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the VSAM sample.
 * src/Cobol/EC01.cbl - Sample CICS COBOL application that returns the date and time in a COMMAREA.
