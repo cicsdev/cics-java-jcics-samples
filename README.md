@@ -26,6 +26,10 @@ Java source code for the following classes is provided in the corresponding Ecli
 performing all of the codepage conversion manually. This avoids the pre-req of CICS TS V5.1, but is slightly more work to code in Java.
 * TDQExample3 - A more complex example that writes structured records to a TDQ and then reads them back.
 
+### Project com.ibm.cicsdev.terminal
+
+* TerminalExample1 - A simple class to demonstrate receiving arguments from a terminal in a JCICS environment.
+
 
 ### Project com.ibm.cicsdev.tsq
 
@@ -56,6 +60,8 @@ The following Eclipse CICS bundle projects are provided to support deployment of
 * Project com.ibm.cicsdev.serialize.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.serialize sample
 * Project com.ibm.cicsdev.tdq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tdq samples
 * Project com.ibm.cicsdev.tdq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tdq sample
+* Project com.ibm.cicsdev.terminal.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.terminal sample
+* Project com.ibm.cicsdev.terminal.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.terminal sample
 * Project com.ibm.cicsdev.tsq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tsq samples
 * Project com.ibm.cicsdev.tsq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tsq sample
 * Project com.ibm.cicsdev.vsam.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.vsam samples
