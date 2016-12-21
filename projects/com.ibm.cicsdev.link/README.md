@@ -57,3 +57,9 @@ and the following output will be returned
     JOL1 - Starting LinkProg1                         
     Returned from link to EC01 with 19/08/16 09:17:01 
 
+
+
+
+1. If using the LINK sample compile and deploy the COBOL programs EC01 and EDUCHAN, and either define PROGRAM definitions or enable program autoinstall.  
+
+1. Optionally add a CICS Java program definiton for LinkServerEduchan called EDUCHAN if you wish to replace the EDUCHAN COBOL sample with the Java implemenation. 

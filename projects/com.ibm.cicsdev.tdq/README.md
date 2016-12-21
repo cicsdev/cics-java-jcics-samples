@@ -41,3 +41,7 @@ and the following output will be returned
 * TDQExample2 - An alternative implementation of TDQExample1 that writes and reads Java strings, but
 performing all of the codepage conversion manually. This avoids the pre-req of CICS TS V5.1, but is slightly more work to code in Java.
 * TDQExample3 - A more complex example that writes structured records to a TDQ and then reads them back.
+
+
+
+1. If using the TDQ sample define an intra-partition TDQ called MYQ1

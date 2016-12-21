@@ -48,14 +48,11 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 
 ### To deploy the samples into a CICS region 
 
-1. Using the CICS Explorer export the Java projects com.ibm.cicsdev.link.cicsbundle, com.ibm.cicsdev.tsq.cicsbundle and com.ibm.cicsdev.tdq.cicsbundle to a zFS directory. The sample definitions use the following style of zFS location /u/cics1/com.ibm.cicsdev.link.cicsbundle_1.0.0
-1. Define and install CICS BUNDLE resource defintions referring to the deployed bundle directory in step 1. and ensure all resources are enabled. 
-1. Create the require transaction and program definitions using either the supplied DFHCSD.txt files as input to a CSD define job or using the CICS bundle projects 
-com.ibm.cicsdev.link.resources.cicsbundle, com.ibm.cicsdev.tsq.resources.cicsbundle, com.ibm.cicsdev.tdq.resources.cicsbuncdle
-1. If using the TDQ sample define an intra-partition TDQ called MYQ1
-1. If using the LINK sample compile and deploy the COBOL programs EC01 and EDUCHAN, and either define PROGRAM definitions or enable program autoinstall.  
-1. Optionally add a CICS Java program definiton for LinkServerEduchan called EDUCHAN if you wish to replace the EDUCHAN COBOL sample with the Java implemenation. 
-  
+1. Using the CICS Explorer export the `com.ibm.cicsdev.*.cicsbundle` projects to a zFS directory. The sample definitions use the following style of zFS location `/u/cics1/com.ibm.cicsdev.link.cicsbundle_1.0.0`.
+1. Define and install CICS `BUNDLE` resource defintions referring to the deployed bundle directory in step 1, and ensure all resources are enabled. 
+1. Create the required transaction and program definitions using either the supplied `DFHCSD.txt` files as input to a CSD define job, or using the supplied CICS bundle projects.
+1. See the individual project directories for any additional supporting resources required.
+ 
 
 ## License
 This project is licensed under [Apache License Version 2.0](LICENSE).  
@@ -65,42 +62,5 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 
 * For further details on using the IBM JZOS record generator see this [developer center article]  (https://developer.ibm.com/cics/2016/05/12/java-cics-using-ibmjzos/)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server] (http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.java.doc/JVMserver/config_jvmserver_app.html)
-
-
-
-## Eclipse projects
-Java source code for the following classes is provided in the corresponding Eclipse plugin projects in the projects directory  
-
-
-
-## CICS bundle projects
-The following Eclipse CICS bundle projects are provided to support deployment of the Java projects and the associated CICS resource definitions
-
-* Project com.ibm.cicsdev.link.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.link Java samples
-* Project com.ibm.cicsdev.link.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.link sample
-* Project com.ibm.cicsdev.serialize.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.serialize samples
-* Project com.ibm.cicsdev.serialize.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.serialize sample
-* Project com.ibm.cicsdev.tdq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tdq samples
-* Project com.ibm.cicsdev.tdq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tdq sample
-* Project com.ibm.cicsdev.terminal.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.terminal sample
-* Project com.ibm.cicsdev.terminal.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.terminal sample
-* Project com.ibm.cicsdev.tsq.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.tsq samples
-* Project com.ibm.cicsdev.tsq.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.tsq sample
-* Project com.ibm.cicsdev.vsam.cicsbundle - CICS bundle project for deploying the com.ibm.cicsdev.vsam samples
-* Project com.ibm.cicsdev.vsam.resources.cicsbundle - CICS bundle project containing transaction and program definitions for the com.ibm.cicsdev.vsam sample
-
-
-## Supporting files
-* etc/Link/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the Link sample.
-* etc/TDQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TSQ sample.
-* etc/Terminal/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the terminal sample.
-* etc/TSQ/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the TDQ sample.
-* etc/VSAM/DFHCSD.txt - Output from a DFHCSDUP EXTRACT for the VSAM sample.
-* src/Cobol/EC01.cbl - Sample CICS COBOL application that returns the date and time in a COMMAREA.
-* src/Cobol/EDUCHAN.cbl - A sample CICS COBOL that returns the date and time and reversed input using channels and containers
-* EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
-* TdqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TDQExample3.
-* TsqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TSQExample3.
-* vsam.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in all the VSAM samples.
 
 
