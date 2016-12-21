@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.terminal.resources.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="0" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+    <meta_directives>
+        <timestamp>2016-11-11T11:05:46.741Z</timestamp>
+    </meta_directives>
+    <define name="JAVATRM1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATRM1.program"/>
+    <define name="JTM1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTM1.transaction"/>
+</manifest>
