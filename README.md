@@ -19,12 +19,12 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * [`src/`](src) - Supporting source code for non-Java programs.
 
 
-## Pre-reqs
+## Pre-requisites
 
-* CICS TS V5.1 or later, due to the usage of the getString() methods.
-* Java SE 1.7 or later on the z/OS system
-* Java SE 1.7 or later on the workstation
-* Eclipse with CICS Explorer SDK installed
+* CICS TS V5.1 or later, due to the usage of the `getString()` methods.
+* Java SE 7 or later on the z/OS system.
+* Java SE 7 or later on the workstation.
+* Eclipse with CICS Explorer SDK installed.
  
 
 ## Configuration
