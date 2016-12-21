@@ -33,13 +33,27 @@ and the following output will be returned
 
     
     
-### Project com.ibm.cicsdev.vsam
+    
 
-Provides examples for using VSAM files from a JCICS environment. All examples have a ESDS, KSDS, and RRDS variant. The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
+### Project com.ibm.cicsdev.link
 
-* Example1 - Writes a single record to a file.
-* Example2 - Reads a single record from a file.
-* Example3 - Updates a single record in a file.
-* Example4 - Deletes a single record in a file (not ESDS).
-* Example5 - Browses a VSAM file.
-* ExampleCommon - Various routines that perform the various JCICS calls.
+* LinkProg1 - A class that demonstrates linking to the COBOL application EC01 using a COMMAREA
+* LinkProg2 - A class that demonstrates linking to the COBOL application EDUPGM using a COMMAREA mapped using a JZOS generated record
+* LinkProg3 - A class that demonstrates linking to COBOL application EDUCHAN using channels and containers  
+* LinkProgCommon - Super class used to provide common service for the LinkProg samples  
+* LinkServerEduchan - A Java version of the EDUCHAN COBOL program used as the back-end to LinkProg3     
+
+
+
+### Running the Example
+
+
+At a 3270 terminal screen, enter the transaction you wish to run, for example JOL1 will run the Link example 1. 
+
+    JOL1
+
+and the following output will be returned 
+
+    JOL1 - Starting LinkProg1                         
+    Returned from link to EC01 with 19/08/16 09:17:01 
+

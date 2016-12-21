@@ -5,65 +5,22 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 ## Samples overview
 
 * [`com.ibm.cicsdev.link`](projects/com.ibm.cicsdev.link) - Performing CICS LINK operations using both commareas, and channels and containers.
-* `com.ibm.cicsdev.serialize` - Serializing access to a common resource using the CICS ENQ and DEQ mechanism.
-* `com.ibm.cicsdev.tdq` - Accessing transient data queues.
-* `com.ibm.cicsdev.terminal` - Reading in data from a terminal for an OSGi application.
-* `com.ibm.cicsdev.tsq` - Accessing temporary storage queues.
-* `com.ibm.cicsdev.vsam` - Accessing KSDS, ESDS, and RRDS VSAM files.
+* [`com.ibm.cicsdev.serialize`](projects/com.ibm.cicsdev.serialize) - Serializing access to a common resource using the CICS ENQ and DEQ mechanism.
+* [`com.ibm.cicsdev.tdq`](projects/com.ibm.cicsdev.tdq) - Accessing transient data queues.
+* [`com.ibm.cicsdev.terminal`](projects/com.ibm.cicsdev.terminal) - Reading in data from a terminal for an OSGi application.
+* [`com.ibm.cicsdev.tsq`](projects/com.ibm.cicsdev.tsq) - Accessing temporary storage queues.
+* [`com.ibm.cicsdev.vsam`](projects/com.ibm.cicsdev.vsam) - Accessing KSDS, ESDS, and RRDS VSAM files.
 
 ## Repository structure
 
-* `etc/` - Supporting materials used to define CICS and z/OS resources needed for the samples.
-* `projects/` - Complete Eclipse projects suitable for importing into a CICS Explorer environment.
-* `src/` - Supporting source code for non-Java programs.
+* [`etc/`](etc) - Supporting materials used to define CICS and z/OS resources needed for the samples.
+* [`projects/`](projects) - Complete Eclipse projects suitable for importing into a CICS Explorer environment.
+* [`src/`](src) - Supporting source code for non-Java programs.
 
 ## Eclipse projects
 Java source code for the following classes is provided in the corresponding Eclipse plugin projects in the projects directory  
 
-### Project com.ibm.cicsdev.link
 
-* LinkProg1 - A class that demonstrates linking to the COBOL application EC01 using a COMMAREA
-* LinkProg2 - A class that demonstrates linking to the COBOL application EDUPGM using a COMMAREA mapped using a JZOS generated record
-* LinkProg3 - A class that demonstrates linking to COBOL application EDUCHAN using channels and containers  
-* LinkProgCommon - Super class used to provide common service for the LinkProg samples  
-* LinkServerEduchan - A Java version of the EDUCHAN COBOL program used as the back-end to LinkProg3     
-
-### Project com.ibm.cicsdev.serialize
-
-* SerializeExample1 - A simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
-
-### Project com.ibm.cicsdev.tdq
-
-* TDQCommon - Super class used to provide common services for the TDQ samples 
-* TDQExample1 - A simple class that writes Java strings to a TDQ and then reads them back.
-* TDQExample2 - An alternative implementation of TDQExample1 that writes and reads Java strings, but
-performing all of the codepage conversion manually. This avoids the pre-req of CICS TS V5.1, but is slightly more work to code in Java.
-* TDQExample3 - A more complex example that writes structured records to a TDQ and then reads them back.
-
-### Project com.ibm.cicsdev.terminal
-
-* TerminalExample1 - A simple class to demonstrate receiving arguments from a terminal in a JCICS environment.
-
-
-### Project com.ibm.cicsdev.tsq
-
-* TSQExample1 - A simple class that writes Java strings to a TSQ and then reads them back.
-* TSQExample2 - An alternative implementation of TSQExample1 that writes and reads Java strings, but performs all of the byte array to string conversion manually. This avoids the pre-req of CICS TS V5.1, but is slightly more
-work to code in Java.
-* TSQExample3 - A more complex example that uses a JZOS generated record to write a structured record to a TSQ and then read it back.
-* TSQExample4 - An extension of the TSQExample3 sample program, which populates a TSQ, updates items within the queue, then reads them back to confirm.
-* TSQCommon - Super class used to provide common services for the TSQ samples 
-
-### Project com.ibm.cicsdev.vsam
-
-Provides examples for using VSAM files from a JCICS environment. All examples have a ESDS, KSDS, and RRDS variant. The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
-
-* Example1 - Writes a single record to a file.
-* Example2 - Reads a single record from a file.
-* Example3 - Updates a single record in a file.
-* Example4 - Deletes a single record in a file (not ESDS).
-* Example5 - Browses a VSAM file.
-* ExampleCommon - Various routines that perform the various JCICS calls.
 
 ## CICS bundle projects
 The following Eclipse CICS bundle projects are provided to support deployment of the Java projects and the associated CICS resource definitions

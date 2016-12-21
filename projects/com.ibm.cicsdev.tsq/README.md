@@ -33,13 +33,12 @@ and the following output will be returned
 
     
     
-### Project com.ibm.cicsdev.vsam
+### Project com.ibm.cicsdev.tsq
 
-Provides examples for using VSAM files from a JCICS environment. All examples have a ESDS, KSDS, and RRDS variant. The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
+* TSQExample1 - A simple class that writes Java strings to a TSQ and then reads them back.
+* TSQExample2 - An alternative implementation of TSQExample1 that writes and reads Java strings, but performs all of the byte array to string conversion manually. This avoids the pre-req of CICS TS V5.1, but is slightly more
+work to code in Java.
+* TSQExample3 - A more complex example that uses a JZOS generated record to write a structured record to a TSQ and then read it back.
+* TSQExample4 - An extension of the TSQExample3 sample program, which populates a TSQ, updates items within the queue, then reads them back to confirm.
+* TSQCommon - Super class used to provide common services for the TSQ samples 
 
-* Example1 - Writes a single record to a file.
-* Example2 - Reads a single record from a file.
-* Example3 - Updates a single record in a file.
-* Example4 - Deletes a single record in a file (not ESDS).
-* Example5 - Browses a VSAM file.
-* ExampleCommon - Various routines that perform the various JCICS calls.

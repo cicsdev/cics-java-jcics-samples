@@ -33,13 +33,8 @@ and the following output will be returned
 
     
     
-### Project com.ibm.cicsdev.vsam
 
-Provides examples for using VSAM files from a JCICS environment. All examples have a ESDS, KSDS, and RRDS variant. The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
+### Project com.ibm.cicsdev.terminal
 
-* Example1 - Writes a single record to a file.
-* Example2 - Reads a single record from a file.
-* Example3 - Updates a single record in a file.
-* Example4 - Deletes a single record in a file (not ESDS).
-* Example5 - Browses a VSAM file.
-* ExampleCommon - Various routines that perform the various JCICS calls.
+* TerminalExample1 - A simple class to demonstrate receiving arguments from a terminal in a JCICS environment.
+
