@@ -15,7 +15,7 @@ The numbered example classes are driving classes, with the ExampleCommon classes
 ## Supporting files
 
 * `lib/vsam.jar` - a pre-built JAR containing the JZOS generated record that maps the copybook structure used in all the VSAM samples (includes source). 
-* `/etc/VSAM` - contains sample JCL to define the required VSAM files, and the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
+* [`/etc/VSAM`](../../etc/VSAM) - contains sample JCL to define the required VSAM files, and the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
     
 
 ## Running the Example
