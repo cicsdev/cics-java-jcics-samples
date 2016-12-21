@@ -1,42 +1,27 @@
-com.ibm.cicsdev.vsam
+com.ibm.cicsdev.serialize
 ===
 
-Provides examples for using VSAM files from a JCICS environment.
-All examples have a ESDS, KSDS, and RRDS variant.
-The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
+Provides an example for serializing access to a common resource using the CICS ENQ and DEQ mechanism.
 
-* `*Example1` - Writes a single record to a file.
-* `*Example2` - Reads a single record from a file.
-* `*Example3` - Updates a single record in a file.
-* `*Example4` - Deletes a single record in a file (not ESDS).
-* `*Example5` - Browses a VSAM file.
-* `*ExampleCommon` - Various routines that perform the required JCICS calls.
+* SerializeExample1 - a simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
+
 
 ## Supporting files
 
-* `lib/vsam.jar` - a pre-built JAR containing the JZOS generated record that maps the copybook structure used in all the VSAM samples (includes source). 
-* `/etc/VSAM` - contains sample JCL to define the required VSAM files, and the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
+* `/etc/Serialize` - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
     
 
 ## Running the Example
 
-At a 3270 terminal screen, enter the transaction you wish to run, for example JVK1 will run the VSAM KSDS example 1. 
+At a 3270 terminal screen, enter the transaction you wish to run, for example JSY1 will run example 1. 
 
-    JVK1
+    JSY1
 
 and the following output will be returned 
 
-    JVK1 - Starting KsdsExample1      
-    VSAM KSDS record addition example 
-    Wrote record with key 0x0003E712  
-    Completed KsdsExample1            
+    JSY1 - Starting SerializeExample1                  
+    Attempting to acquire resource lock MYAPP.SYNC.RES1
+    Resource lock has been acquired                    
+    Resource lock has been released                    
+    Completed SerializeExample1                        
 
-    
-
-### Project com.ibm.cicsdev.serialize
-
-* SerializeExample1 - A simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
-
-
-
-* EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.
