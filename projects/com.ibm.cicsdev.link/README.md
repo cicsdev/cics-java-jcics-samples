@@ -63,3 +63,16 @@ and the following output will be returned
 1. If using the LINK sample compile and deploy the COBOL programs EC01 and EDUCHAN, and either define PROGRAM definitions or enable program autoinstall.  
 
 1. Optionally add a CICS Java program definiton for LinkServerEduchan called EDUCHAN if you wish to replace the EDUCHAN COBOL sample with the Java implemenation. 
+
+
+
+
+### Project com.ibm.cicsdev.link
+
+* LinkProg1 - A class that demonstrates linking to the COBOL application EC01 using a COMMAREA
+* LinkProg2 - A class that demonstrates linking to the COBOL application EDUPGM using a COMMAREA mapped using a JZOS generated record
+* LinkProg3 - A class that demonstrates linking to COBOL application EDUCHAN using channels and containers  
+* LinkProgCommon - Super class used to provide common service for the LinkProg samples  
+* LinkServerEduchan - A Java version of the EDUCHAN COBOL program used as the back-end to LinkProg3     
+
+

@@ -36,3 +36,7 @@ and the following output will be returned
 ### Project com.ibm.cicsdev.serialize
 
 * SerializeExample1 - A simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
+
+
+
+* EDUPGM.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the EDUPGM COBOL sample. The generated class JZOSCommareaWrapperclass is used in the Link example 2 to map the fields in the COMMAREA used by the COBOL program EDUPGM.

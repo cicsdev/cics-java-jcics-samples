@@ -45,3 +45,7 @@ performing all of the codepage conversion manually. This avoids the pre-req of C
 
 
 1. If using the TDQ sample define an intra-partition TDQ called MYQ1
+
+
+
+* TdqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TDQExample3.

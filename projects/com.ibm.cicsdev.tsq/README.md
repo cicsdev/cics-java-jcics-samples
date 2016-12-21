@@ -42,3 +42,6 @@ work to code in Java.
 * TSQExample4 - An extension of the TSQExample3 sample program, which populates a TSQ, updates items within the queue, then reads them back to confirm.
 * TSQCommon - Super class used to provide common services for the TSQ samples 
 
+
+
+* TsqRecord.jar - A pre-built JAR containing the JZOS generated record that maps the copybook structure used in the TSQExample3.
