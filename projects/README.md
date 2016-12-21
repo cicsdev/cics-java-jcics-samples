@@ -21,3 +21,10 @@ Complete Eclipse projects demonstrating how to use the JCICS API in an OSGi JVM 
 * [`com.ibm.cicsdev.vsam`](com.ibm.cicsdev.vsam) - Accessing KSDS, ESDS, and RRDS VSAM files.
 
 
+## Adding the resources to Eclipse
+
+1. Using an Eclipse development environment import the project from the project folder using the menu File -> Import -> Existing Projects into Workspace.
+1. Define and set a CICS Target Platform for the workspace using the menu Window -> Preferences -> Target Platform.
+
+
+

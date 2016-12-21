@@ -32,12 +32,6 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 The sample Java classes are designed to be added to an OSGi bundle and deployed into a CICS OSGi JVM server, but can also be used as the basis for extending Web applications deployed into a Liberty JVM server. 
 
 
-### Adding the resources to Eclipse
-
-1. Using an Eclipse development environment import the project from the project folder using the menu File -> Import -> Existing Projects into Workspace.
-1. Define and set a CICS Target Platform for the workspace using the menu Window -> Preferences -> Target Platform.
-
-
 ### Starting a JVM server in CICS
 
 1. Enable Java support in the CICS region by adding the `SDFJAUTH` library to the `STEPLIB` concatenation and setting `USSHOME` and the `JVMPROFILE` SIT parameters.
