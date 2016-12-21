@@ -1,40 +1,34 @@
-com.ibm.cicsdev.vsam
+com.ibm.cicsdev.terminal
 ===
 
-Provides examples for using VSAM files from a JCICS environment.
-All examples have a ESDS, KSDS, and RRDS variant.
-The numbered example classes are driving classes, with the ExampleCommon classes performing the JCICS calls.
+Provides some sample Java code to show how to parse arguments when a Java program is used as an
+initial program on a transaction, and the transaction is started from a terminal.
 
-* `*Example1` - Writes a single record to a file.
-* `*Example2` - Reads a single record from a file.
-* `*Example3` - Updates a single record in a file.
-* `*Example4` - Deletes a single record in a file (not ESDS).
-* `*Example5` - Browses a VSAM file.
-* `*ExampleCommon` - Various routines that perform the required JCICS calls.
+The code first checks we are associated with a terminal, and then performs `receive()` call
+to obtain the data supplied at the terminal.
+
+This data is then broken down using the `java.util.StringTokenizer` class to split the
+supplied arguments on word boundaries.  
+
+* `TerminalExample1` - a simple class to demonstrate receiving arguments from a terminal in a JCICS environment.
 
 ## Supporting files
 
-* `lib/vsam.jar` - a pre-built JAR containing the JZOS generated record that maps the copybook structure used in all the VSAM samples (includes source). 
-* `/etc/VSAM` - contains sample JCL to define the required VSAM files, and the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
-    
+* [`/etc/Terminal`](../../etc/Terminal) - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
+
 
 ## Running the Example
 
-At a 3270 terminal screen, enter the transaction you wish to run, for example JVK1 will run the VSAM KSDS example 1. 
+At a 3270 terminal screen, enter the transaction you wish to run, followed by some optional arguments. 
 
-    JVK1
+    JTM1 Hello from CICS!
 
-and the following output will be returned 
+and the following output will be returned (assuming upper-casing is enabled for the terminal): 
 
-    JVK1 - Starting KsdsExample1      
-    VSAM KSDS record addition example 
-    Wrote record with key 0x0003E712  
-    Completed KsdsExample1            
-
-    
-    
-
-### Project com.ibm.cicsdev.terminal
-
-* TerminalExample1 - A simple class to demonstrate receiving arguments from a terminal in a JCICS environment.
+    JTM1 Hello from CICS! - Starting TerminalExample1
+    Arg 0 : JTM1                                     
+    Arg 1 : HELLO                                    
+    Arg 2 : FROM                                     
+    Arg 3 : CICS!                                    
+    Completed TerminalExample1
 
