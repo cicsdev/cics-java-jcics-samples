@@ -4,7 +4,7 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Samples overview
 
-* `com.ibm.cicsdev.link` - Performing CICS LINK operations using both commareas, and channels and containers.
+* [`com.ibm.cicsdev.link`](projects/com.ibm.cicsdev.link) - Performing CICS LINK operations using both commareas, and channels and containers.
 * `com.ibm.cicsdev.serialize` - Serializing access to a common resource using the CICS ENQ and DEQ mechanism.
 * `com.ibm.cicsdev.tdq` - Accessing transient data queues.
 * `com.ibm.cicsdev.terminal` - Reading in data from a terminal for an OSGi application.
