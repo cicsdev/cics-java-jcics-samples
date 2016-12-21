@@ -1,6 +1,5 @@
 package com.ibm.cicsdev.terminal;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -39,8 +38,7 @@ public class TerminalExample1
 
             // Display arguments
             for (int i = 0; i < termArgs.length; i++) {
-                String msg = MessageFormat.format("Arg {0} : {1}", i, termArgs[i]);
-                task.out.println(msg);
+                task.out.println( String.format("Arg %d : %s", i, termArgs[i]) );
             }
         }
         
@@ -53,7 +51,9 @@ public class TerminalExample1
      * receives the input data. The received data is converted to a Java
      * string and returned.
      * 
-     * @return
+     * @return a String containing the data input at the terminal. If the
+     * transaction's principal facility is not a terminal, then <code>null</code>
+     * will be returned.
      */
     private static String getTerminalString() throws CicsConditionException
     {
@@ -84,7 +84,7 @@ public class TerminalExample1
             // Convert the received data into a valid String
             // Assume this is a valid character string in the CICS local CCSID 
             // Requires CICS TS V5.1 and later (JCICS 1.401.0)            
-            return new String(holder.getStringValue());
+            return holder.getStringValue();
         }
         else {
             // Not a terminal principal facility
