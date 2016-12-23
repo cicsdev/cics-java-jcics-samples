@@ -112,13 +112,13 @@ com.ibm.cicsdev.link.resources.cicsbundle, com.ibm.cicsdev.tsq.resources.cicsbun
 ### Running the Example
 
 
-At a 3270 terminal screen, enter the transaction you wish to run, for example JOL1 will run the Link example 1. 
+At a 3270 terminal screen, enter the transaction you wish to run, for example JLN1 will run the Link example 1. 
 
-    JOL1
+    JLN1
 
 and the following output will be returned 
 
-    JOL1 - Starting LinkProg1                         
+    JLN1 - Starting LinkProg1                         
     Returned from link to EC01 with 19/08/16 09:17:01 
 
 
