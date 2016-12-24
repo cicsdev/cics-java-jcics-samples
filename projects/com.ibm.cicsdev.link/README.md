@@ -27,12 +27,12 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 
 ## Running the Example
 
-At a 3270 terminal screen, enter the transaction you wish to run, for example JOL1 will run the LINK example 1. 
+At a 3270 terminal screen, enter the transaction you wish to run, for example JLN1 will run the LINK example 1. 
 
-    JOL1
+    JLN1
 
 and the following output will be returned 
 
-    JOL1 - Starting LinkProg1                         
+    JLN1 - Starting LinkProg1
     Returned from link to EC01 with 19/08/16 09:17:01 
 
