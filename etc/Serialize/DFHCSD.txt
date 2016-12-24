@@ -3,6 +3,7 @@
         DESCRIPTION(Java synchronization sample)
         CONCURRENCY(REQUIRED) API(CICSAPI) DYNAMIC(NO)
         JVM(YES) JVMSERVER(DFHJVMS) DATALOCATION(ANY)
+        EXECKEY(CICS)
         JVMCLASS(com.ibm.cicsdev.serialize.SerializeExample1)
 
  DEFINE TRANSACTION(JSY1) GROUP(JCICSAMP) PROGRAM(JAVASYN1)
