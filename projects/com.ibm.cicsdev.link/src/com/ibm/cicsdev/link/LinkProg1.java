@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 
 import com.ibm.cics.server.CicsConditionException;
+import com.ibm.cics.server.InvalidRequestException;
 import com.ibm.cics.server.Program;
 import com.ibm.cics.server.Task;
 
@@ -91,13 +92,17 @@ public class LinkProg1 extends LinkProgCommon {
 	 * @param ca - commarea object for input and output commarea
 	 */ 
 	private void linkProg(byte[] ca){
-	
+
 		// Execute the link to the CICS program 
 		// commarea byte array is updated after the call and does not need to be returned
+		// Ignore invalid request and just log
 		try {
 			prog.link(ca);
+		} catch (InvalidRequestException ire) {
+			task.out.println("Invalid request on link - INVREQ");
+
 		} catch (CicsConditionException cce) {
-			throw new RuntimeException(cce);	 
+			throw new RuntimeException(cce);
 		}	
 	}
 }
