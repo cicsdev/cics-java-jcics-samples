@@ -31,7 +31,6 @@ public class LinkProg2 extends LinkProgCommon {
     private LinkProg2(Task task, Program prog)
     {
         super(task, prog);
-
     }
 
     /**
@@ -52,6 +51,7 @@ public class LinkProg2 extends LinkProgCommon {
 
         // Specify the properties on the program    
         prog.setName(PROG_NAME);
+        
         // Don't syncpoint between remote links, this is the default 
         // Setting true ensures each linked program runs in its own UOW and
         // allows the a remote server program to use a syncpoint command
@@ -73,8 +73,8 @@ public class LinkProg2 extends LinkProgCommon {
         Integer resultCode = cw.getResultCode();
 
         // Completion message          
-        String msg = MessageFormat.format
-                 ("Returned from link to {0} with rc({1}) {2}", prog.getName(),resultCode,resultStr);
+        String msg = MessageFormat.format("Returned from link to {0} with rc({1}) {2}",
+                prog.getName(), resultCode, resultStr);
         task.out.println(msg);
     }
 
@@ -85,8 +85,8 @@ public class LinkProg2 extends LinkProgCommon {
      * @param commarea - byte array as input and output commarea
      */ 
     // LINK to the CICS program
-    private void linkProg(byte[] commarea){
-
+    private void linkProg(byte[] commarea)
+    {
         try {
             prog.link(commarea);
         } catch (CicsConditionException cce) {
@@ -101,8 +101,8 @@ public class LinkProg2 extends LinkProgCommon {
      * @return      jzos commarea record for EDUPGM copybook
      * 
      */ 
-    private JZOSCommareaWrapper buildCommarea(){
-
+    private JZOSCommareaWrapper buildCommarea()
+    {
         JZOSCommareaWrapper cw = new JZOSCommareaWrapper();
         cw.setBinaryDigit(1);
         cw.setCharacterString("hello");
@@ -111,9 +111,5 @@ public class LinkProg2 extends LinkProgCommon {
         cw.setSignedPacked(-100);
         cw.setBool("1");
         return cw;
-
     }
-
-
-
 }

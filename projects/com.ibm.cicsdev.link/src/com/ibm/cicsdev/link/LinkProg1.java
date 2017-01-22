@@ -35,7 +35,6 @@ public class LinkProg1 extends LinkProgCommon {
     private LinkProg1(Task task, Program prog)
     {
         super(task, prog);
-
     }
 
     /**
@@ -56,6 +55,7 @@ public class LinkProg1 extends LinkProgCommon {
         
         // Specify the properties on the program    
         prog.setName(PROG_NAME);
+        
         // Don't syncpoint between remote links, this is the default 
         // Setting true ensures each linked program runs in its own UOW and
         // allows the a remote server program to use a syncpoint command
@@ -79,9 +79,8 @@ public class LinkProg1 extends LinkProgCommon {
         } 
         
         // Completion message  
-        String msg = MessageFormat.format ("Returned from link to {0} with {1}", prog.getName(),resultStr);
+        String msg = MessageFormat.format("Returned from link to {0} with {1}", prog.getName(), resultStr);
         task.out.println(msg);
-        
     }
     
     
@@ -99,8 +98,7 @@ public class LinkProg1 extends LinkProgCommon {
         try {
             prog.link(ca);
         } catch (InvalidRequestException ire) {
-            task.out.println("Invalid request on link - INVREQ");
-        
+            task.out.println("Invalid request on link - INVREQ");        
         } catch (CicsConditionException cce) {
             throw new RuntimeException(cce);
         }
