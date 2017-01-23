@@ -37,8 +37,8 @@ public class LinkServEC01   {
 		
 		Task task = Task.getTask();
 
-		// Check input area is long enough, and abend if not
-		if (cah.getValue().length < CA_LEN ){
+        // Check input area is long enough, else abend task
+        if (cah.getValue().length < CA_LEN ){
 			task.abend(abcode);			
 		}
 
