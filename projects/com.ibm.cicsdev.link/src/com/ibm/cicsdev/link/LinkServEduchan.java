@@ -30,8 +30,16 @@ public class LinkServEduchan   {
     private static final String INPUT_CONTAINER="INPUTDATA";
     private static final String OUTPUT_CONTAINER="OUTPUTDATA";
     private static final String DATE_CONTAINER="CICSTIME";
-    private static final String CICSRC_CONTAINER="CICSRC";    
-    private static final int CONTAINERERR = 1000;
+    private static final String CICSRC_CONTAINER="CICSRC";  
+    
+    // Static fields for integer return codes
+    private static final int CONTAINERERR = 100; // INPUT_CONTAINER was not found 
+    private static final int CCSIDERR = 101;
+    private static final int CODEPAGEERR = 102;
+    private static final int CHANNELERR = 103;
+    private static final int INVREQERR = 104;
+    private static final int OTHERERROR = 105;
+
 
     /**
      * Main entry point to a CICS OSGi program.
@@ -40,7 +48,8 @@ public class LinkServEduchan   {
      * the parent OSGi bundle's manifest.
      * 
      * This program expects to be invoked with a CHAR container INPUTDATA and
-     * returns the date in a CHAR container and a rc in a BIT container
+     * returns the date in a CHAR container, the reversed input container
+     * and an integer rc in a BIT container
      */
     public static void main(String[] args)  {
 
@@ -80,8 +89,15 @@ public class LinkServEduchan   {
             outputCont.putString(dfTime.format(timestamp));        
 
         } catch ( CicsConditionException cce) {
+        	// Log a generic error for the CICS condition
             System.out.println ("CICS ERROR from LinkServerEduchan " + cce.getMessage());
-            returncode = cce.getRESP();     // Save resp from CICSConditionException and return to caller
+            
+            // Return an integer rc, this is just to show how to handle binary data in containers
+            if (cce instanceof CCSIDErrorException) returncode = CCSIDERR; 
+            else if (cce instanceof ChannelErrorException) returncode = CHANNELERR;
+            else if (cce instanceof CodePageErrorException) returncode = CODEPAGEERR;
+            else if (cce instanceof InvalidRequestException) returncode = INVREQERR;
+            else returncode = OTHERERROR;                 
         } 
         // Lastly build BIT container with rc
         linkserver.buildrccont(chan, returncode);
