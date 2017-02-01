@@ -8,7 +8,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 CICS-MainClass: com.ibm.cicsdev.link.LinkProg1,
  com.ibm.cicsdev.link.LinkProg2, 
  com.ibm.cicsdev.link.LinkProg3,
- com.ibm.cicsdev.link.LinkServEduchan
+ com.ibm.cicsdev.link.LinkServEduchan,
+ com.ibm.cicsdev.link.LinkServEC01
 Import-Package: com.ibm.cics.server;version="[1.401.0,2.0.0)",
  com.ibm.jzos.fields;resolution:=optional
 Bundle-ClassPath: lib/EDUPGM.jar,

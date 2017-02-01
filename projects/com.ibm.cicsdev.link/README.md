@@ -8,6 +8,7 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 * `LinkProg3` - a class that demonstrates linking to COBOL application `EDUCHAN` using channels and containers.  
 * `LinkProgCommon` - superclass used to provide common services for the `LinkProg` samples.  
 * `LinkServerEduchan` - A Java version of the `EDUCHAN` COBOL program used as the back-end to `LinkProg3`.     
+* `LinkServerEC01` - A Java version of the `EC01` COBOL program used as the back-end to `LinkProg1`.     
 
 
 ## Supporting files
@@ -23,6 +24,7 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 1. Compile and deploy the COBOL programs `EC01`, `EDUPGM`, and `EDUCHAN`.
 1. Define appropriate PROGRAM definitions, or enable program autoinstall.  
 1. Optionally add a CICS Java program definiton for LinkServerEduchan called EDUCHAN if you wish to replace the EDUCHAN COBOL sample with the Java implemenation. 
+1. Optionally add a CICS Java program definiton for LinkServerEC01 called EV01 if you wish to replace the EC01 COBOL sample with the Java implemenation. 
 
 
 ## Running the Example
