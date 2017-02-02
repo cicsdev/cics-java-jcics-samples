@@ -3,6 +3,7 @@
     <meta_directives>
         <timestamp>2016-11-11T11:05:46.741Z</timestamp>
     </meta_directives>
+    <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
     <define name="JAVATRM1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATRM1.program"/>
     <define name="JTM1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTM1.transaction"/>
 </manifest>

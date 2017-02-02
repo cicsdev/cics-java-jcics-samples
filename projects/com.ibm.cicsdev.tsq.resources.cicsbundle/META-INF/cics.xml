@@ -3,11 +3,12 @@
     <meta_directives>
         <timestamp>2016-11-11T11:05:46.741Z</timestamp>
     </meta_directives>
-    <define name="JTS1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTS1.transaction"/>
+    <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
     <define name="JAVATSQ1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATSQ1.program"/>
     <define name="JAVATSQ2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATSQ2.program"/>
     <define name="JAVATSQ3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATSQ3.program"/>
     <define name="JAVATSQ4" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVATSQ4.program"/>
+    <define name="JTS1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTS1.transaction"/>
     <define name="JTS2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTS2.transaction"/>
     <define name="JTS3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTS3.transaction"/>
     <define name="JTS4" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JTS4.transaction"/>
