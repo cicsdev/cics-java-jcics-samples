@@ -17,10 +17,19 @@ import com.ibm.cics.server.Program;
 import com.ibm.cics.server.Task;
 import com.ibm.cicsdev.bean.JZOSCommareaWrapper;
 
-public class LinkProg2 extends LinkProgCommon {
-
-
-    private static final String PROG_NAME = "EDUPGM"; // COBOL program to be invoked
+/**
+ * Provides a simple example of LINKing to a CICS program using JCICS,
+ * passing a byte array for a COMMAREA. In this example, the COMMAREA
+ * byte array is constructed using a JZOS generated class.
+ * 
+ * This class executes in an OSGi JVM server environment.
+ */
+public class LinkProg2 extends LinkProgCommon
+{
+    /**
+     * Name of the COBOL program to be invoked.
+     */
+    private static final String PROG_NAME = "EDUPGM";
 
     /**
      * Constructor used to pass data to superclass constructor.
@@ -34,7 +43,7 @@ public class LinkProg2 extends LinkProgCommon {
 
     /**
      * Main entry point to a CICS OSGi program.
-     * This can be called via a LINK or a 3270 attach
+     * This can be called via a LINK or a 3270 attach.
      * 
      * The fully qualified name of this class should be added to the CICS-MainClass 
      * entry in the parent OSGi bundle's manifest.
@@ -50,6 +59,7 @@ public class LinkProg2 extends LinkProgCommon {
 
         // Specify the properties on the program    
         prog.setName(PROG_NAME);
+        
         // Don't syncpoint between remote links, this is the default 
         // Setting true ensures each linked program runs in its own UOW and
         // allows the a remote server program to use a syncpoint command
@@ -71,36 +81,38 @@ public class LinkProg2 extends LinkProgCommon {
         Integer resultCode = cw.getResultCode();
 
         // Completion message          
-        String msg = MessageFormat.format
-                 ("Returned from link to {0} with rc({1}) {2}", prog.getName(),resultCode,resultStr);
+        String msg = MessageFormat.format("Returned from link to {0} with rc({1}) {2}",
+                prog.getName(), resultCode, resultStr);
         task.out.println(msg);
     }
 
 
     /**
-     * Link to the CICS COBOL program and catch any errors from CICS
+     * Link to the CICS COBOL program and catch any errors from CICS.
      * 
      * @param commarea - byte array as input and output commarea
      */ 
-    // LINK to the CICS program
-    private void linkProg(byte[] commarea){
+    private void linkProg(byte[] commarea) {
 
         try {
-            prog.link(commarea);
-        } catch (CicsConditionException cce) {
-            throw new RuntimeException(cce);     
+            // LINK to the CICS program
+            this.prog.link(commarea);
+        }
+        catch (CicsConditionException cce) {
+            // Crude error handling to keep logic simple
+            throw new RuntimeException(cce);
         }
     }
 
     /**
-     * Build the commarea using the supplied JZOS wrapper 
-     * and set the input fields as required
+     * Build the commarea using the supplied JZOS wrapper
+     * and set the input fields as required.
      * 
-     * @return      jzos commarea record for EDUPGM copybook
-     * 
+     * @return JZOS COMMAREA record for EDUPGM copybook 
      */ 
-    private JZOSCommareaWrapper buildCommarea(){
+    private JZOSCommareaWrapper buildCommarea() {
 
+        // Create a new instance of the generated class
         JZOSCommareaWrapper cw = new JZOSCommareaWrapper();
         cw.setBinaryDigit(1);
         cw.setCharacterString("hello");
@@ -108,7 +120,8 @@ public class LinkProg2 extends LinkProgCommon {
         cw.setPackedDigit(123456789);
         cw.setSignedPacked(-100);
         cw.setBool("1");
+        
+        // Return the constructed object
         return cw;
-
     }
 }

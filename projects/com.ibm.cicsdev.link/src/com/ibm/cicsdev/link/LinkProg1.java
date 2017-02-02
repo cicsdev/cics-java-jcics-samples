@@ -18,13 +18,28 @@ import com.ibm.cics.server.InvalidRequestException;
 import com.ibm.cics.server.Program;
 import com.ibm.cics.server.Task;
 
-public class LinkProg1 extends LinkProgCommon {
-
-
-    private static final String PROG_NAME = "EC01"; // COBOL program to be invoked
-    private static final int CA_LEN = 18 ; // Length of commarea returned by EC01    
+/**
+ * Provides a simple example of LINKing to a CICS program using JCICS,
+ * passing a byte array for a COMMAREA.
+ * 
+ * This class executes in an OSGi JVM server environment.
+ */
+public class LinkProg1 extends LinkProgCommon
+{
+    /**
+     * Name of the COBOL program to be invoked.
+     */
+    private static final String PROG_NAME = "EC01";
+    
+    /**
+     * Length of commarea returned by program EC01.
+     */
+    private static final int CA_LEN = 18;
+    
+    /**
+     * CCSID of the current JVM.
+     */
     private static final String LOCALCCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
-
 
     /**
      * Constructor used to pass data to superclass constructor.
@@ -38,10 +53,10 @@ public class LinkProg1 extends LinkProgCommon {
 
     /**
      * Main entry point to a CICS OSGi program.
-     * This can be called via a LINK or a 3270 attach
+     * This can be called via a LINK or a 3270 attach.
      * 
-     * The fully qualified name of this class should be added to the CICS-MainClass 
-     * entry in the parent OSGi bundle's manifest.
+     * The fully-qualified name of this class should be added to the
+     * CICS-MainClass entry in the parent OSGi bundle's manifest.
      */
     public static void main(String[] args)
     {
@@ -52,8 +67,9 @@ public class LinkProg1 extends LinkProgCommon {
         // Create a reference to the Program we will invoke
         Program prog = new Program();
 
-        // Specify the properties on the program    
+        // Specify the properties on the program
         prog.setName(PROG_NAME);
+        
         // Don't syncpoint between remote links, this is the default 
         // Setting true ensures each linked program runs in its own UOW and
         // allows the a remote server program to use a syncpoint command
@@ -77,9 +93,8 @@ public class LinkProg1 extends LinkProgCommon {
         } 
 
         // Completion message  
-        String msg = MessageFormat.format ("Returned from link to {0} with {1}", prog.getName(),resultStr);
+        String msg = MessageFormat.format("Returned from link to {0} with {1}", prog.getName(), resultStr);
         task.out.println(msg);
-
     }
 
 
@@ -87,17 +102,17 @@ public class LinkProg1 extends LinkProgCommon {
      * Link to the CICS COBOL program catching any errors from CICS
      * The invoked CICS progra will retrun the date and time
      * 
-     * @param ca - commarea object for input and output commarea
+     * @param ca - byte array for input and output COMMAREA.
      */ 
     private void linkProg(byte[] ca) {
 
-        // Execute the link to the CICS program 
-        // commarea byte array is updated after the call and does not need to be returned
-        // Ignore invalid request and just log
         try {
-            prog.link(ca);
+            // Execute the LINK to the CICS program 
+            // The COMMAREA byte array is updated after the call and does not need to be returned
+            this.prog.link(ca);
         }
         catch (InvalidRequestException ire) {
+            // Ignore invalid request and just log
             Task.getTask().out.println("Invalid request on link - INVREQ");
         }
         catch (CicsConditionException cce) {
