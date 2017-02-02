@@ -25,13 +25,11 @@ public class LinkProg2 extends LinkProgCommon {
     /**
      * Constructor used to pass data to superclass constructor.
      * 
-     * @param task - the current CICS task executing this example.
      * @param prog - the program reference we will be manipulating in this example.
      */
-    private LinkProg2(Task task, Program prog)
+    private LinkProg2(Program prog)
     {
-        super(task, prog);
-
+        super(prog);
     }
 
     /**
@@ -58,7 +56,7 @@ public class LinkProg2 extends LinkProgCommon {
         prog.setSyncOnReturn(false); 
 
         // Create a new instance of the class        
-        LinkProg2 lp = new LinkProg2(task, prog);
+        LinkProg2 lp = new LinkProg2(prog);
 
         // build commarea byte array using JZOS record   
         JZOSCommareaWrapper cw = lp.buildCommarea();

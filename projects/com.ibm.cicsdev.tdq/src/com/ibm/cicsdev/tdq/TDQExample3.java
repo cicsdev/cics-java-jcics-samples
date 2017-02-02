@@ -146,7 +146,7 @@ public class TDQExample3 extends TDQCommon
                     record.getSignedPacked());
             
             // Write out the record to the terminal
-            this.task.out.println(msg);
+            Task.getTask().out.println(msg);
         }        
     }    
 }

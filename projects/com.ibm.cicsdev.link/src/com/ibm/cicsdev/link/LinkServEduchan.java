@@ -89,7 +89,7 @@ public class LinkServEduchan   {
             outputCont.putString(dfTime.format(timestamp));        
 
         } catch ( CicsConditionException cce) {
-        	// Log a generic error for the CICS condition
+            // Log a generic error for the CICS condition
             System.out.println ("CICS ERROR from LinkServerEduchan " + cce.getMessage());
             
             // Return an integer rc, this is just to show how to handle binary data in containers

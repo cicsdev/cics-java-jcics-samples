@@ -29,13 +29,11 @@ public class LinkProg1 extends LinkProgCommon {
     /**
      * Constructor used to pass data to superclass constructor.
      * 
-     * @param task - the current CICS task executing this example.
      * @param prog - the program reference we will be manipulating in this example.
      */
-    private LinkProg1(Task task, Program prog)
+    private LinkProg1(Program prog)
     {
-        super(task, prog);
-
+        super(prog);
     }
 
     /**
@@ -62,7 +60,7 @@ public class LinkProg1 extends LinkProgCommon {
         prog.setSyncOnReturn(false);  
 
         // Create a new instance of the class        
-        LinkProg1 lp = new LinkProg1(task, prog);
+        LinkProg1 lp = new LinkProg1(prog);
 
         // Init commarea and invoke the LINK to CICS program
         // Commarea byte array should be as long as the DFHCOMMAREA structure in COBOL
@@ -91,16 +89,18 @@ public class LinkProg1 extends LinkProgCommon {
      * 
      * @param ca - commarea object for input and output commarea
      */ 
-    private void linkProg(byte[] ca){
+    private void linkProg(byte[] ca) {
 
         // Execute the link to the CICS program 
         // commarea byte array is updated after the call and does not need to be returned
         // Ignore invalid request and just log
         try {
             prog.link(ca);
-        } catch (InvalidRequestException ire) {
-            task.out.println("Invalid request on link - INVREQ");
-        } catch (CicsConditionException cce) {
+        }
+        catch (InvalidRequestException ire) {
+            Task.getTask().out.println("Invalid request on link - INVREQ");
+        }
+        catch (CicsConditionException cce) {
             throw new RuntimeException(cce);
         }    
     }

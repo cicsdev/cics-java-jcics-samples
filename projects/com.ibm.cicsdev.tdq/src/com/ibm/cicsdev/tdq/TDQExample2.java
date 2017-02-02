@@ -147,7 +147,7 @@ public class TDQExample2 extends TDQCommon
             
             // Write out to the console
             String msg = MessageFormat.format("Read data from queue \"{0}\"", strData);
-            this.task.out.println(msg);
+            Task.getTask().out.println(msg);
         }
     }    
 }

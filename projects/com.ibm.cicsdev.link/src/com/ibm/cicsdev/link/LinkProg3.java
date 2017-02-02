@@ -38,13 +38,12 @@ public class LinkProg3 extends LinkProgCommon {
     /**
      * Constructor used to pass data to superclass constructor.
      * 
-     * @param task - the current CICS task executing this example.
      * @param prog - the program reference we will
      * be manipulating in this example.
      */
-    private LinkProg3(Task task, Program prog)
+    private LinkProg3(Program prog)
     {
-        super(task, prog);
+        super(prog);
 
     }
 
@@ -73,7 +72,7 @@ public class LinkProg3 extends LinkProgCommon {
 
 
          // Create a new instance of the class        
-         LinkProg3 lp = new LinkProg3(task, prog);
+         LinkProg3 lp = new LinkProg3(prog);
 
          // Build up the Channel and containers
          Channel chan = lp.buildChannel();
@@ -131,6 +130,9 @@ public class LinkProg3 extends LinkProgCommon {
      // Build channel and populate with simple char container with string data
      private Channel buildChannel() {
 
+         // Obtain a reference to the current task
+         Task task = Task.getTask();
+         
          Channel testChannel = null;
 
          try {
