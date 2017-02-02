@@ -3,12 +3,12 @@ com.ibm.cicsdev.serialize
 
 Provides an example for serializing access to a common resource using the CICS ENQ and DEQ mechanism.
 
-* SerializeExample1 - a simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
+* `SerializeExample1` - a simple class to demonstrate using the CICS ENQ and DEQ mechanism from a JCICS environment.
 
 
 ## Supporting files
 
-* `/etc/Serialize` - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
+* [`/etc/Serialize`](../../etc/Serialize) - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
     
 
 ## Running the Example
