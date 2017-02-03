@@ -24,131 +24,183 @@ import com.ibm.cics.server.InvalidRequestException;
 import com.ibm.cics.server.Program;
 import com.ibm.cics.server.Task;
 
-
-public class LinkProg3 extends LinkProgCommon {
-
+/**
+ * Provides a simple example of LINKing to a CICS program using JCICS,
+ * using channels and containers.
+ * 
+ * This class executes in an OSGi JVM server environment.
+ */
+public class LinkProg3 extends LinkProgCommon
+{
+    /**
+     * Name of the program to invoke.
+     */
     private static final String PROG_NAME = "EDUCHAN";
-    private static final String CHANNEL="EDUCHAN";
-    private static final String INPUT_CONTAINER="INPUTDATA";
-    private static final String DATE_CONTAINER="CICSTIME";
-    private static final String CICSRC_CONTAINER="CICSRC";
+    
+    /**
+     * Name of the channel to use.
+     */
+    private static final String CHANNEL = "EDUCHAN";
+    
+    /**
+     * Name of the container used to send data to the target program.
+     */
+    private static final String INPUT_CONTAINER = "INPUTDATA";
+    
+    /**
+     * Name of the container which will contain the date as a response
+     * from the target program.
+     */
+    private static final String DATE_CONTAINER = "CICSTIME";
+    
+    /**
+     * Name of the container which will contain the CICS return code
+     * as a response from the target program.
+     */
+    private static final String CICSRC_CONTAINER = "CICSRC";
 
-    private static final String INPUTSTRING="Hello from Java";
+    /**
+     * Data to place in the container to be sent to the target program.
+     */
+    private static final String INPUTSTRING = "Hello from Java";
 
     /**
      * Constructor used to pass data to superclass constructor.
      * 
-     * @param task - the current CICS task executing this example.
      * @param prog - the program reference we will
      * be manipulating in this example.
      */
-    private LinkProg3(Task task, Program prog)
+    private LinkProg3(Program prog)
     {
-        super(task, prog);
-
+        super(prog);
     }
 
     /**
      * Main entry point to a CICS OSGi program.
-     * This can be called via a LINK or a 3270 attach
+     * This can be called via a LINK or a 3270 attach.
      * 
      * The fully qualified name of this class should be added to the CICS-MainClass 
      * entry in the parent OSGi bundle's manifest.
-     */    public static void main(String[] args)
-     {
-         // Get details about our current CICS task
-         Task task = Task.getTask();
-         task.out.println(" - Starting LinkProg3");
-         String msg = "";
+     */
+    public static void main(String[] args)
+    {
+        // Final message to emit to the terminal
+        String msg;
 
-         // Create a reference to the Program we will invoke
-         Program prog = new Program();
+        // Get details about our current CICS task
+        Task task = Task.getTask();
+        task.out.println(" - Starting LinkProg3");
+        
+        // Create a reference to the Program we will invoke        
+        Program prog = new Program();
 
-         // Specify the properties on the program    
-         prog.setName(PROG_NAME);
-         // Don't syncpoint between remote links, this is the default 
-         // Setting true ensures each linked program runs in its own UOW and
-         // allows the a remote server program to use a syncpoint command
-         prog.setSyncOnReturn(false); 
+        // Specify the properties on the program    
+        prog.setName(PROG_NAME);
+        
+        // Don't syncpoint between remote links, this is the default 
+        // Setting true ensures each linked program runs in its own UOW and
+        // allows the a remote server program to use a syncpoint command
+        prog.setSyncOnReturn(false); 
 
+        // Create a new instance of the class        
+        LinkProg3 lp = new LinkProg3(prog);
 
-         // Create a new instance of the class        
-         LinkProg3 lp = new LinkProg3(task, prog);
+        // Build up the Channel and containers
+        Channel chan = lp.buildChannel();
 
-         // Build up the Channel and containers
-         Channel chan = lp.buildChannel();
+        // link to CICS program
+        lp.linkProg(chan);        
 
-         // link to CICS program
-         lp.linkProg(chan);        
+        try {
+            // Get output data from output container
+            String resultStr;
+            int cicsrc;
 
-         // Get output data from output container
-         String resultStr = "";
-         int cicsrc = 0 ;
+            // Read CHAR container from channel container data as formatted string
+            // CICS returns this in a UTF16 format and JCICS reads this into a String
+            // Container object will be null if container not present
+            Container charContainer = chan.getContainer(DATE_CONTAINER);
+            if (charContainer != null) {
+                resultStr = charContainer.getString();
+            }
+            else {
+                // Missing response container
+                resultStr = "<missing>";
+            }
 
-         try {
+            // Get CICS return code from binary container and convert to 32-bit int/fullword
+            // CICS returns this unconverted so wrapper in a byte buffer and convert to an int    
+            Container bitContainer = chan.getContainer(CICSRC_CONTAINER);
+            if (bitContainer != null) {
+                
+                // Obtain the RC as an int
+                byte[] ba = bitContainer.get();
+                ByteBuffer bb = ByteBuffer.wrap(ba);                     
+                cicsrc = bb.getInt(); 
 
-             // Read CHAR container from channel container data as formatted string
-             // CICS returns this in a UTF16 format and JCICS reads this into a String
-             // Container object will be null if container not present
-             Container charContainer = chan.getContainer(DATE_CONTAINER);
-             if (charContainer!=null){
-                 resultStr = charContainer.getString();
-             }
+                // Format the final message
+                msg = MessageFormat.format("Returned from link to {0} with rc({1}) date {2}",
+                        prog.getName(), cicsrc, resultStr);
+            }
+            else {
+                // Missing response container
+                msg = MessageFormat.format("Returned from link to {0} with no CICS RC", prog.getName());
+            }
+        }
+        catch (ContainerErrorException | ChannelErrorException | CCSIDErrorException | CodePageErrorException exc) {
+            
+            // Log message and continue
+            msg = MessageFormat.format("ERROR from link to {0} with message({1}) ",
+                    prog.getName(), exc.getMessage());
+        }
 
-             // Get CICS return code from binary container and convert to 32-bit int/fullword
-             // CICS returns this unconverted so wrapper in a byte buffer and convert to an int    
-             Container bitContainer = chan.getContainer(CICSRC_CONTAINER);
-             if (bitContainer!=null){
-                 byte[] ba = bitContainer.get();
-                 ByteBuffer bb = ByteBuffer.wrap(ba);                     
-                 cicsrc = bb.getInt(); 
+        // Return output to caller and exit        
+        task.out.println(msg);
+    }
+    
 
-                 msg = MessageFormat.format
-                         ("Returned from link to {0} with rc({1}) date {2}", prog.getName(),cicsrc,resultStr);
-             }
+    /**
+     * LINK to the CICS program.
+     * 
+     * @param chan - the channel to send to the target CICS program.
+     */ 
+    private void linkProg(Channel chan) {
 
+        try {
+            // Perform the LINK operation, passing the channel
+            this.prog.link(chan);
+        }
+        catch (CicsConditionException cce) {
+            System.out.println("ERROR from LinkServerEduchan " + cce.getMessage());
+        }
+    }
 
-         } catch (ContainerErrorException | ChannelErrorException
-                 | CCSIDErrorException | CodePageErrorException cce) {
-             msg = MessageFormat.format
-                     ("ERROR from link to {0} with message({1}) ", prog.getName(),cce.getMessage());
-         }
+    /**
+     * Build channel and populate with simple char container with string data.
+     * 
+     * @return a Channel object containing the data to send to the target program.
+     */ 
+    private Channel buildChannel() {
 
-         // Return output to caller and exit        
-         task.out.println(msg);
-     }
+        // Obtain a reference to the current task
+        Task task = Task.getTask();
+         
+        try {
+            // Create channel
+            Channel testChannel = task.createChannel(CHANNEL);
 
-     // LINK to the CICS program
-     private void linkProg(Channel chan){
-
-         try {
-             prog.link(chan);
-         } catch (CicsConditionException cce) {
-             System.out.println ("ERROR from LinkServerEduchan " + cce.getMessage());       
-         }
-     }
-
-     // Build channel and populate with simple char container with string data
-     private Channel buildChannel() {
-
-         Channel testChannel = null;
-
-         try {
-
-             // Create channel
-             testChannel = task.createChannel(CHANNEL);
-
-             // Create a CHAR container populated with a simple String
-             // CHAR containers will be created in UTF16 when created iin JCICS
-             Container inputContainer = testChannel.createContainer(INPUT_CONTAINER);
-             inputContainer.putString(INPUTSTRING);
-
-         } catch (ChannelErrorException | ContainerErrorException | InvalidRequestException | CCSIDErrorException | CodePageErrorException cce) {
-             throw new RuntimeException(cce);        }
-         return testChannel;
-
-     }
-
-
-
+            // Create a CHAR container populated with a simple String
+            // CHAR containers will be created in UTF16 when created iin JCICS
+            Container inputContainer = testChannel.createContainer(INPUT_CONTAINER);
+            inputContainer.putString(INPUTSTRING);
+            
+            // Return the constructed channel to the caller
+            return testChannel;
+        }
+        catch (ChannelErrorException | ContainerErrorException | InvalidRequestException |
+                CCSIDErrorException | CodePageErrorException exc) {
+            // Rethrow as a RuntimeException to avoid cluttering this example with error-handling logic
+            throw new RuntimeException(exc);
+        }
+    }
 }

@@ -23,8 +23,8 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 
 1. Compile and deploy the COBOL programs `EC01`, `EDUPGM`, and `EDUCHAN`.
 1. Define appropriate PROGRAM definitions, or enable program autoinstall.  
-1. Optionally add a CICS Java program definiton for LinkServerEduchan called EDUCHAN if you wish to replace the EDUCHAN COBOL sample with the Java implemenation. 
-1. Optionally add a CICS Java program definiton for LinkServerEC01 called EV01 if you wish to replace the EC01 COBOL sample with the Java implemenation. 
+1. Optionally add a CICS Java program definition for LinkServEduchan called EDUCHAN if you wish to replace the EDUCHAN COBOL sample with the Java implementation. 
+1. Optionally add a CICS Java program definition for LinkServEC01 called EC01 if you wish to replace the EC01 COBOL sample with the Java implementation. 
 
 
 ## Running the Example

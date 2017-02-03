@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Link
+Bundle-Name: Sample JCICS code for use of LINK
 Bundle-SymbolicName: com.ibm.cicsdev.link
 Bundle-Version: 1.0.0
 Bundle-Vendor: IBM

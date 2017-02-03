@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tdq
+Bundle-Name: Sample JCICS code for use of transient data queues
 Bundle-SymbolicName: com.ibm.cicsdev.tdq
 Bundle-Version: 1.0.0
 Bundle-Vendor: IBM

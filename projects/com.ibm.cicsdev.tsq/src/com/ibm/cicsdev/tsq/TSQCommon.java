@@ -13,7 +13,6 @@ package com.ibm.cicsdev.tsq;
 import com.ibm.cics.server.CicsConditionException;
 import com.ibm.cics.server.InvalidQueueIdException;
 import com.ibm.cics.server.TSQ;
-import com.ibm.cics.server.Task;
 
 /**
  * Superclass used to provide common services used in all of the TSQ
@@ -25,11 +24,6 @@ import com.ibm.cics.server.Task;
  */
 public abstract class TSQCommon
 {
-    /**
-     * An instance field to hold the current CICS Task object.
-     */
-    protected final Task task;
-    
     /**
      * A field to hold a reference to the CICS temporary
      * storage queue this instance will access. 
@@ -45,8 +39,7 @@ public abstract class TSQCommon
      */
     protected TSQCommon(TSQ tsq)
     {
-        // Save reference to the current CICS task and the supplied TSQ
-        this.task = Task.getTask();
+        // Save reference to the supplied TSQ
         this.tsq = tsq;
         
         // Delete any old TSQ that's lying around

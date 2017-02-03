@@ -24,11 +24,6 @@ import com.ibm.cics.server.Task;
 public abstract class TDQCommon
 {
     /**
-     * An instance field to hold the current CICS Task object.
-     */
-    protected final Task task;
-    
-    /**
      * A field to hold a reference to the CICS transient 
      * data queue this instance will access. 
      */
@@ -43,8 +38,7 @@ public abstract class TDQCommon
      */
     protected TDQCommon(TDQ tdq)
     {
-        // Save reference to the CICS task and TDQ
-        this.task = Task.getTask();
+        // Save reference to the TDQ
         this.tdq = tdq;
         
         // Delete any old TDQ that's lying around
@@ -66,7 +60,7 @@ public abstract class TDQCommon
             // Unlike the TSQ case, this is NOT an acceptable condition,
             // because TDQs cannot be generated dynamically
             String msg = MessageFormat.format("Could not find queue \"{0}\"", this.tdq.getName());
-            this.task.out.println(msg);
+            Task.getTask().out.println(msg);
             
             // Crude error handling - propagate an exception back to caller
             throw new RuntimeException(iqe);

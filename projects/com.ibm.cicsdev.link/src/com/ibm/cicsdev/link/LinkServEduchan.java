@@ -24,40 +24,53 @@ import com.ibm.cics.server.InvalidRequestException;
 import com.ibm.cics.server.Task;
 import com.ibm.cics.server.Channel;
 
-public class LinkServEduchan   {
-
-    // Static fields for Channel and Container names 
-    private static final String INPUT_CONTAINER="INPUTDATA";
-    private static final String OUTPUT_CONTAINER="OUTPUTDATA";
-    private static final String DATE_CONTAINER="CICSTIME";
-    private static final String CICSRC_CONTAINER="CICSRC";  
+/**
+ * Provides a Java implementation that is functionally equivalent to the COBOL
+ * EDUCHAN sample program.
+ */
+public class LinkServEduchan
+{   
+    /**
+     * Name of the container used to send data into this program.
+     */
+    private static final String INPUT_CONTAINER = "INPUTDATA";
     
-    // Static fields for integer return codes
-    private static final int CONTAINERERR = 100; // INPUT_CONTAINER was not found 
-    private static final int CCSIDERR = 101;
-    private static final int CODEPAGEERR = 102;
-    private static final int CHANNELERR = 103;
-    private static final int INVREQERR = 104;
-    private static final int OTHERERROR = 105;
+    /**
+     * Name of the container which will contain the date as a response
+     * from this program.
+     */
+    private static final String DATE_CONTAINER = "CICSTIME";
+    
+    /**
+     * Name of the container which will contain the CICS return code
+     * as a response from this program.
+     */
+    private static final String CICSRC_CONTAINER = "CICSRC";
 
+    /**
+     * Name of the container used to return data from this program.
+     */
+    private static final String OUTPUT_CONTAINER = "OUTPUTDATA";  
 
     /**
      * Main entry point to a CICS OSGi program.
      * 
-     * The fully qualified name of this class should be added to the CICS-MainClass entry in
-     * the parent OSGi bundle's manifest.
+     * The fully qualified name of this class should be added to the
+     * CICS-MainClass entry in the parent OSGi bundle's manifest.
      * 
-     * This program expects to be invoked with a CHAR container INPUTDATA and
-     * returns the date in a CHAR container, the reversed input container
-     * and an integer rc in a BIT container
+     * This program expects to be invoked with a CHAR container INPUTDATA.
+     * The date and the reversed input are returned in a CHAR container.
+     * An integer return code is returned in a BIT container.
      */
     public static void main(String[] args)  {
 
-        int returncode = 0;
+        // Return code from this method
+        ReturnCode rc = ReturnCode.OK;
+        
         // Get details of the CICS task
         Task task = Task.getTask();
 
-        // Create a new instance of the class        
+        // Create a new instance of the class
         LinkServEduchan linkserver = new LinkServEduchan();        
 
         // Get the current channel and abend if none present
@@ -66,66 +79,101 @@ public class LinkServEduchan   {
             task.abend("NOCH");
         }
 
-        // Get time for return to caller
-        Date timestamp = new Date();
-        SimpleDateFormat dfTime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");    
-
-        try {        
-
+        try {
             // Get input container and reverse the sequence and return in output container
             // Container object will be null if container not present
             Container input = chan.getContainer(INPUT_CONTAINER);
-            if (input!=null) {    
+            if (input != null) {
+                
+                // Get the input
                 StringBuilder str = new StringBuilder(input.getString());
+                
+                // Reverse and store in the output container
                 Container output = chan.createContainer(OUTPUT_CONTAINER);
                 output.putString(str.reverse().toString());
             }
             else {
-                returncode = CONTAINERERR;                
+                // Input container not found 
+                rc = ReturnCode.CONTAINERERR;                
             }
 
-            // Build  output containers
-            Container outputCont = chan.createContainer(DATE_CONTAINER);
-            outputCont.putString(dfTime.format(timestamp));        
+            // Get time for return to caller
+            SimpleDateFormat dfTime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");    
 
-        } catch ( CicsConditionException cce) {
-        	// Log a generic error for the CICS condition
-            System.out.println ("CICS ERROR from LinkServerEduchan " + cce.getMessage());
+            // Build date output container
+            Container outputCont = chan.createContainer(DATE_CONTAINER);
+            outputCont.putString( dfTime.format(new Date()) );        
+        }
+        catch ( CicsConditionException cce) {
             
-            // Return an integer rc, this is just to show how to handle binary data in containers
-            if (cce instanceof CCSIDErrorException) returncode = CCSIDERR; 
-            else if (cce instanceof ChannelErrorException) returncode = CHANNELERR;
-            else if (cce instanceof CodePageErrorException) returncode = CODEPAGEERR;
-            else if (cce instanceof InvalidRequestException) returncode = INVREQERR;
-            else returncode = OTHERERROR;                 
-        } 
-        // Lastly build BIT container with rc
-        linkserver.buildrccont(chan, returncode);
+            // Log a generic error for the CICS condition
+            System.out.println("CICS ERROR from LinkServerEduchan " + cce.getMessage());
+
+            // Decide on the error type and set RC accordingly
+            if (cce instanceof CCSIDErrorException) rc = ReturnCode.CCSIDERR;
+            else if (cce instanceof ChannelErrorException) rc = ReturnCode.CHANNELERR;
+            else if (cce instanceof CodePageErrorException) rc = ReturnCode.CODEPAGEERR;
+            else if (cce instanceof InvalidRequestException) rc = ReturnCode.INVREQERR;
+            else rc = ReturnCode.OTHERERROR;
+        }
+        
+        // Lastly build BIT container with rc. Return an integer rc, this
+        // is just to show how to handle binary data in containers
+        linkserver.buildRcContainer(chan, rc.getNumVal());
     }
 
 
     /**
-     * build a BIT container from an int and put into a CICS container in the channel
+     * Build a BIT container from an int and put into a CICS container in the channel.
      *  
      * @param rc - integer value for return code to be converted to a byte array and added as a BIT container
      * @param chan - a reference to the channel into which the container will be put
      */
-    public void buildrccont (Channel chan, int rc) {
+    public void buildRcContainer(Channel chan, int rc) {
 
-        // Now write the rc to the container
-        try {                    
-            byte[] ba;
+        // Write the rc to the container
+        try {
+            // Write an int to a byte[]
             ByteBuffer bb = ByteBuffer.allocate(4);
             bb.putInt(rc);
-            ba = bb.array();
+            
+            // Obtain the BIT data and store in the container
+            byte[] ba = bb.array();
             Container cicsrc = chan.createContainer(CICSRC_CONTAINER);
-            cicsrc.put(ba);                
-
-        } catch ( InvalidRequestException | ChannelErrorException | CCSIDErrorException | CodePageErrorException | ContainerErrorException cce) {
-            System.out.println ("CICS ERROR from LinkServerEduchan " + cce.getMessage());
-            throw new RuntimeException(cce);        
+            cicsrc.put(ba);
         }
-
+        catch ( InvalidRequestException | ChannelErrorException | CCSIDErrorException |
+                CodePageErrorException | ContainerErrorException exc) {
+            
+            // Log the message and throw wrappered to reduce error-handling in this example
+            System.out.println("CICS error from LinkServerEduchan " + exc.getMessage());
+            throw new RuntimeException(exc);
+        }
     }
 
+
+    /**
+     * Internal enum used to store integer values for the possible return codes from
+     * this program.
+     */
+    private static enum ReturnCode {
+        
+        OK(0),
+        CONTAINERERR(100),
+        CCSIDERR(101),
+        CODEPAGEERR(102),
+        CHANNELERR(103),
+        INVREQERR(104),
+        OTHERERROR(105);
+        
+        private int iErrorVal;
+
+        private ReturnCode(int i) {
+            this.iErrorVal = i;
+        }
+
+        public int getNumVal() {
+            return this.iErrorVal;
+        }
+    }
 }
