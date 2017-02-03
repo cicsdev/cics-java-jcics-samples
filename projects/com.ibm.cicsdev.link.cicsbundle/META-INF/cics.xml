@@ -3,5 +3,6 @@
     <meta_directives>
         <timestamp>2016-11-04T15:14:04.215Z</timestamp>
     </meta_directives>
+    <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
     <define name="com.ibm.cicsdev.link" type="http://www.ibm.com/xmlns/prod/cics/bundle/OSGIBUNDLE" path="com.ibm.cicsdev.link.osgibundle"/>
 </manifest>
