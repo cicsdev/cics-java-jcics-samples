@@ -21,7 +21,8 @@ import com.ibm.cics.server.Task;
  * Provides a Java implementation that is functionally equivalent to the COBOL
  * EC01 sample program.
  */
-public class LinkServEC01 {
+public class LinkServEC01 
+{
 	/**
 	 * Length of the COMMAREA returned by this program.
 	 */
@@ -33,10 +34,9 @@ public class LinkServEC01 {
 	private static final String CA_LEN_ABCODE = "LEN";
 
 	/**
-	 * CCSID of the current JVM.
+	 * CCSID of the CICS region.
 	 */
-	private static final String LOCALCCSID = System
-			.getProperty("com.ibm.cics.jvmserver.local.ccsid");
+	private static final String LOCALCCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
 
 	/**
 	 * Main entry point to a CICS OSGi program.
