@@ -37,7 +37,7 @@ public class LinkProg1 extends LinkProgCommon
     private static final int CA_LEN = 18;
     
     /**
-     * CCSID of the current JVM.
+     * CCSID of the CICS region.
      */
     private static final String LOCALCCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
 

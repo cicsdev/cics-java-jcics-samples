@@ -36,7 +36,7 @@ public class TSQExample2 extends TSQCommon
     private static final int DEPTH_COUNT = 5;
 
     /**
-     * Resolved at runtime to be the CCSID of the currently-executing JVM.
+     * Resolved at runtime to be the CCSID of the region
      */
     private static final String CCSID =
             System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
