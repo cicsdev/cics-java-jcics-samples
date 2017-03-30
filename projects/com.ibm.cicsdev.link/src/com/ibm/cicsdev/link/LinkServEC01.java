@@ -36,7 +36,7 @@ public class LinkServEC01
 	/**
 	 * CCSID of the CICS region.
 	 */
-	private static final String LOCALCCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
+	private static final String CCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
 
 	/**
 	 * Main entry point to a CICS OSGi program.
@@ -63,7 +63,7 @@ public class LinkServEC01
 
 		try {
 			// Create byte array in local encoding
-			byte ba[] = dfTime.format(timestamp).getBytes(LOCALCCSID);
+			byte ba[] = dfTime.format(timestamp).getBytes(CCSID);
 
 			// Copy into the byte array provided by the CommAreaHolder object
 			System.arraycopy(ba, 0, cah.getValue(), 0, ba.length);

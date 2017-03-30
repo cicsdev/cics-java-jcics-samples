@@ -39,7 +39,7 @@ public class LinkProg1 extends LinkProgCommon
     /**
      * CCSID of the CICS region.
      */
-    private static final String LOCALCCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
+    private static final String CCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
 
     /**
      * Constructor used to pass data to superclass constructor.
@@ -87,7 +87,7 @@ public class LinkProg1 extends LinkProgCommon
         // Build output string from commarea assuming returned data encoded in CICS local EBCDIC ccsid
         String resultStr;
         try {
-            resultStr = new String(ca,LOCALCCSID);
+            resultStr = new String(ca,CCSID);
         } catch (UnsupportedEncodingException ue) {
             throw new RuntimeException(ue);     
         } 
