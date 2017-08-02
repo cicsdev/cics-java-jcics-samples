@@ -51,6 +51,12 @@ public class LinkServEduchan
      * Name of the container used to return data from this program.
      */
     private static final String OUTPUT_CONTAINER = "OUTPUTDATA";  
+    
+    
+    /** 
+     * Time format
+     */
+    private static SimpleDateFormat dfTime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 
     /**
      * Main entry point to a CICS OSGi program.
@@ -97,9 +103,7 @@ public class LinkServEduchan
                 rc = ReturnCode.CONTAINERERR;                
             }
 
-            // Get time for return to caller
-            SimpleDateFormat dfTime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");    
-
+  
             // Build date output container
             Container outputCont = chan.createContainer(DATE_CONTAINER);
             outputCont.putString( dfTime.format(new Date()) );        
@@ -145,7 +149,7 @@ public class LinkServEduchan
         catch ( InvalidRequestException | ChannelErrorException | CCSIDErrorException |
                 CodePageErrorException | ContainerErrorException exc) {
             
-            // Log the message and throw wrappered to reduce error-handling in this example
+            // Log the message and throw wrappered exception to reduce error-handling in this example
             System.out.println("CICS error from LinkServerEduchan " + exc.getMessage());
             throw new RuntimeException(exc);
         }
