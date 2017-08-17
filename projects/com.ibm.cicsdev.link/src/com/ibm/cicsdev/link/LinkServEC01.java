@@ -36,7 +36,12 @@ public class LinkServEC01
 	/**
 	 * CCSID of the CICS region.
 	 */
-	private static final String CCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
+	private static final String LOCALCCSID = System.getProperty("com.ibm.cics.jvmserver.local.ccsid");
+	
+	/**
+	 * Time formatter.
+	 */
+	private static final SimpleDateFormat dfTime = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 
 	/**
 	 * Main entry point to a CICS OSGi program.
@@ -58,17 +63,16 @@ public class LinkServEC01
 		}
 
 		// Get time for return to caller
-		Date timestamp = new Date();
-		SimpleDateFormat dfTime = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Date timestamp = new Date();		
 
 		try {
 			// Create byte array in local encoding
-			byte ba[] = dfTime.format(timestamp).getBytes(CCSID);
+			byte ba[] = dfTime.format(timestamp).getBytes(LOCALCCSID);
 
 			// Copy into the byte array provided by the CommAreaHolder object
 			System.arraycopy(ba, 0, cah.getValue(), 0, ba.length);
 		} catch (UnsupportedEncodingException uee) {
-			// Crude error handling for simple example
+			// Simple error handling for example
 			throw new RuntimeException(uee);
 		}
 	}
