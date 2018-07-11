@@ -27,4 +27,13 @@ Complete Eclipse projects demonstrating how to use the JCICS API in an OSGi JVM 
 1. Define and set a CICS Target Platform for the workspace using the menu Window -> Preferences -> Target Platform.
 
 
+## Generated resources
+
+Several sample projects manipulate binary structures and utilize Java classes generated using the JZOS
+record generator. The generated classes can be found packaged in a jar file, found in the `lib/` subdirectory
+of the relevant project. Only the compiled helper classes are required to compile and run the application,
+however the generated source files are included for reference.
+
+If you are manually adding source files to your development environment, you will need to add the generated
+jar file to the classpath in order to compile the samples.
 
