@@ -43,8 +43,8 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 ### Import the resources into your IDE
 
 1. Ensure you have an Eclipse-based IDE with the CICS Explorer SDK installed.
-1. Import the relevant projects into your Eclipse environment as described [here](/projects#adding-the-resources-to-eclipse).
-1. Ensure the build path includes any binary libraries included in the project as described [here](/projects#generated-resources).
+1. Import the relevant projects into your Eclipse environment as described in [Adding the resources to Eclipse](/projects#adding-the-resources-to-eclipse).
+1. Follow the instructions in the [Generated resources](/projects#generated-resources) section to add any required binary libraries to the build path.
 
 
 ### To deploy the samples into a CICS region 
