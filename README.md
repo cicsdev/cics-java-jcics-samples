@@ -40,6 +40,13 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 1. Install the `DFHJVMS` resource defined in step 2 and ensure it becomes enabled.
 
 
+### Import the resources into your IDE
+
+1. Ensure you have an Eclipse-based IDE with the CICS Explorer SDK installed.
+1. Import the relevant projects into your Eclipse environment as described [here](/projects#adding-the-resources-to-eclipse).
+1. Ensure the build path includes any binary libraries included in the project as described [here](/projects#generated-resources).
+
+
 ### To deploy the samples into a CICS region 
 1. Using the CICS Explorer export the `com.ibm.cicsdev.*.cicsbundle` projects to a zFS directory. The sample definitions use the following style of zFS location `/u/cics1/com.ibm.cicsdev.link.cicsbundle_1.0.0`.
 1. Define and install CICS `BUNDLE` resource defintions referring to the deployed bundle directory in step 1, and ensure all resources are enabled. 
