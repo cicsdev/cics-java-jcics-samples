@@ -1,7 +1,7 @@
 # Getting to grips with JCICS
 
 
-![JCICS](blog/graphics/JCICS.png)
+![JCICS](graphics/JCICS.png)
 
 JCICS provides a simple object hierarchy for accessing the CICS API from Java, and is similar to the EXEC CICS command API supported for other languages such as COBOL or assembler. Unlike other CICS high level languages, no translation step is necessary during compilation as the underlying EXEC CICS calls are dynamically generated via the Java Native Interface (JNI). JCICS is a fairly simple API and if you understand the EXEC CICS API and have some knowledge of Java then its a small jump to make. This does mean its not as object oriented as it could be, so if you have an OO outlook on life you may need to bite your tongue at times.
 
@@ -341,7 +341,7 @@ Line **33.** Catch all other responses and throw an exception to abend the task
 
 In Java unexpected error conditions are represented by Java classes which extend the `RuntimeException` class, and are known as *unchecked exceptions*. Unchecked exceptions are not subject to the compile time checking mandated for checked exceptions, although they can be caught if required. There are only a few unchecked exceptions in the JCICS API, and they all extend the `CICSRuntimeException` class.
 
-![JavaExceptions](blog/graphics/JavaExceptions-1-e1484928035395.png)
+![JavaExceptions](graphics/JavaExceptions-1-e1484928035395.png)
 
 All of these unchecked exceptions that extend `CICSRuntimeException` represent conditions within CICS that should **not** generally be handled by an application. Java code running in CICS should not catch these exceptions without re\-throwing them, either explicitly in a catch block, or implicitly by catching a superclass of these exceptions such as `Exception` or `Throwable` as shown below.
 
