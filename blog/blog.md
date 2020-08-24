@@ -1,9 +1,9 @@
 # Getting to grips with JCICS
 
 
-![JCICS](graphics/JCICS.png)
-
 JCICS provides a simple object hierarchy for accessing the CICS API from Java, and is similar to the EXEC CICS command API supported for other languages such as COBOL or assembler. Unlike other CICS high level languages, no translation step is necessary during compilation as the underlying EXEC CICS calls are dynamically generated via the Java Native Interface (JNI). JCICS is a fairly simple API and if you understand the EXEC CICS API and have some knowledge of Java then its a small jump to make. This does mean its not as object oriented as it could be, so if you have an OO outlook on life you may need to bite your tongue at times.
+
+![JCICS](graphics/JCICS.png)
 
 The following tutorial summarizes how to use the most popular parts of the JCICS API within CICS Java programs for deployment to an OSGi JVM server. You can also use JCICS in a Web application deployed into a Liberty JVM server in integrated mode, and the code samples provided are equally applicable to this environment..
 
