@@ -1,6 +1,6 @@
-cics-java-jcics-samples
-================
-Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM server environment
+# cics-java-jcics-samples
+
+Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM server environment.
 
 ## Samples overview
 
@@ -11,13 +11,11 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * [`com.ibm.cicsdev.tsq`](projects/com.ibm.cicsdev.tsq) - Accessing temporary storage queues.
 * [`com.ibm.cicsdev.vsam`](projects/com.ibm.cicsdev.vsam) - Accessing KSDS, ESDS, and RRDS VSAM files.
 
-
 ## Repository structure
 
 * [`etc/`](etc) - Supporting materials used to define CICS and z/OS resources needed for the samples.
 * [`projects/`](projects) - Complete Eclipse projects suitable for importing into a CICS Explorer environment.
 * [`src/`](src) - Supporting source code for non-Java programs.
-
 
 ## Pre-requisites
 
@@ -26,11 +24,9 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * Java SE 7 or later on the workstation.
 * Eclipse with CICS Explorer SDK installed.
  
-
 ## Configuration
 
 The sample Java classes are designed to be added to an OSGi bundle and deployed into a CICS OSGi JVM server, but can also be used as the basis for extending Web applications deployed into a Liberty JVM server. 
-
 
 ### Starting a JVM server in CICS
 
@@ -40,16 +36,23 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 1. Install the `DFHJVMS` resource defined in step 2 and ensure it becomes enabled.
 
 
+### Import the resources into your IDE
+
+1. Ensure you have an Eclipse-based IDE with the CICS Explorer SDK installed.
+1. Import the relevant projects into your Eclipse environment as described in [Adding the resources to Eclipse](/projects#adding-the-resources-to-eclipse).
+1. Follow the instructions in the [Generated resources](/projects#generated-resources) section to add any required binary libraries to the build path.
+
+
 ### To deploy the samples into a CICS region 
+
 1. Using the CICS Explorer export the `com.ibm.cicsdev.*.cicsbundle` projects to a zFS directory. The sample definitions use the following style of zFS location `/u/cics1/com.ibm.cicsdev.link.cicsbundle_1.0.0`.
 1. Define and install CICS `BUNDLE` resource defintions referring to the deployed bundle directory in step 1, and ensure all resources are enabled. 
 1. Create the required transaction and program definitions using either the supplied `DFHCSD.txt` files as input to a CSD define job, or using the supplied CICS bundle projects.
 1. See the individual project directories for any additional supporting resources required.
  
-
 ## License
-This project is licensed under [Apache License Version 2.0](LICENSE).  
 
+This project is licensed under [Apache License Version 2.0](LICENSE).  
 
 ## Reference
 
@@ -57,5 +60,3 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 * For further details on the JCICS APIs used in this sample refer to this [developer center article](https://developer.ibm.com/cics/2017/02/27/jcics-the-java-api-for-cics/)
 * For further details on using the IBM JZOS record generator see this [developer center article](https://developer.ibm.com/cics/2016/05/12/java-cics-using-ibmjzos/)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.java.doc/JVMserver/config_jvmserver_app.html)
-
-
