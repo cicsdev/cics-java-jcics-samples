@@ -381,7 +381,7 @@ catch (Exception e)
 } 
 ```
 
-It is also possible for a Java application to rollback the CICS transaction or abend the CICS task directly. This can be achieved using the `Task.abend()` or `Task.rollback(`) methods in the Task class, as shown in the LinkServEC01 sample. Abending the CICS task is similar in concept to the throwing of Java exception, as it allows a CICS abend handler written in COBOL (or another language) to take control of error processing.
+It is also possible for a Java application to rollback or abend the CICS task directly. This can be achieved using the  `Task.rollback(`) or `Task.abend()` methods in the Task class, as shown in the LinkServEC01 sample. Abending the CICS task is similar in concept to the throwing of Java exception, as it allows a CICS abend handler written in COBOL (or another language) to take control of error processing.
 
 
 ```java
