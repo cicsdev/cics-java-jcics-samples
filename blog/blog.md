@@ -406,7 +406,7 @@ catch (InvalidRequestException ire)
 ```
 
 
-> **Note**: When accessing resources controlled by the Liberty transaction manager, such as a remote DB2 database using JDBC type 4 connectivity then it is necessary to use the Java transaction API (JTA) to create a Java transaction to control the global transaction scope, including the subordinate CICS unit\-of\-work. In this case it is not possible to use the `Task.rollback()` method and instead the JTA API should be used. For further details refer to this article [Using Java Transaction in CICS Liberty to coordinate JDBC updates](https://developer.ibm.com/cics/2017/01/17/using-java-transactions-in-cics-liberty-to-coordinate-jdbc-updates/).
+> **Note**: When accessing resources controlled by the Liberty transaction manager, such as a remote DB2 database using JDBC type 4 connectivity then it is necessary to use the Java transaction API (JTA) to create a Java transaction to control the global transaction scope, including the subordinate CICS unit\-of\-work. In this case it is not possible to use the `Task.rollback()` method and instead the JTA API should be used. For further details refer to this article [Using Java Transaction in CICS Liberty to coordinate JDBC updates](https://github.com/cicsdev/blog-cics-java-jta-jdbc/blob/master/blog.md).
 
 ---
 
