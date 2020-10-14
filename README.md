@@ -57,6 +57,5 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 ## Reference
 
 * CICSDev tutorial archive [Getting to Grips with JCICS](blog/blog.md)
-* For further details on the JCICS APIs used in this sample refer to this [developer center article](https://developer.ibm.com/cics/2017/02/27/jcics-the-java-api-for-cics/)
-* For further details on using the IBM JZOS record generator see this [developer center article](https://developer.ibm.com/cics/2016/05/12/java-cics-using-ibmjzos/)
+* For further details on using the IBM Record Generator for Java see this [tutorial](https://github.com/cicsdev/cics-java-recgen/blob/master/blog.md)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.java.doc/JVMserver/config_jvmserver_app.html)
