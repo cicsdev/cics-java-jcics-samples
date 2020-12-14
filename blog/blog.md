@@ -93,7 +93,7 @@ Lines **20\-21.** Create byte array from the time string using the CICS encoding
 
 ## Exception handling
 
-In Java errors that extend the *Exception* class are known as checked exceptions and must either be caught or declared as part of the method signature using the throws keyword. Any Java code which calls a method declared as throwing a checked exception must either provide logic to catch the checked exception, or add the exception to it’s own method signature, in order to propagate the exception further up the stack. The constraints on checked exceptions are enforced at compile time, and failure to adhere to the specification will result in a compilation error.
+In Java errors other than *RuntimeException* that extend the *Exception* class are known as checked exceptions and must either be caught or declared as part of the method signature using the throws keyword. Any Java code which calls a method declared as throwing a checked exception must either provide logic to catch the checked exception, or add the exception to it’s own method signature, in order to propagate the exception further up the stack. The constraints on checked exceptions are enforced at compile time, and failure to adhere to the specification will result in a compilation error.
 
 By contrast in traditional high level languages such as COBOL, when a CICS command returns an error (such as unknown program on a link), then it will return a response code (PGMIDERR) to the application using the data area supplied in the RESP parameter of the CICS command . This enables the application to handle or ignore errors on a call by call basis.
 
