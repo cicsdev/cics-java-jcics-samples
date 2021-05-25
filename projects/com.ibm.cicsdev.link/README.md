@@ -16,7 +16,7 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 * `lib/EDUPGM.jar` - a pre-built JAR containing the JZOS generated record that maps the copybook structure used in the `EDUPGM` COBOL sample. The generated class `JZOSCommareaWrapperclass` is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. 
 * [`/etc/Link`](../../etc/Link) - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
 * [`/src/Cobol`](../../src/Cobol) - contains the COBOL programs `EC01` and `EDUCHAN` required by these samples.
-* [cics-java-jzosprog repo](https://github.com/cicsdev/cics-java-jzosprog/tree/master/src/Cobol) - repository containing the `EDUPGM` COBOL program.
+* [cics-java-jzosprog repo](https://github.com/cicsdev/cics-java-jzosprog/tree/main/src/Cobol) - repository containing the `EDUPGM` COBOL program.
 
 
 ## Configuration
