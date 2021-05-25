@@ -28,7 +28,7 @@ At the last count there were around 80 different classes that map to the underly
 
 Lets first take a look at the two classes you are most likely to need *Task* and *Program*. The Program class maps to the [EXEC CICS LINK](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.applicationprogramming.doc/commands/dfhp4_link.html) command and its variants, and the Task class maps to the [](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.applicationprogramming.doc/commands/dfhp4_assign.html)[ASSIGN](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.applicationprogramming.doc/commands/dfhp4_assign.html) and [ADDRESS](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.applicationprogramming.doc/commands/dfhp4_address.html) commands but also provides a set of helper methods to access the EIB and to control syncpoints and abends, but more about this later.
 
-The following code snippet shows how to use Task and Program to link to another CICS program, and is described in more detail using the line numbers below. A full working example is available in the [LinkProg1](https://github.com/cicsdev/cics-java-jcics-samples/blob/master/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkProg1.java) sample.
+The following code snippet shows how to use Task and Program to link to another CICS program, and is described in more detail using the line numbers below. A full working example is available in the [LinkProg1](https://github.com/cicsdev/cics-java-jcics-samples/blob/main/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkProg1.java) sample.
 
 
 ```java
@@ -57,7 +57,7 @@ Line **10.** Instantiate an instance of a Program, and then set properties such 
 Line **13.** Create a byte array and then pass this as input on the `Program.link()` method. This will drive an `EXEC CICS LINK` command to the CICS program named in line 11   
 The COMMAREA will be passed as a byte array, which is an unstructured array of bytes of the specified length. Most CICS programs expect structured data as input and if you need to build a Java bean to map to this you can use the IBM Record Generator for Java or the Rational J2C Tools to build wrapper classes to map the records, see [Building Java records from COBOL with the IBM Record Generator for Java](https://developer.ibm.com/cics/2016/05/12/java-cics-using-ibmjzos/). Note, there is no return type from the `Program.link()` method, this is often the case in JCICS and instead the data is updated in situ within the referenced COMMAREA.   
 
-The program that is invoked by a link command can also be written in Java, and in our case will be passed the COMMAREA as a simple byte array. A sample Java version of the EC01 CICS COBOL program is shown below which shows how to use the *CommAreaHolder* class to receive the byte array mapping to the COMMAREA. A full working example is available in the [LinkServEC01](https://github.com/cicsdev/cics-java-jcics-samples/blob/master/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkServEC01.java) sample.
+The program that is invoked by a link command can also be written in Java, and in our case will be passed the COMMAREA as a simple byte array. A sample Java version of the EC01 CICS COBOL program is shown below which shows how to use the *CommAreaHolder* class to receive the byte array mapping to the COMMAREA. A full working example is available in the [LinkServEC01](https://github.com/cicsdev/cics-java-jcics-samples/blob/main/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkServEC01.java) sample.
 
 ```java
 public class LinkServEC01 
@@ -145,7 +145,7 @@ catch (CicsConditionException cce)
 
 The other method of passing data from one CICS program to another is by using channels and containers. A channel is an interface between programs, it typically holds one or more containers to be passed between the programs. A container is a named data area. Channels and containers offer the advantage that more than 32KB of data can be passed, and both character and binary data can be specified. Character data (or strings in Java terms) is automatically converted at the API level, whereas binary data (or a byte array in Java terms) is flowed unconverted. By contrast, COMMAREAs are confined to a 32KB limit and are unstructured byte arrays. Multiple containers can be passed between programs within a channel, providing a high degree of flexibility about how to structure data.
 
-The following abbreviated code snippet shows how to use channels and containers to pass a character string input container on a LINK and then to retrieve and read both a character string and a binary container. A full working example is available in the [LinkProg3](https://github.com/cicsdev/cics-java-jcics-samples/blob/master/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkProg3.java) sample and the corresponding back end program is available at [LinkServEduchan](https://github.com/cicsdev/cics-java-jcics-samples/blob/master/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkServEduchan.java).
+The following abbreviated code snippet shows how to use channels and containers to pass a character string input container on a LINK and then to retrieve and read both a character string and a binary container. A full working example is available in the [LinkProg3](https://github.com/cicsdev/cics-java-jcics-samples/blob/main/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkProg3.java) sample and the corresponding back end program is available at [LinkServEduchan](https://github.com/cicsdev/cics-java-jcics-samples/blob/main/projects/com.ibm.cicsdev.link/src/com/ibm/cicsdev/link/LinkServEduchan.java).
 
 
 ```java
@@ -188,7 +188,7 @@ The following abbreviated code snippet shows how to use channels and containers 
 Lines **1\-6.** Initialize constants to define program name, and container data and names.   
 Line **14.** Create a `Channel` object which will be associated with the task.   
 Lines **15\-16.** Create the input container named `INPUTDATA`, the `createContainer()` method signature takes the String *Hello from Java* as input which will cause CICS to create a character based container as opposed to a binary container. The encoding of this data will be stored internally in UTF\-16 when created in Java in order to handle the Unicode String data, and will be automatically converted to the local EBCDIC encoding if read from a COBOL program.   
-Line **18.** Pass the channel as a reference on the `Program.link()` method, our invoked program [EDUCHAN](https://github.com/cicsdev/cics-java-jcics-samples/blob/master/src/Cobol/EDUCHAN.cbl) will receive the `INPUTDATA` container, and will reverse the input data, and return the formatted time in a character container along with an integer return code in a binary container.   
+Line **18.** Pass the channel as a reference on the `Program.link()` method, our invoked program [EDUCHAN](https://github.com/cicsdev/cics-java-jcics-samples/blob/main/src/Cobol/EDUCHAN.cbl) will receive the `INPUTDATA` container, and will reverse the input data, and return the formatted time in a character container along with an integer return code in a binary container.   
 Lines **20\-23.** Create a new container object `charContainer` and get the character container defined as CICSTIME from the channel. This will return null (rather than throw a CICSConditionException which is the usual JCICS error model) if it does not exist, so we first test for null before reading the string data from it using the `Container.getString()` method.   
 Lines **26\-32.** Create a new container object `bitContainer` and get the binary container defined as CICSRC from the channel. Again this could return null if its not present so we first test for null. Next we create a byte array and get the data from the `bitContainer`. The data is actually a 32\-bit integer from a CICS response code, so we need to wrap this into a `ByteBuffer` and then read the integer from this.   
 
@@ -196,7 +196,7 @@ Lines **26\-32.** Create a new container object `bitContainer` and get the binar
 
 A temporary storage (TS) queue is a set of data items that can be read and reread in any sequence. TSQ resources can be dynamically created at runtime, unlike transient data (TD) queues that must be defined in advance.
 
-The following snippets show how to use the *TSQ* class to write string data to a TSQ and then read it back using a JCICS holder. A full working example of this code available in the [TSQExample2](https://github.com/cicsdev/cics-java-jcics-samples/blob/master/projects/com.ibm.cicsdev.tsq/src/com/ibm/cicsdev/tsq/TSQExample2.java) sample.
+The following snippets show how to use the *TSQ* class to write string data to a TSQ and then read it back using a JCICS holder. A full working example of this code available in the [TSQExample2](https://github.com/cicsdev/cics-java-jcics-samples/blob/main/projects/com.ibm.cicsdev.tsq/src/com/ibm/cicsdev/tsq/TSQExample2.java) sample.
 
 ```java
 public class TSQExample2 extends TSQCommon
@@ -282,13 +282,13 @@ Line **10.** Use the `TSQ.readItem()` method to loop around reading items from t
 Line **17.** Extract the byte array from the item holder
 Line **21.** Create a new string using the CICS encoding
 
-Writing data to a TD queue is similar to TS and a set of examples is provided in the [com.ibm.cicsdev.tdq](https://github.com/cicsdev/cics-java-jcics-samples/tree/master/projects/com.ibm.cicsdev.tdq) project.
+Writing data to a TD queue is similar to TS and a set of examples is provided in the [com.ibm.cicsdev.tdq](https://github.com/cicsdev/cics-java-jcics-samples/tree/main/projects/com.ibm.cicsdev.tdq) project.
 
 ## VSAM files
 
 VSAM is a high performance file storage access method widely used in CICS applications. There are 3 different types of VSAM files, key\-sequenced, entry\-sequence and relative record. In this article we will just cover the most popular type the key\-sequenced data set (KSDS) which is represented in JCICS via the *KSDS* class.
 
-The following snippets show how to use the KSDS class to read and write structured records to VSAM file. In this example a `StockPart` record is used to represent the structured record, and was created from a COBOL copybook structure using the [JZOS record generation](https://developer.ibm.com/cics/2016/05/12/java-cics-using-ibmjzos/) tool. A full working example of this code is available in the [KsdsExample1](https://github.com/cicsdev/cics-java-jcics-samples/tree/master/projects/com.ibm.cicsdev.vsam/src/com/ibm/cicsdev/vsam/ksds) sample which extends the class KsdsExampleCommon.
+The following snippets show how to use the KSDS class to read and write structured records to VSAM file. In this example a `StockPart` record is used to represent the structured record, and was created from a COBOL copybook structure using the [JZOS record generation](https://developer.ibm.com/cics/2016/05/12/java-cics-using-ibmjzos/) tool. A full working example of this code is available in the [KsdsExample1](https://github.com/cicsdev/cics-java-jcics-samples/tree/main/projects/com.ibm.cicsdev.vsam/src/com/ibm/cicsdev/vsam/ksds) sample which extends the class KsdsExampleCommon.
 
 ```java
 private static final String FILE_NAME = "XMPLKSDS";
@@ -406,7 +406,7 @@ catch (InvalidRequestException ire)
 ```
 
 
-> **Note**: When accessing resources controlled by the Liberty transaction manager, such as a remote DB2 database using JDBC type 4 connectivity then it is necessary to use the Java transaction API (JTA) to create a Java transaction to control the global transaction scope, including the subordinate CICS unit\-of\-work. In this case it is not possible to use the `Task.rollback()` method and instead the JTA API should be used. For further details refer to this article [Using Java Transaction in CICS Liberty to coordinate JDBC updates](https://github.com/cicsdev/blog-cics-java-jta-jdbc/blob/master/blog.md).
+> **Note**: When accessing resources controlled by the Liberty transaction manager, such as a remote DB2 database using JDBC type 4 connectivity then it is necessary to use the Java transaction API (JTA) to create a Java transaction to control the global transaction scope, including the subordinate CICS unit\-of\-work. In this case it is not possible to use the `Task.rollback()` method and instead the JTA API should be used. For further details refer to this article [Using Java Transaction in CICS Liberty to coordinate JDBC updates](https://github.com/cicsdev/blog-cics-java-jta-jdbc/blob/main/blog.md).
 
 ---
 
