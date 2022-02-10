@@ -22,7 +22,7 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * CICS TS V5.1 or later, due to the usage of the `getString()` methods.
 * Java SE 1.8 on the z/OS system
 * Java SE 1.8 on the workstation
-* Eclipse with the IBM CICS SDK for Java EE, Jakarta EE and Liberty, or any IDE that supports usage of the Maven Central artifact [com.ibm.cics:com.ibm.cics.server.](https://search.maven.org/artifact/com.ibm.cics/com.ibm.cics.server) 
+* Eclipse with the IBM CICS SDK for Java or any IDE that supports usage of the Maven Central artifact [com.ibm.cics:com.ibm.cics.server.](https://search.maven.org/artifact/com.ibm.cics/com.ibm.cics.server) 
  
 ## Configuration
 
