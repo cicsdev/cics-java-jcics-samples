@@ -21,6 +21,7 @@ import com.ibm.cics.server.CodePageErrorException;
 import com.ibm.cics.server.Container;
 import com.ibm.cics.server.ContainerErrorException;
 import com.ibm.cics.server.InvalidRequestException;
+import com.ibm.cics.server.LengthErrorException;
 import com.ibm.cics.server.Program;
 import com.ibm.cics.server.Task;
 
@@ -113,7 +114,7 @@ public class LinkProg3 extends LinkProgCommon
 
         try {
             // Get output data from output container
-            String resultStr;
+            String resultStr = null;
             int cicsrc;
 
             // Read CHAR container from channel container data as formatted string
@@ -121,7 +122,11 @@ public class LinkProg3 extends LinkProgCommon
             // Container object will be null if container not present
             Container charContainer = chan.getContainer(DATE_CONTAINER);
             if (charContainer != null) {
-                resultStr = charContainer.getString();
+                try {
+					resultStr = charContainer.getString();
+				} catch (LengthErrorException e) {
+					task.abend("LENG");
+				}
             }
             else {
                 // Missing response container
@@ -134,7 +139,12 @@ public class LinkProg3 extends LinkProgCommon
             if (bitContainer != null) {
                 
                 // Obtain the RC as an int
-                byte[] ba = bitContainer.get();
+                byte[] ba = null;
+				try {
+					ba = bitContainer.get();
+				} catch (LengthErrorException e) {
+					task.abend("LENG");
+				}
                 ByteBuffer bb = ByteBuffer.wrap(ba);                     
                 cicsrc = bb.getInt(); 
 
