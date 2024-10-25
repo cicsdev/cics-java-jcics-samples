@@ -19,7 +19,6 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Pre-requisites
 
-* CICS TS V5.1 or later, due to the usage of the `getString()` methods.
 * Java SE 1.8 or later on the workstation
 * Eclipse with the IBM CICS SDK for Java or any IDE that supports usage of the Maven Central artifact [com.ibm.cics:com.ibm.cics.server.](https://search.maven.org/artifact/com.ibm.cics/com.ibm.cics.server) 
  
@@ -56,5 +55,5 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 ## Reference
 
 * CICSDev tutorial archive [Getting to Grips with JCICS](blog/blog.md)
-* For further details on using the IBM Record Generator for Java see this [tutorial](https://github.com/cicsdev/cics-java-recgen/blob/main/blog.md)
+* For further details on using the IBM Record Generator for Java see this [tutorial](https://developer.ibm.com/tutorials/build-java-records-from-cobol-with-ibm-record-generator/)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.java.doc/JVMserver/config_jvmserver_app.html)
