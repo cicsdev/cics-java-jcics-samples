@@ -21,7 +21,6 @@ import com.ibm.cics.server.CodePageErrorException;
 import com.ibm.cics.server.Container;
 import com.ibm.cics.server.ContainerErrorException;
 import com.ibm.cics.server.InvalidRequestException;
-import com.ibm.cics.server.LengthErrorException;
 import com.ibm.cics.server.Program;
 import com.ibm.cics.server.Task;
 
@@ -124,8 +123,8 @@ public class LinkProg3 extends LinkProgCommon
             if (charContainer != null) {
                 try {
 					resultStr = charContainer.getString();
-				} catch (LengthErrorException e) {
-					task.abend("LENG");
+				} catch (CicsConditionException e) {
+					task.abend("LPGC");
 				}
             }
             else {
@@ -142,8 +141,8 @@ public class LinkProg3 extends LinkProgCommon
                 byte[] ba = null;
 				try {
 					ba = bitContainer.get();
-				} catch (LengthErrorException e) {
-					task.abend("LENG");
+				} catch (CicsConditionException e) {
+					task.abend("LPGC");
 				}
                 ByteBuffer bb = ByteBuffer.wrap(ba);                     
                 cicsrc = bb.getInt(); 
@@ -157,7 +156,7 @@ public class LinkProg3 extends LinkProgCommon
                 msg = MessageFormat.format("Returned from link to {0} with no CICS RC", prog.getName());
             }
         }
-        catch (ContainerErrorException | ChannelErrorException | CCSIDErrorException | CodePageErrorException exc) {
+        catch (CicsConditionException exc) {
             
             // Log message and continue
             msg = MessageFormat.format("ERROR from link to {0} with message({1}) ",
