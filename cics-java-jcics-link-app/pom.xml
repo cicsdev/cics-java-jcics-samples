@@ -30,8 +30,7 @@
             <artifactId>com.ibm.cics.server</artifactId>
         </dependency>
 
-        <!--IRG
-        Generated JAR from local repo -->
+        <!--IRG Generated JAR from local repo -->
         <dependency>
             <groupId>com.ibm.cicsdev</groupId>
             <artifactId>cics-java-jcics-edupgm</artifactId>
@@ -46,8 +45,9 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>6.0.0</version>
                 <extensions>true</extensions>
-                <configuration>                    
+                <configuration>
                     <instructions>
+                        <extensions>true</extensions>                  
                         <Import-Package>
                             com.ibm.cics.server;version="[1.500.0,3.0.0)",com.ibm.jzos.fields;resolution:=optional
                         </Import-Package>
@@ -56,78 +56,17 @@
                         <Embed-Dependency>cics-java-jcics-edupgm</Embed-Dependency>
                         <Embed-Directory>lib</Embed-Directory>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                        <Bundle-Version>${pom.version}</Bundle-Version>                       
-                    </instructions>                    
+                        <Bundle-Version>${project.version}</Bundle-Version>   
+                        <CICS-MainClass>com.ibm.cicsdev.link.LinkProg1,
+                            com.ibm.cicsdev.link.LinkProg2, 
+                            com.ibm.cicsdev.link.LinkProg3, 
+                            com.ibm.cicsdev.link.LinkServEduchan, 
+                            com.ibm.cicsdev.link.LinkServEC01
+                        </CICS-MainClass>                        
+                    </instructions>           
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <archive>
-                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-                        <manifest>
-                        <addClasspath>true</addClasspath>
-                        <classpathPrefix>lib/</classpathPrefix>
-                    </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <configuration>
-                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                    <excludeTransitive>false</excludeTransitive>
-                    <stripVersion>false</stripVersion>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        -->
-
+            </plugin>        
+            
         </plugins>
     </build>
 </project>
