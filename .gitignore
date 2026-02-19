@@ -83,3 +83,6 @@ replay_pid*
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+#Allow IRG JAR
+!etc/lib/EDUPGM.jar

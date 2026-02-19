@@ -21,7 +21,10 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 ## Building
 
 Download the IRG generated JAR EDUPGM.jar
-Install the  JAR file into a local Maven repository by running the following Maven command in a local command prompt `mvn org.apache.maven.plugins:maven-install-plugin:3.1.3:install-file "-Dfile=lib/EDUPGM.jar" "-DgroupId=com.ibm.cicsdev" "-DartifactId=cics-java-jcics-edupgm" "-Dversion=1.0" "-Dpackaging=jar" "-DlocalRepositoryPath=local-repo"`
+Install the  JAR file into a local Maven repository by running the following Maven command in a local command prompt 
+```
+mvn org.apache.maven.plugins:maven-install-plugin:3.1.3:install-file "-Dfile=etc/lib/EDUPGM.jar" "-DgroupId=com.ibm.cicsdev" "-DartifactId=cics-java-jcics-edupgm" "-Dversion=1.0" "-Dpackaging=jar" "-DlocalRepositoryPath=local-repo"
+```
 
 
 ## Configuration
