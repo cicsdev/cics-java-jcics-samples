@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><cicsdefinitionprogram xmlns="http://www.ibm.com/xmlns/prod/CICS/smw2int" concurrency="REQUIRED" datalocation="ANY" execkey="CICS" jvm="YES" jvmclass="com.ibm.cicsdev.vsam.ksds.KsdsExample3" jvmserver="DFHJVMS" name="JAVAVKS3"/>

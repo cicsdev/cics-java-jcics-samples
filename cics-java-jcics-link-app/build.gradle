@@ -1,0 +1,28 @@
+
+plugins {
+    id 'java'
+}
+
+
+dependencies {
+
+    //Define the CICS Bill of Materials and apply to compile and annotation processor
+    def bom = "com.ibm.cics:com.ibm.cics.ts.bom:6.1-20240903141936-PH59389" 
+    compileOnly enforcedPlatform(bom)
+    annotationProcessor enforcedPlatform(bom)
+    
+    // JCICS library 
+    compileOnly("com.ibm.cics:com.ibm.cics.server")
+
+    // CICS annotation processor for @CICSProgram support
+    annotationProcessor("com.ibm.cics:com.ibm.cics.server.invocation")
+
+}
+
+description = 'CICS OSGi link application'
+
+jar {
+    manifest {
+        from 'src/main/resources/META-INF/MANIFEST.MF'
+    }
+}
