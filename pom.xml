@@ -8,15 +8,15 @@
 
   <!-- Application properties -->
   <groupId>com.ibm.cicsdev</groupId>
-  <artifactId>cics-java-jcics-link</artifactId>
+  <artifactId>cics-java-jcics-samples</artifactId>
   <version>1.0.0</version>
-  <name>CICS Java JCICS link application</name>
+  <name>CICS Java JCICS samples</name>
 
   <properties>
     <!-- CICS bundle properties -->
-    <cics.jvmserver>DFHOSGI</cics.jvmserver>
+    <cics.jvmserver>DFHJVMS</cics.jvmserver>
     <!-- Java project properties -->
-    <java.version>8</java.version>
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -39,5 +39,7 @@
   <modules>
     <module>cics-java-jcics-link-app</module>
     <module>cics-java-jcics-link-bundle</module>
+    <module>cics-java-jcics-serialize-app</module>
+    <module>cics-java-jcics-serialize-bundle</module>
   </modules>
 </project>

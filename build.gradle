@@ -1,0 +1,26 @@
+
+description = 'CICS Java JCICS samples'
+
+allprojects {
+    group = 'com.ibm.cicsdev'
+    version = '1.0.0'
+
+    repositories {
+
+        mavenCentral()
+        
+        // Local Maven repo for IRG generated file 
+        maven {
+            url = uri("file:///../local-repo")
+            }  
+        }
+    }
+
+
+//Define the CICS Bill of Materials for compilation 
+ext {
+  bom = "com.ibm.cics:com.ibm.cics.ts.bom:5.5-20200519131930-PH25409"
+}
+
+
+
