@@ -1,7 +1,7 @@
 com.ibm.cicsdev.link
 ===
 
-Provides examples for performing CICS LINK operations using both commareas, and channels and containers.
+Provides examples for performing CICS LINK operations using both COMMAREAs, and channels and containers.
 
 * `LinkProg1` - a class that demonstrates linking to the COBOL application `EC01` using a COMMAREA.
 * `LinkProg2` - a class that demonstrates linking to the COBOL application `EDUPGM` using a COMMAREA mapped using a JZOS generated record.
@@ -13,21 +13,17 @@ Provides examples for performing CICS LINK operations using both commareas, and 
 
 ## Supporting files
 
-* `lib/EDUPGM.jar` - a pre-built JAR containing the JZOS generated record that maps the copybook structure used in the `EDUPGM` COBOL sample. The generated class `JZOSCommareaWrapperclass` is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. 
+* `cics-java-jcics-edupgm-1.0.jar` - a pre-built JAR containing the generated class `JZOSCommareaWrapperclass` that is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. This is packaged in a Maven [`local-repo`](../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/).
 * [`/etc/Link`](../../etc/Link) - contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
 * [`/src/Cobol`](../../src/Cobol) - contains the COBOL programs `EC01` and `EDUCHAN` required by these samples.
 * [cics-java-jzosprog repo](https://github.com/cicsdev/cics-java-jzosprog/tree/main/src/Cobol) - repository containing the `EDUPGM` COBOL program.
 
-## Building
-
-Download the IRG generated JAR EDUPGM.jar
-Install the  JAR file into a local Maven repository by running the following Maven command in a local command prompt 
-```
-mvn org.apache.maven.plugins:maven-install-plugin:3.1.3:install-file "-Dfile=etc/lib/EDUPGM.jar" "-DgroupId=com.ibm.cicsdev" "-DartifactId=cics-java-jcics-edupgm" "-Dversion=1.0" "-Dpackaging=jar" "-DlocalRepositoryPath=local-repo"
-```
+## Building the Java programs
 
 
-## Configuration
+
+
+## Configuring CICS
 
 1. Compile and deploy the COBOL programs `EC01`, `EDUPGM`, and `EDUCHAN`.
 1. Define the resource definitions for the Transaction IDs and Java programs using the DFHCSDUP source in etc/Link/DFHCSD.txt
