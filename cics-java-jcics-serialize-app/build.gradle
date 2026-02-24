@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+description = 'CICS Java JCICS serialize sample - Application'
+
+// If in Eclipse, add Javadoc to the local project classpath
+eclipse 
+{
+    classpath 
+    {
+        downloadJavadoc = true
+    }
+}
+
+java
+{
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    compileOnly enforcedPlatform(bom)
+    compileOnly 'com.ibm.cics:com.ibm.cics.server'
+}
+
+jar {
+    manifest {
+        from '../etc/Serialize/META-INF/MANIFEST.MF'
+    }
+}

@@ -1,28 +1,32 @@
-
 plugins {
     id 'java'
 }
 
+description = 'CICS Java JCICS link sample - Application'
+
+java
+{
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17      
+}
 
 dependencies {
 
-    //Define the CICS Bill of Materials and apply to compile and annotation processor
-    def bom = "com.ibm.cics:com.ibm.cics.ts.bom:6.1-20240903141936-PH59389" 
-    compileOnly enforcedPlatform(bom)
-    annotationProcessor enforcedPlatform(bom)
+    // Use the CICS TS BOM to set the JCICS library version
+    compileOnly enforcedPlatform(bom)    
     
     // JCICS library 
     compileOnly("com.ibm.cics:com.ibm.cics.server")
+    
+    //Compile using the IRG generated JAR from the local maven repo
+    compileOnly ("com.ibm.cicsdev:cics-java-jcics-edupgm:1.0")
 
-    // CICS annotation processor for @CICSProgram support
-    annotationProcessor("com.ibm.cics:com.ibm.cics.server.invocation")
+    }
 
-}
 
-description = 'CICS OSGi link application'
-
+// Manually add the OSGI manifest using the sample provided
 jar {
     manifest {
-        from 'src/main/resources/META-INF/MANIFEST.MF'
+        from '../etc/Link/META-INF/MANIFEST.MF'
     }
 }

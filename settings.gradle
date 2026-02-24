@@ -1,0 +1,9 @@
+rootProject.name = 'cics-java-jcics-samples'
+include(':cics-java-jcics-serialize-app')
+include(':cics-java-jcics-serialize-bundle')
+include(':cics-java-jcics-link-app')
+include(':cics-java-jcics-link-bundle')
+
+
+
+
