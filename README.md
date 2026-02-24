@@ -4,49 +4,165 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Samples overview
 
-* [`com.ibm.cicsdev.link`](projects/com.ibm.cicsdev.link) - Performing CICS LINK operations using both commareas, and channels and containers.
-* [`com.ibm.cicsdev.serialize`](projects/com.ibm.cicsdev.serialize) - Serializing access to a common resource using the CICS ENQ and DEQ mechanism.
-* [`com.ibm.cicsdev.tdq`](projects/com.ibm.cicsdev.tdq) - Accessing transient data queues.
-* [`com.ibm.cicsdev.terminal`](projects/com.ibm.cicsdev.terminal) - Reading in data from a terminal for an OSGi application.
-* [`com.ibm.cicsdev.tsq`](projects/com.ibm.cicsdev.tsq) - Accessing temporary storage queues.
-* [`com.ibm.cicsdev.vsam`](projects/com.ibm.cicsdev.vsam) - Accessing KSDS, ESDS, and RRDS VSAM files.
+* [`cics-java-jcics-link-app`](cics-java-jcics-link-app) - Java project covering LINK commands using both COMMAREAs and channels and containers
+* [`cics-java-jcics-link-bundle`](cics-java-jcics-link-bundle) - CICS bundle plug-in based project for cics-java-jcics-link-app
+* [`com.ibm.cicsdev.serialize`](projects/com.ibm.cicsdev.serialize) - Java project covering serializing access to a common resource using the CICS ENQ and DEQ commands.
+mechanism.
+* [`cics-java-jcics-serialize-bundle`](cics-java-jcics-serialize-bundle) - CICS bundle plug-in based project for cics-java-jcics-serialize-app
+
 
 ## Repository structure
 
 * [`etc/`](etc) - Supporting materials used to define CICS and z/OS resources needed for the samples.
-* [`projects/`](projects) - Complete Eclipse projects suitable for importing into a CICS Explorer environment.
-* [`src/`](src) - Supporting source code for non-Java programs.
+* [`etc/eclipse_projects/`](etc/eclipse_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
+* [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
 
 ## Pre-requisites
 
-* Java SE 1.8 or later on the workstation
-* Eclipse with the IBM CICS SDK for Java or any IDE that supports usage of the Maven Central artifact [com.ibm.cics:com.ibm.cics.server.](https://search.maven.org/artifact/com.ibm.cics/com.ibm.cics.server) 
- 
+* IBM CICS TS V5.5 or later
+* IBM Semeru Runtime Certified Edition Version 17.0 or later on the workstation
+* Either Gradle or Apache Maven on the workstation (optional if using Wrappers)
+* An Eclipse development environment on the workstation (optional)
+
+
+## Downloading
+
+- Clone the repository using your IDEs support, such as the Eclipse Git plugin
+- **or**, download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/cicsts/v5.5.zip) and unzip onto the workstation
+
+
+## Building
+The sample includes an Eclipse project configuration, a Gradle build, a Maven POM, and Gradle/Maven Wrappers offering a wide range of build options with the tooling and IDE of your choice.
+
+Choose from the following approach:
+* Use the built-in Eclipse and CICS Explorer SDK capability
+* Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven.
+* Use the command line, or IDE terminal, to drive Gradle or Apache Maven (if installed on your workstation)
+* Use the command line, or IDE terminal, or IDE support for Wrappers, to drive the supplied Gradle or Apache Maven Wrappers (with no requirement for Gradle, Maven, Eclipse, or CICS Explorer SDK to be installed)
+
+
+** Note: ** If you import the project to your IDE, you might experience local project compile errors. To resolve these errors follow the relevant build section below.
+
+
+### Option 1 - Building with Gradle
+
+
+The CICS JVM server name should be modified in the  `cics.jvmserver` property in the gradle build files or alternatively can be set on the command line (see below).
+
+If you have the Gradle buildship plug-in available, use the right-click **Run As...** menu on the cics-java-osgi-link project to configure and run the `clean` and `build` tasks. Otherwise choose from the command-line approaches.
+
+**Gradle Wrapper (Linux/Mac):**
+```shell
+./gradlew clean build
+```
+
+**Gradle Wrapper (Windows):**
+```shell
+gradle.bat clean build
+```
+
+**Gradle (command-line):**
+```shell
+gradle clean build
+```
+
+**Gradle (command-line & setting jvmserver):**
+```shell
+gradle clean build -Pcics.jvmserver=MYJVM
+```
+
+
+A JAR file is created inside the Java sub-project `build/libs` directory and a CICS bundle ZIP file inside the CICS bundle project `build/distributions` directory.
+
+
+### Option 2 - Building with Apache Maven
+
+You don't necessarily need to fix the local errors, but to do so, you can run a tooling refresh on the cics-java-jcics-samples project. For example, in Eclipse: right-click on "Project", select "Maven -> Update Project...".
+
+> [!TIP]
+> In Eclipse, Gradle (buildship) is able to fully refresh and resolve the local classpath even if the project was previously updated by Maven. However, Maven (m2e) does not currently reciprocate that capability. If you previously refreshed the project with Gradle or with the CICS Explorer SDK Java Libraries, you'll need to manually remove the 'Project Dependencies' entry on the Java build-path of your Project Properties to avoid duplication errors when performing a Maven Project Update.
+
+The CICS JVM server name should be modified in the `<cics.jvmserver>` property in the [`pom.xml`](pom.xml) to match the required CICS JVMSERVER resource name, or alternatively can be set on the command line (see below).
+
+If you have the Maven m2e plug-in available, use the right-click **Run As...** menu on the Eclipse project to configure and run the `clean` and `verify` tasks. Otherwise choose from the command-line approaches.
+
+**Maven Wrapper (Linux/Mac):**
+```shell
+./mvnw clean verify
+```
+
+**Maven Wrapper (Windows):**
+```shell
+mvnw.cmd clean verify
+```
+
+**Maven (command-line):**
+```shell
+mvn clean verify
+```
+
+**Maven (command-line & setting jvmserver):**
+```shell
+mvn clean verify -Dcics.jvmserver=MYJVM
+```
+
+A JAR file is created inside the Java sub-project `target` directory and a CICS bundle ZIP file inside the CICS bundle project `target` directory.
+
+
+
+### Option 3 - Building with Eclipse
+
+The sample comes pre-configured for use with a standard Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for a Java 17, or does not have CICS Explorer SDK installed with the correct 'target platform' set, you might experience local project compile errors. 
+
+To resolve issues:
+* ensure you have the CICS Explorer SDK plug-in installed
+* configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
+* set the CICS TS Target Platform to your intended CICS target (Hint: Window | Preferences | Plug-in Development | Target Platform | Add | Template | Other...) 
+
+---
+
+
 ## Configuration
 
 The sample Java classes are designed to be added to an OSGi bundle and deployed into a CICS OSGi JVM server, but can also be used as the basis for extending Web applications deployed into a Liberty JVM server. 
 
-### Starting a JVM server in CICS
-
-1. Enable Java support in the CICS region by adding the `SDFJAUTH` library to the `STEPLIB` concatenation and setting `USSHOME` and the `JVMPROFILE` SIT parameters.
-1. Define an OSGi JVM server called `DFHJVMS` using the CICS-supplied sample definition in the CSD group `DFH$OSGI`.
-1. Copy the CICS supplied `DFHOSGI.jvmprofile` zFS file to the zFS directory specified by the `JVMPROFILE` SIT parameter, and ensure the `JAVA_HOME` variable is set correctly.
-1. Install the `DFHJVMS` resource defined in step 2 and ensure it becomes enabled.
 
 
-### Import the resources into your IDE
-
-1. Ensure you have an Eclipse-based IDE with the CICS Explorer SDK installed.
-1. Import the relevant projects into your Eclipse environment as described in [Adding the resources to Eclipse](/projects#adding-the-resources-to-eclipse).
-1. Follow the instructions in the [Generated resources](/projects#generated-resources) section to add any required binary libraries to the build path.
+## Deploying to zFS
 
 
-### To deploy the samples into a CICS region 
+### Option 1 - Deploying using command line tools
+1. Upload the built CICS bundle ZIP file from your *target* or */build/distributions* directory to zFS on the host system (e.g. FTP).
+2. Connect to USS on the host system (e.g. SSH).
+3. Create the bundle directory for the project.
+4. Move the CICS bundle ZIP file into the bundle directory.
+5. Change directory into the bundle directoy.
+6. Extract the CICS bundle ZIP file. This can be done using the `jar` command. For example:
+   ```shell
+   jar xf file.zip
+   ```
 
-1. Using the CICS Explorer export the `com.ibm.cicsdev.*.cicsbundle` projects to a zFS directory. The sample definitions use the following style of zFS location `/u/cics1/com.ibm.cicsdev.link.cicsbundle_1.0.0`.
-1. Define and install CICS `BUNDLE` resource defintions referring to the deployed bundle directory in step 1, and ensure all resources are enabled. 
-1. Create the required transaction and program definitions using either the supplied `DFHCSD.txt` files as input to a CSD define job, or using the supplied CICS bundle projects.
-1. See the individual project directories for any additional supporting resources required.
+### Option 2 - Deploying using CICS Explorer (Remote System Explorer) and CICS Bundle ZIP
+1. Connect to USS on the host system
+2. Create the bundle directory for the project.
+3. Copy & paste the built CICS bundle ZIP file from your *target* or *build/distributions* directory to zFS on the host system into the bundle directory.
+4. Extract the ZIP by right-clicking on the ZIP file > User Action > unjar...
+5. Refresh the bundle directory
+  
+### Option 3 - Deploying using CICS Explorer SDK and the provided CICS bundle project
+1. Deploy the CICS bundle project from CICS Explorer using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and optionally the transaction and bundle resources to run the sample.
+
+
+
+### Deploying to CICS
+
+1. Define an OSGi JVM server resource called `DFHJVMS` based on the CICS-supplied sample definition in the CSD group `DFH$OSGI`.
+
+1. CICS resource definitions for the bundle, programs, transactions are supplied as a DFHCSDUP sample input for each sub-project in the `etc` directory, for instance [`etc/Link/DFHCSD.txt`](etc/Link/DFHCSD.txt). Alternatively they can be installed using the bundle parts supplied with the Eclipse CICS bundle projects in the [`eclipse_projects`](etc/eclipse_projects) directory. 
+See the individual project directories for any additional supporting resources required.
+
+1. Install the groups containing the JVMSERVER, TRANSACTION and PROGRAM resourceS and ensure the JVM server becomes enabled along with all associated bundles.
+
  
 ## License
 
@@ -54,6 +170,7 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 
 ## Reference
 
-* CICSDev tutorial archive [Getting to Grips with JCICS](blog/blog.md)
+* Developer works tutorial archive [Getting to Grips with JCICS](blog/blog.md)
 * For further details on using the IBM Record Generator for Java see this [tutorial](https://developer.ibm.com/tutorials/build-java-records-from-cobol-with-ibm-record-generator/)
-* For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](http://www.ibm.com/support/knowledgecenter/SSGMCP_5.3.0/com.ibm.cics.ts.java.doc/JVMserver/config_jvmserver_app.html)
+* For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](https://www.ibm.com/docs/en/cics-ts/5.5.0?topic=server-configuring-osgi-jvm)
+
