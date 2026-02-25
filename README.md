@@ -2,20 +2,23 @@
 
 Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM server environment.
 
-## Samples overview
+## Sample projects overview
 
 * [`cics-java-jcics-link-app`](cics-java-jcics-link-app) - Java project covering LINK commands using both COMMAREAs and channels and containers
-* [`cics-java-jcics-link-bundle`](cics-java-jcics-link-bundle) - CICS bundle plug-in based project for cics-java-jcics-link-app
-* [`com.ibm.cicsdev.serialize`](projects/com.ibm.cicsdev.serialize) - Java project covering serializing access to a common resource using the CICS ENQ and DEQ commands.
-mechanism.
-* [`cics-java-jcics-serialize-bundle`](cics-java-jcics-serialize-bundle) - CICS bundle plug-in based project for cics-java-jcics-serialize-app
+* [`cics-java-jcics-link-bundle`](cics-java-jcics-link-bundle) - CICS bundle plug-in project for cics-java-jcics-link-app
+* [`cics-java-jcics-serialize-app`](cics-java-jcics-serialize-app) - Java project covering serializing access to a common resource using the CICS ENQ and DEQ commands.
+* [`cics-java-jcics-serialize-bundle`](cics-java-jcics-serialize-bundle) - CICS bundle plug-in project for cics-java-jcics-serialize-app
 
 
 ## Repository structure
 
+* [`gradle/`](gradle) - Gradle wrapper 
+* [`.mvn/`](.mvn/wrapper) - Maven wrapper 
+* [`local-repo/`](/local-repo) - Maven repository for COMMAREA wrapper JAR generated from EDUPGM COBOL copybook.
 * [`etc/`](etc) - Supporting materials used to define CICS and z/OS resources needed for the samples.
 * [`etc/eclipse_projects/`](etc/eclipse_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
 * [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
+* [`blog/`](blog/blog.md) - Archive of developer works JCICS tutorial.
 
 ## Pre-requisites
 
@@ -27,25 +30,23 @@ mechanism.
 
 ## Downloading
 
+-Download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/cicsts/v5.5.zip) and unzip onto the workstation **or**
 - Clone the repository using your IDEs support, such as the Eclipse Git plugin
-- **or**, download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/cicsts/v5.5.zip) and unzip onto the workstation
 
 
 ## Building
 The sample includes an Eclipse project configuration, a Gradle build, a Maven POM, and Gradle/Maven Wrappers offering a wide range of build options with the tooling and IDE of your choice.
 
 Choose from the following approach:
+* Use the command line to drive Gradle or Apache Maven (if installed on your workstation)
+* Use the command line or IDE support for Wrappers, to drive the supplied Gradle or Apache Maven Wrappers (with no requirement for Gradle, Maven, Eclipse, or CICS Explorer SDK to be installed)
 * Use the built-in Eclipse and CICS Explorer SDK capability
 * Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven.
-* Use the command line, or IDE terminal, to drive Gradle or Apache Maven (if installed on your workstation)
-* Use the command line, or IDE terminal, or IDE support for Wrappers, to drive the supplied Gradle or Apache Maven Wrappers (with no requirement for Gradle, Maven, Eclipse, or CICS Explorer SDK to be installed)
-
-
-** Note: ** If you import the project to your IDE, you might experience local project compile errors. To resolve these errors follow the relevant build section below.
 
 
 ### Option 1 - Building with Gradle
 
+The sample comes pre-configured with a Gradle wrapper and build files to facilitate automated builds.
 
 The CICS JVM server name should be modified in the  `cics.jvmserver` property in the gradle build file or alternatively can be set on the command line (see below).
 
@@ -71,6 +72,7 @@ A JAR file for each CICS bundle project is created inside the application projec
 
 ### Option 2 - Building with Apache Maven
 
+The sample comes pre-configured with a Maven wrapper and build files to facilitate automated builds.
 
 The CICS JVM server name should be modified in the `<cics.jvmserver>` property in the build files to match the required CICS JVMSERVER resource name, or alternatively can be set on the command line (see below).
 
@@ -111,10 +113,10 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 
 
 
-## Deploying to zFS
+### Deploying to zFS
 
 
-### Option 1 - Deploying using command line tools
+#### Option 1 - Deploying using command line tools
 1. Upload the built CICS bundle ZIP file from your *target* or */build/distributions* directory to zFS on the host system (e.g. FTP).
 2. Connect to USS on the host system (e.g. SSH).
 3. Create the bundle directory for the project.
@@ -124,14 +126,14 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
    jar -xvf bundle.zip
    ```
 
-### Option 2 - Deploying using CICS Explorer (Remote System Explorer) and CICS Bundle ZIP
+#### Option 2 - Deploying using CICS Explorer (Remote System Explorer) and CICS Bundle ZIP
 1. Connect to USS on the host system
 2. Create the bundle directory for the project.
 3. Copy & paste the built CICS bundle ZIP file from your *target* or *build/distributions* directory to zFS on the host system into the bundle directory.
 4. Extract the ZIP by right-clicking on the ZIP file > User Action > unjar...
 5. Refresh the bundle directory
   
-### Option 3 - Deploying using CICS Explorer SDK and the provided CICS bundle project
+#### Option 3 - Deploying using CICS Explorer SDK and the provided CICS bundle project
 1. Deploy the CICS bundle project from CICS Explorer using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and optionally the transaction and bundle resources to run the sample.
 
 
@@ -152,7 +154,7 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 
 ## Reference
 
-* Developer works tutorial archive [Getting to Grips with JCICS](blog/blog.md)
+
 * For further details on using the IBM Record Generator for Java see this [tutorial](https://developer.ibm.com/tutorials/build-java-records-from-cobol-with-ibm-record-generator/)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](https://www.ibm.com/docs/en/cics-ts/5.5.0?topic=server-configuring-osgi-jvm)
-
+* Developer works tutorial archive [Getting to Grips with JCICS](blog/blog.md)
