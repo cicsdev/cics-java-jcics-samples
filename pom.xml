@@ -9,7 +9,7 @@
   <!-- Application properties -->
   <groupId>com.ibm.cicsdev</groupId>
   <artifactId>cics-java-jcics-samples</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>CICS Java JCICS samples</name>
 
   <properties>
