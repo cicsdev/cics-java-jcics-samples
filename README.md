@@ -47,7 +47,7 @@ Choose from the following approach:
 ### Option 1 - Building with Gradle
 
 
-The CICS JVM server name should be modified in the  `cics.jvmserver` property in the gradle build files or alternatively can be set on the command line (see below).
+The CICS JVM server name should be modified in the  `cics.jvmserver` property in the gradle build file or alternatively can be set on the command line (see below).
 
 If you have the Gradle buildship plug-in available, use the right-click **Run As...** menu on the cics-java-osgi-link project to configure and run the `clean` and `build` tasks. Otherwise choose from the command-line approaches.
 
@@ -61,30 +61,19 @@ If you have the Gradle buildship plug-in available, use the right-click **Run As
 gradle.bat clean build
 ```
 
-**Gradle (command-line):**
-```shell
-gradle clean build
-```
-
 **Gradle (command-line & setting jvmserver):**
 ```shell
 gradle clean build -Pcics.jvmserver=MYJVM
 ```
 
-
-A JAR file is created inside the Java sub-project `build/libs` directory and a CICS bundle ZIP file inside the CICS bundle project `build/distributions` directory.
+A JAR file for each CICS bundle project is created inside the application project `build/libs/` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `build/distributions` directory.
 
 
 ### Option 2 - Building with Apache Maven
 
-You don't necessarily need to fix the local errors, but to do so, you can run a tooling refresh on the cics-java-jcics-samples project. For example, in Eclipse: right-click on "Project", select "Maven -> Update Project...".
 
-> [!TIP]
-> In Eclipse, Gradle (buildship) is able to fully refresh and resolve the local classpath even if the project was previously updated by Maven. However, Maven (m2e) does not currently reciprocate that capability. If you previously refreshed the project with Gradle or with the CICS Explorer SDK Java Libraries, you'll need to manually remove the 'Project Dependencies' entry on the Java build-path of your Project Properties to avoid duplication errors when performing a Maven Project Update.
+The CICS JVM server name should be modified in the `<cics.jvmserver>` property in the build files to match the required CICS JVMSERVER resource name, or alternatively can be set on the command line (see below).
 
-The CICS JVM server name should be modified in the `<cics.jvmserver>` property in the [`pom.xml`](pom.xml) to match the required CICS JVMSERVER resource name, or alternatively can be set on the command line (see below).
-
-If you have the Maven m2e plug-in available, use the right-click **Run As...** menu on the Eclipse project to configure and run the `clean` and `verify` tasks. Otherwise choose from the command-line approaches.
 
 **Maven Wrapper (Linux/Mac):**
 ```shell
@@ -96,23 +85,17 @@ If you have the Maven m2e plug-in available, use the right-click **Run As...** m
 mvnw.cmd clean verify
 ```
 
-**Maven (command-line):**
-```shell
-mvn clean verify
-```
-
 **Maven (command-line & setting jvmserver):**
 ```shell
 mvn clean verify -Dcics.jvmserver=MYJVM
 ```
 
-A JAR file is created inside the Java sub-project `target` directory and a CICS bundle ZIP file inside the CICS bundle project `target` directory.
-
+A JAR file for each CICS bundle project is created inside the application project  `target` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `target` directory.
 
 
 ### Option 3 - Building with Eclipse
 
-The sample comes pre-configured for use with a standard Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for a Java 17, or does not have CICS Explorer SDK installed with the correct 'target platform' set, you might experience local project compile errors. 
+The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for a Java 17, or does not have CICS Explorer SDK installed with the correct 'target platform' set, you might experience local project compile errors. 
 
 To resolve issues:
 * ensure you have the CICS Explorer SDK plug-in installed
@@ -136,10 +119,9 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 2. Connect to USS on the host system (e.g. SSH).
 3. Create the bundle directory for the project.
 4. Move the CICS bundle ZIP file into the bundle directory.
-5. Change directory into the bundle directoy.
-6. Extract the CICS bundle ZIP file. This can be done using the `jar` command. For example:
+5. Extract the CICS bundle ZIP file. This can be done using the `jar` command. For example:
    ```shell
-   jar xf file.zip
+   jar -xvf bundle.zip
    ```
 
 ### Option 2 - Deploying using CICS Explorer (Remote System Explorer) and CICS Bundle ZIP
