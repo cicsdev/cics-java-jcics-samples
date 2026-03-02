@@ -15,10 +15,11 @@ The following Java source code files are provided:
 
 ## Supporting files
 
-* `cics-java-jcics-edupgm-1.0.jar` - a pre-built JAR containing the generated class `JZOSCommareaWrapperclass` that is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. This is packaged in a Maven [`local-repo`](../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/).
-* [`/etc/Link`](../../etc/Link) - Contains the output of a DFHCSDUP EXTRACT operation needed to define the required programs and transactions.
-* [`/src/Cobol`](../../src/Cobol) - Contains the COBOL programs `EC01` and `EDUCHAN` required by these samples.
-* [cics-java-jzosprog](https://github.com/cicsdev/cics-java-jzosprog/tree/main/src/Cobol) - Repository containing the source code for the `EDUPGM` COBOL program.
+* [`/etc/Link`](../etc/Link) - DFHCSDUP input files needed to define the required programs and transactions.
+* [`/src/Cobol`](../etc/src/Cobol) - COBOL programs `EC01` and `EDUCHAN` required by these samples.
+* `cics-java-jcics-edupgm-1.0.jar` - a pre-built JAR containing the generated class `JZOSCommareaWrapperclass` that is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. This is packaged in a Maven [`local-repo`](../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/) and the source is available in the [cics-java-jzosprog](https://github.com/cicsdev/cics-java-jzosprog/tree/main/src/Cobol) repository.
+
+
 
 
 ## Configuring CICS
