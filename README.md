@@ -15,15 +15,16 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * [`gradle/`](gradle) - Gradle wrapper 
 * [`.mvn/`](.mvn/wrapper) - Maven wrapper 
 * [`local-repo/`](/local-repo) - Maven repository for COMMAREA wrapper JAR generated from EDUPGM COBOL copybook.
-* [`etc/`](etc) - Supporting materials used to define CICS and z/OS resources needed for the samples.
+* [`etc/`](etc) - Supporting materials including DFHCSDUP definition files and sample OSGi bundle manifests.
 * [`etc/eclipse_projects/`](etc/eclipse_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
 * [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
-* [`blog/`](blog/blog.md) - Archive of developer works JCICS tutorial.
+* [`blog/`](https://github.com/cicsdev/cics-java-jcics-samples/tree/main/blog/blog.md) - Archive of developer works JCICS tutorial.
 
 ## Pre-requisites
 
 * IBM CICS TS V5.5 or later
 * IBM Semeru Runtime Certified Edition Version 17.0 or later on the workstation
+* IBM Semeru Runtime Certified Edition Version 17.0 or later on z/OS
 * Either Gradle or Apache Maven on the workstation (optional if using Wrappers)
 * An Eclipse development environment on the workstation (optional)
 
