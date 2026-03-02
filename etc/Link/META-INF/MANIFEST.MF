@@ -4,7 +4,7 @@ Bundle-Name: Sample JCICS code for use of LINK
 Bundle-SymbolicName: com.ibm.cicsdev.link
 Bundle-Version: 1.0.1
 Bundle-Vendor: IBM
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 CICS-MainClass: com.ibm.cicsdev.link.LinkProg1,
  com.ibm.cicsdev.link.LinkProg2, 
  com.ibm.cicsdev.link.LinkProg3,
