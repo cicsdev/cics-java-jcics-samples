@@ -1,14 +1,20 @@
 plugins {
     id 'java'
+    id 'biz.aQute.bnd.builder' version '6.3.0'
 }
 
 description = 'CICS Java JCICS link sample - Application'
 
 java
 {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17      
+	sourceCompatibility = java_version
+	targetCompatibility = java_version     
 }
+
+configurations { 
+    jarLibs
+}
+
 
 dependencies {
 
@@ -19,12 +25,14 @@ dependencies {
     compileOnly("com.ibm.cics:com.ibm.cics.server")
     
     //Compile using the IRG generated JAR from the local maven repo
-    implementation ("com.ibm.cicsdev:cics-java-jcics-edupgm:1.0")
-
+    implementation ("com.ibm.cicsdev:cics-java-jcics-edupgm:1.0")   
+    
     }
 
 
+
 // Manually add the OSGI manifest using the sample provided
+/*
 jar {
     manifest {
         from '../etc/Link/META-INF/MANIFEST.MF'
@@ -32,4 +40,18 @@ jar {
     from("$projectDir") {
       include 'lib/**'
    }
+}
+*/
+jar {
+    bundle{
+        bnd (
+                'CICS-MainClass': 'com.ibm.cicsdev.link.LinkProg1, com.ibm.cicsdev.link.LinkProg2, com.ibm.cicsdev.link.LinkProg3, com.ibm.cicsdev.link.LinkServEduchan, com.ibm.cicsdev.link.LinkServEC01',
+                'Import-Package': 'com.ibm.cics.server;version="[1.700.0,3.0.0)", com.ibm.jzos.fields;resolution:=optional',
+                'Bundle-ClassPath': 'lib/cics-java-jcics-edupgm-1.0.jar, .'
+        )
+    }
+    from("../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/1.0") {
+      include '**.jar'
+      into "lib"
+    }
 }

@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'eclipse'
+    id 'biz.aQute.bnd.builder' version '6.3.0'
+
 }
 
 description = 'CICS Java JCICS serialize sample - Application'
@@ -16,8 +18,8 @@ eclipse
 
 java
 {
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
+	sourceCompatibility = java_version
+	targetCompatibility = java_version     
 }
 
 dependencies {
@@ -26,7 +28,10 @@ dependencies {
 }
 
 jar {
-    manifest {
-        from '../etc/Serialize/META-INF/MANIFEST.MF'
-    }
+    bundle{
+        bnd (
+                'CICS-MainClass': 'com.ibm.cicsdev.serialize.SerializeExample1',
+                'Import-Package': 'com.ibm.cics.server;version="[1.700.0,3.0.0)"'                
+        )
+    }  
 }
