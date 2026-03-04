@@ -28,7 +28,7 @@ dependencies {
     //Compile using the IRG generated JAR from the local maven repo
     implementation ("com.ibm.cicsdev:cics-java-jcics-edupgm:1.0")   
     
-    }
+}
 
 
 
