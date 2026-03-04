@@ -15,6 +15,9 @@ buildNumber.properties
 **/build/
 !src/**/build/
 
+#Eclipse ignores
+bin/
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
