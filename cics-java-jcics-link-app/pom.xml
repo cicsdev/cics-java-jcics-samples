@@ -11,13 +11,13 @@
 
     <artifactId>cics-java-jcics-link-app</artifactId>
     <packaging>jar</packaging>
-    <name>CICS Java JCICS link sample - Application</name>
-
-    <repositories>
+    <name>CICS Java JCICS link sample - Applicatio</name>    
+    
+     <repositories>
         <repository>
             <id>cics-java-jcics-edupgm</id>
             <name>Project libraries</name>
-            <url>file://${project.basedir}/local-repo</url>
+            <url>file://../local-repo</url>
             <releases>
                 <checksumPolicy>ignore</checksumPolicy>
             </releases>
@@ -29,9 +29,8 @@
             <groupId>com.ibm.cics</groupId>
             <artifactId>com.ibm.cics.server</artifactId>
         </dependency>
-
-        <!--IRG
-        Generated JAR from local repo -->
+        
+        <!--IRG Generated JAR from local repo -->
         <dependency>
             <groupId>com.ibm.cicsdev</groupId>
             <artifactId>cics-java-jcics-edupgm</artifactId>
@@ -41,13 +40,12 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.15.0</version>
+                <version>3.12.1</version>          
             </plugin>
-
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -59,33 +57,31 @@
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
-                        <configuration>                            
+                        <configuration>
                             <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>./lib</directory>
                                     <includes>
                                         <include>**/*.jar</include>
-                                    </includes>                                    
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <archive>
                         <manifestFile>META-INF/MANIFEST.MF</manifestFile>
                     </archive>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
 </project>

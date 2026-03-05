@@ -6,8 +6,8 @@ Bundle-Version: 1.0.1
 Bundle-Vendor: IBM
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 CICS-MainClass: com.ibm.cicsdev.link.LinkProg1,
- com.ibm.cicsdev.link.LinkProg2, 
- com.ibm.cicsdev.link.LinkProg3,
+ com.ibm.cicsdev.link.LinkProg2,
+ com.ibm.cicsdev.link.LinkProg3, 
  com.ibm.cicsdev.link.LinkServEduchan,
  com.ibm.cicsdev.link.LinkServEC01
 Import-Package: com.ibm.cics.server;version="[1.700.0,3.0.0)",

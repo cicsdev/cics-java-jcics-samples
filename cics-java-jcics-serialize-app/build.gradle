@@ -1,20 +1,8 @@
 plugins {
-    id 'java'
-    id 'eclipse'
-    id 'biz.aQute.bnd.builder' version '6.3.0'
-
+    id 'java'    
 }
 
 description = 'CICS Java JCICS serialize sample - Application'
-
-// If in Eclipse, add Javadoc to the local project classpath
-eclipse 
-{
-    classpath 
-    {
-        downloadJavadoc = true
-    }
-}
 
 java
 {
@@ -23,15 +11,19 @@ java
 }
 
 dependencies {
-    compileOnly enforcedPlatform(bom)
-    compileOnly 'com.ibm.cics:com.ibm.cics.server'
+
+    // Use the CICS TS BOM to set the JCICS library version
+    compileOnly enforcedPlatform(bom)    
+    
+    // JCICS library 
+    compileOnly("com.ibm.cics:com.ibm.cics.server")    
+    
 }
 
+
+// Create OSGi bundle JAR, add the OSGI manifest 
 jar {
-    bundle{
-        bnd (
-                'CICS-MainClass': 'com.ibm.cicsdev.serialize.SerializeExample1',
-                'Import-Package': 'com.ibm.cics.server;version="[1.700.0,3.0.0)"'                
-        )
-    }  
+    manifest {
+        from 'META-INF/MANIFEST.MF'
+    }    
 }

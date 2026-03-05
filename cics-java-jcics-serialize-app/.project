@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>cics-java-jcics-link-app</name>
+	<name>cics-java-jcics-serialize-app</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -44,7 +44,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1772729611886</id>
+			<id>1772729611947</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
