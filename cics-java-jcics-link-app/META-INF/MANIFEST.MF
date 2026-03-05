@@ -15,4 +15,3 @@ Import-Package: com.ibm.cics.server;version="[1.700.0,3.0.0)",
 Automatic-Module-Name: com.ibm.cicsdev.link
 Bundle-ClassPath: lib/cics-java-jcics-edupgm-1.0.jar,
  .
- 
