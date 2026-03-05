@@ -1,8 +1,11 @@
 
 description = 'CICS Java JCICS samples'
 
+//Define variables for sub projects 
 ext {
-    localRepo = file('local-repo')
+  bom = "com.ibm.cics:com.ibm.cics.ts.bom:5.5-20200519131930-PH25409"
+  java_version=JavaVersion.VERSION_17
+  localRepo = file('local-repo')
 }
 
 allprojects {
@@ -19,13 +22,6 @@ allprojects {
             }  
         }
     }
-
-
-//Define the CICS Bill of Materials for compilation 
-ext {
-  bom = "com.ibm.cics:com.ibm.cics.ts.bom:5.5-20200519131930-PH25409"
-  java_version=JavaVersion.VERSION_17
-}
 
 
 
