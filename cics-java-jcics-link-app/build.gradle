@@ -1,6 +1,5 @@
 plugins {
-    id 'java'
-    id 'biz.aQute.bnd.builder' version '6.3.0'
+    id 'java'    
 }
 
 
@@ -10,10 +9,6 @@ java
 {
 	sourceCompatibility = java_version
 	targetCompatibility = java_version     
-}
-
-configurations { 
-    jarLibs
 }
 
 
@@ -31,42 +26,13 @@ dependencies {
 }
 
 
-
-// Manually add the OSGI manifest using the sample provided
-/*
+// Create OSGi bundle JAR, add the OSGI manifest and IRG generated JAR from the local repo 
 jar {
     manifest {
-        from '../etc/Link/META-INF/MANIFEST.MF'
+        from 'META-INF/MANIFEST.MF'
     }
-    from("$projectDir") {
-      include 'lib/**'
-   }
-}
-*/
-
-//    from("../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/1.0") {
-//      include '**.jar'
-//      into "lib"
-//    }
-
-//'Bundle-ClassPath': 'lib/cics-java-jcics-edupgm-1.0.jar, .',
-
-//                 "-plugin.maven": "aQute.bnd.repository.maven.provider.MavenBndRepository; name=local-repo; local=../local-repo/",
-// "-includeresource": "lib/cics-java-jcics-edupgm-1.0.jar=../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/1.0/cics-java-jcics-edupgm-1.0.jar; lib:=true"
-
-
-
-
-
-jar {
-    bundle {
-        bnd (
-                'Bundle-SymbolicName': 'com.ibm.cicsdev.link',
-                'Bundle-Version': '1.0.1',
-                'CICS-MainClass': 'com.ibm.cicsdev.link.LinkProg1, com.ibm.cicsdev.link.LinkProg2, com.ibm.cicsdev.link.LinkProg3, com.ibm.cicsdev.link.LinkServEduchan, com.ibm.cicsdev.link.LinkServEC01',
-                'Import-Package': 'com.ibm.cics.server;version="[1.700.0,3.0.0)", com.ibm.jzos.fields;resolution:=optional',                
-                 "-includeresource": "lib/cics-java-jcics-edupgm-1.0.jar=../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/1.0/cics-java-jcics-edupgm-1.0.jar; lib:=true"
-        )
-    }
-
+    from("${localRepo}/com/ibm/cicsdev/cics-java-jcics-edupgm/1.0") {
+      include '**.jar'
+      into "lib"
+      }
 }
