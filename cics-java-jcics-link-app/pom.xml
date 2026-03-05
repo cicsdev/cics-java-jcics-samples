@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>cics-java-jcics-link-app</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>jar</packaging>
     <name>CICS Java JCICS link sample - Application</name>
 
     <repositories>
@@ -30,43 +30,62 @@
             <artifactId>com.ibm.cics.server</artifactId>
         </dependency>
 
-        <!--IRG Generated JAR from local repo -->
+        <!--IRG
+        Generated JAR from local repo -->
         <dependency>
             <groupId>com.ibm.cicsdev</groupId>
             <artifactId>cics-java-jcics-edupgm</artifactId>
             <version>1.0</version>
         </dependency>
-    </dependencies>   
+    </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>6.0.0</version>
-                <extensions>true</extensions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.15.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-external-jars-into-lib</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>                            
+                            <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>./lib</directory>
+                                    <includes>
+                                        <include>**/*.jar</include>
+                                    </includes>                                    
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.5.0</version>
                 <configuration>
-                    <instructions>
-                        <extensions>true</extensions>                  
-                        <Import-Package>
-                            com.ibm.cics.server;version="[1.700.0,3.0.0)",com.ibm.jzos.fields;resolution:=optional
-                        </Import-Package>
-                        <Export-Package>
-                        </Export-Package>
-                        <Embed-Dependency>cics-java-jcics-edupgm</Embed-Dependency>
-                        <Embed-Directory>lib</Embed-Directory>
-                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                        <Bundle-Version>${project.version}</Bundle-Version>   
-                        <CICS-MainClass>com.ibm.cicsdev.link.LinkProg1,
-                            com.ibm.cicsdev.link.LinkProg2, 
-                            com.ibm.cicsdev.link.LinkProg3, 
-                            com.ibm.cicsdev.link.LinkServEduchan, 
-                            com.ibm.cicsdev.link.LinkServEC01
-                        </CICS-MainClass>                        
-                    </instructions>           
+                    <archive>
+                        <manifestFile>META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
                 </configuration>
-            </plugin>        
-            
+            </plugin>
+
         </plugins>
+
     </build>
 </project>
