@@ -21,8 +21,6 @@ bin/
 # Ignore Gradle GUI config
 gradle-app.setting
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
 
 # Avoid ignore Gradle wrappper properties
 !gradle-wrapper.properties
@@ -46,6 +44,8 @@ gradle-app.setting
 *.tar.gz
 *.rar
 
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
 
 # VSCode ignores
 .vscode/*

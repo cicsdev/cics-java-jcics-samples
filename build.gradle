@@ -1,6 +1,10 @@
 
 description = 'CICS Java JCICS samples'
 
+ext {
+    localRepo = file('local-repo')
+}
+
 allprojects {
     group = 'com.ibm.cicsdev'
     version = '1.0.1'
@@ -11,7 +15,7 @@ allprojects {
         
         // Local Maven repo for IRG generated file 
         maven {
-            url = uri("file:///../local-repo")
+            url = uri("file://${localRepo}")
             }  
         }
     }
