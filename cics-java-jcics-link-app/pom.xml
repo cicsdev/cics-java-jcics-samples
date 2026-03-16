@@ -11,18 +11,20 @@
 
     <artifactId>cics-java-jcics-link-app</artifactId>
     <packaging>jar</packaging>
-    <name>CICS Java JCICS link sample - Applicatio</name>    
-    
-     <repositories>
+    <name>CICS Java JCICS link sample - Application</name>
+
+    <!--Local repo for IRG generated JAR -->
+    <repositories>
         <repository>
             <id>cics-java-jcics-edupgm</id>
             <name>Project libraries</name>
-            <url>file://../local-repo</url>
+            <url>file://local-repo</url>              
             <releases>
-                <checksumPolicy>ignore</checksumPolicy>
+              <checksumPolicy>ignore</checksumPolicy>
             </releases>
         </repository>
-    </repositories>
+    </repositories>    
+
 
     <dependencies>
         <dependency>
