@@ -14,12 +14,13 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Repository structure
 
+
+* [`etc/`](etc) - Supporting materials including DFHCSDUP definition files.
+* [`etc/cics_bundle_projects/`](etc/cics_bundle_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
+* [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
+* [`local-repo/`](/local-repo) - Maven repository for COMMAREA wrapper JAR generated from EDUPGM COBOL copybook.
 * [`gradle/`](gradle) - Gradle wrapper 
 * [`.mvn/`](.mvn/wrapper) - Maven wrapper 
-* [`local-repo/`](/local-repo) - Maven repository for COMMAREA wrapper JAR generated from EDUPGM COBOL copybook.
-* [`etc/`](etc) - Supporting materials including DFHCSDUP definition files.
-* [`etc/cics_bundle_projects/`](etc/cics_bundle_projectsects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
-* [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
 * [`blog/`](https://github.com/cicsdev/cics-java-jcics-samples/tree/main/blog/blog.md) - Archive of developer works JCICS tutorial.
 
 ## Pre-requisites
@@ -33,8 +34,8 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Downloading
 
--Download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/cicsts/v5.5.zip) and unzip onto the workstation **or**
-- Clone the repository using your IDEs support, such as the Eclipse Git plugin
+- Download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/cicsts/v5.5.zip) and unzip onto the workstation **or** clone the repository using a git client.
+
 
 
 ## Building
@@ -62,12 +63,12 @@ If you have the Gradle buildship plug-in available, use the right-click **Run As
 
 **Gradle Wrapper (Windows):**
 ```shell
-gradle.bat clean build
+gradlew.bat clean build
 ```
 
-**Gradle (command-line & setting jvmserver):**
+**Gradle Wrapper setting jvmserver:**
 ```shell
-gradle clean build -Pcics.jvmserver=MYJVM
+gradlew clean build -Pcics.jvmserver=MYJVM
 ```
 
 A JAR file for each CICS bundle project is created inside the application project `build/libs/` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `build/distributions` directory.
@@ -90,9 +91,9 @@ The CICS JVM server name should be modified in the `<cics.jvmserver>` property i
 mvnw.cmd clean verify
 ```
 
-**Maven (command-line & setting jvmserver):**
+**Maven Wrapper setting jvmserver:**
 ```shell
-mvn clean verify -Dcics.jvmserver=MYJVM
+mvnw clean verify -Dcics.jvmserver=MYJVM
 ```
 
 A JAR file for each CICS bundle project is created inside the application project  `target` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `target` directory.
@@ -100,12 +101,18 @@ A JAR file for each CICS bundle project is created inside the application projec
 
 ### Option 3 - Building with Eclipse
 
-The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for a Java 17, or does not have CICS Explorer SDK installed with the correct 'target platform' set, you might experience local project compile errors. 
+To import the sample into Eclipse either
+1. Clone the repository using your IDEs support, such as the Eclipse Git plugin
+2.File Import Existing Projects into Workspace, and select the expanded zip archive directory as the root directory
+Ensure you check "Search for nested projects", and do not select "Copy projects into workspace"
+
+The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for Java 17, or does not have CICS Explorer SDK installed with the correct 'Target Platform' set, you might experience local project compile errors. 
 
 To resolve issues:
-* ensure you have the CICS Explorer SDK plug-in installed
-* configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
-* set the CICS TS Target Platform to your intended CICS target (Hint: Window | Preferences | Plug-in Development | Target Platform | Add | Template | Other...) 
+* Ensure you have the latest CICS Explorer SDK plug-in installed
+* Set the CICS TS Target Platform to your intended CICS target (Hint: Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...) 
+* Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
+
 
 ---
 
@@ -119,11 +126,11 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 ### Deploying to zFS
 
 
-#### Option 1 - Deploying using command line tools
-1. Upload the built CICS bundle ZIP file from your *target* or */build/distributions* directory to zFS on the host system (e.g. FTP).
+#### Option 1 - Deploying CICS Bundle Maven/Gradle plugin builds
+1. Upload the built CICS bundle ZIP file from your *target* or */build/distributions* directory to zFS in binary.
 2. Connect to USS on the host system (e.g. SSH).
 3. Create the bundle directory for the project.
-4. Move the CICS bundle ZIP file into the bundle directory.
+4. Copy the CICS bundle ZIP file into the bundle directory.
 5. Extract the CICS bundle ZIP file. This can be done using the `jar` command. For example:
    ```shell
    jar -xvf bundle.zip
