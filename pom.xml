@@ -36,10 +36,28 @@
     </dependencies>
   </dependencyManagement>
 
+
+    <!--Local repo for IRG generated JAR -->
+    <repositories>
+        <repository>
+            <id>cics-java-jcics-record-lib</id>
+            <name>Project libraries</name>
+            <url>file://local-repo</url>              
+            <releases>
+              <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories> 
+
+
   <modules>
     <module>cics-java-jcics-link-app</module>
     <module>cics-java-jcics-link-bundle</module>
     <module>cics-java-jcics-serialize-app</module>
     <module>cics-java-jcics-serialize-bundle</module>
+    <module>cics-java-jcics-tdq-app</module>
+    <module>cics-java-jcics-tdq-bundle</module>
+    <module>cics-java-jcics-tsq-app</module>
+    <module>cics-java-jcics-tsq-bundle</module>
   </modules>
 </project>

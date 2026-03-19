@@ -16,12 +16,15 @@ allprojects {
 
         mavenCentral()
         
-        // Local Maven repo for IRG generated file 
+        // Local Maven repo for IRG generated JARs
         maven {
-            url = uri("file://${localRepo}")
-            }  
-        }
+           url = uri("file:///${localRepo}")
+           } 
     }
+}
+
+
+    
 
 
 

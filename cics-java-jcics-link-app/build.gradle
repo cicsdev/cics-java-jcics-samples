@@ -11,12 +11,6 @@ java
 	targetCompatibility = java_version     
 }
 
-// Add the IRG generate JAR as a repository
-repositories {
-    flatDir {
-        dirs("lib")
-    }
-}
 
 dependencies {
 
@@ -27,7 +21,7 @@ dependencies {
     compileOnly("com.ibm.cics:com.ibm.cics.server")
     
     //Compile using the IRG generated JAR from the local dir    
-    implementation name: 'cics-java-jcics-edupgm', version: '1.0'
+    implementation("com.ibm.cicsdev:cics-java-jcics-edupgm:1.0")
     
 }
 

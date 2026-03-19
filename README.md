@@ -8,6 +8,8 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * [`cics-java-jcics-link-bundle`](cics-java-jcics-link-bundle) - CICS bundle plug-in project for cics-java-jcics-link-app
 * [`cics-java-jcics-serialize-app`](cics-java-jcics-serialize-app) - Java project covering serializing access to a common resource using the CICS ENQ and DEQ commands.
 * [`cics-java-jcics-serialize-bundle`](cics-java-jcics-serialize-bundle) - CICS bundle plug-in project for cics-java-jcics-serialize-app
+* [`cics-java-jcics-tdq-app`](cics-java-jcics-tdq-app) - Java project covering access to transient data queues using the READQ and WRITEQ commands.
+* [`cics-java-jcics-tdq-bundle`](cics-java-jcics-tdq-bundle) - CICS bundle plug-in project for cics-java-jcics-tdq-app
 
 
 ## Repository structure
@@ -15,8 +17,8 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * [`gradle/`](gradle) - Gradle wrapper 
 * [`.mvn/`](.mvn/wrapper) - Maven wrapper 
 * [`local-repo/`](/local-repo) - Maven repository for COMMAREA wrapper JAR generated from EDUPGM COBOL copybook.
-* [`etc/`](etc) - Supporting materials including DFHCSDUP definition files and sample OSGi bundle manifests.
-* [`etc/eclipse_projects/`](etc/eclipse_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
+* [`etc/`](etc) - Supporting materials including DFHCSDUP definition files.
+* [`etc/cics_bundle_projects/`](etc/cics_bundle_projectsects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
 * [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
 * [`blog/`](https://github.com/cicsdev/cics-java-jcics-samples/tree/main/blog/blog.md) - Archive of developer works JCICS tutorial.
 
@@ -143,7 +145,7 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 
 1. Define an OSGi JVM server resource called `DFHJVMS` based on the CICS-supplied sample definition in the CSD group `DFH$OSGI`.
 
-1. CICS resource definitions for the bundle, programs, transactions are supplied as a DFHCSDUP sample input for each sub-project in the `etc` directory, for instance [`etc/Link/DFHCSD.txt`](etc/Link/DFHCSD.txt). Alternatively they can be installed using the bundle parts supplied with the Eclipse CICS bundle projects in the [`eclipse_projects`](etc/eclipse_projects) directory. 
+1. CICS resource definitions for the bundle, programs, transactions are supplied as a DFHCSDUP sample input for each sub-project in the `etc` directory, for instance [`etc/Link/DFHCSD.txt`](etc/Link/DFHCSD.txt). Alternatively they can be installed using the bundle parts supplied with the Eclipse CICS bundle projects in the [`cics_bundle_projects`](etc/cics_bundle_projects) directory. 
 See the individual project directories for any additional supporting resources required.
 
 1. Install the groups containing the JVMSERVER, TRANSACTION and PROGRAM resourceS and ensure the JVM server becomes enabled along with all associated bundles.

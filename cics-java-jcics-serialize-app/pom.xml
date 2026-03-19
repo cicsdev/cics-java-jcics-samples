@@ -11,7 +11,7 @@
 
     <artifactId>cics-java-jcics-serialize-app</artifactId>
     <packaging>jar</packaging>
-    <name>CICS Java JCICS serialize sample - Applicatio</name>
+    <name>CICS Java JCICS serialize sample - Application</name>
 
     <dependencies>
         <dependency>

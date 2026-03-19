@@ -17,7 +17,7 @@ The following Java source code files are provided:
 
 * [`/etc/Link`](../etc/Link) - DFHCSDUP input files needed to define the required programs and transactions.
 * [`/src/Cobol`](../etc/src/Cobol) - COBOL programs `EC01` and `EDUCHAN` required by these samples.
-* `cics-java-jcics-edupgm-1.0.jar` - a pre-built JAR containing the generated class `JZOSCommareaWrapperclass` that is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. This is packaged in a Maven [`local-repo`](../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/) and the source is available in the [cics-java-jzosprog](https://github.com/cicsdev/cics-java-jzosprog/tree/main/src/Cobol) repository.
+* `cics-java-jcics-edupgm-1.0.jar` - a pre-built JAR containing the generated class `JZOSCommareaWrapperclass` that is used in the `LinkProg2` example to map the fields in the COMMAREA used by the COBOL program `EDUPGM`. This is packaged in a Maven [`local-repo`](../local-repo/com/ibm/cicsdev/cics-java-jcics-edupgm/) to support Maven and Gradle builds, and in the `cics-java-jcics-link-app/lib` directory to support Eclipse builds. The original source is available in the [cics-java-jzosprog](https://github.com/cicsdev/cics-java-jzosprog/tree/main/src/Cobol) repository.
 
 
 
@@ -32,7 +32,7 @@ The following Java source code files are provided:
 
 ## Running the Example
 
-At a 3270 terminal screen, enter the transaction you wish to run, for example JLN1 will run the LINK example 1. 
+At a 3270 terminal screen, enter the transaction JLN1, JLN2 or JLN3 that you wish to run, for example to run the LinkProg1 sample: 
 
 >    JLN1
 

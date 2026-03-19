@@ -1,0 +1,44 @@
+plugins {
+    id 'java'    
+}
+
+
+description = 'CICS Java JCICS TSQ sample - Application'
+
+java
+{
+	sourceCompatibility = java_version
+	targetCompatibility = java_version     
+}
+
+// Add the IRG generated JAR as a repository
+/*repositories {
+    flatDir {
+        dirs("local-repo")
+    }
+} */
+
+
+dependencies {
+
+    // Use the CICS TS BOM to set the JCICS library version
+    compileOnly enforcedPlatform(bom)    
+    
+    // JCICS library 
+    compileOnly("com.ibm.cics:com.ibm.cics.server")
+
+    //Compile using the IRG generated JAR from the local dir    
+    implementation("com.ibm.cicsdev:cics-java-jcics-tsq-record:1.0")
+        
+}
+
+// Create OSGi bundle JAR, add the OSGI manifest and IRG generated JAR from the local repo 
+jar {
+    manifest {
+        from 'META-INF/MANIFEST.MF'
+    }
+    from("${localRepo}/com/ibm/cicsdev/cics-java-jcics-tsq-record/1.0") {
+      include '**.jar'
+      into "lib"
+      }
+}

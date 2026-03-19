@@ -13,19 +13,6 @@
     <packaging>jar</packaging>
     <name>CICS Java JCICS link sample - Application</name>
 
-    <!--Local repo for IRG generated JAR -->
-    <repositories>
-        <repository>
-            <id>cics-java-jcics-edupgm</id>
-            <name>Project libraries</name>
-            <url>file://local-repo</url>              
-            <releases>
-              <checksumPolicy>ignore</checksumPolicy>
-            </releases>
-        </repository>
-    </repositories>    
-
-
     <dependencies>
         <dependency>
             <groupId>com.ibm.cics</groupId>
