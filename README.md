@@ -42,13 +42,13 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 The sample includes an Eclipse project configuration, a Gradle build, a Maven POM, and Gradle/Maven Wrappers offering a wide range of build options with the tooling and IDE of your choice.
 
 Choose from the following approach:
-* Use the command line to drive Gradle or Apache Maven (if installed on your workstation)
-* Use the command line or IDE support for Wrappers, to drive the supplied Gradle or Apache Maven Wrappers (with no requirement for Gradle, Maven, Eclipse, or CICS Explorer SDK to be installed)
-* Use the built-in Eclipse and CICS Explorer SDK capability
-* Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven.
+
+1. Use the command line to drive the supplied Gradle or Apache Maven Wrappers, this means there is no requirement for Gradle, Maven, Eclipse, or CICS Explorer SDK to be installed.
+2. Use the built-in Eclipse and CICS Explorer SDK capability
+3. Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven.
 
 
-### Option 1 - Building with Gradle
+### Option 1a - Building with Gradle
 
 The sample comes pre-configured with a Gradle wrapper and build files to facilitate automated builds.
 
@@ -74,7 +74,7 @@ gradlew clean build -Pcics.jvmserver=MYJVM
 A JAR file for each CICS bundle project is created inside the application project `build/libs/` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `build/distributions` directory.
 
 
-### Option 2 - Building with Apache Maven
+### Option 1b - Building with Apache Maven
 
 The sample comes pre-configured with a Maven wrapper and build files to facilitate automated builds.
 
@@ -99,11 +99,11 @@ mvnw clean verify -Dcics.jvmserver=MYJVM
 A JAR file for each CICS bundle project is created inside the application project  `target` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `target` directory.
 
 
-### Option 3 - Building with Eclipse
+### Option 2 - Building with Eclipse and the CICS Explorer SDK for Java
 
 To import the sample into Eclipse either
-1. Clone the repository using your IDEs support, such as the Eclipse Git plugin
-2.File Import Existing Projects into Workspace, and select the expanded zip archive directory as the root directory
+1. Clone the repository using your IDEs support, such as the Eclipse Git plugin,**or**
+2. Use the **File > Import > Existing Projects into Workspace** wizard and select the expanded zip archive directory as the root directory
 Ensure you check "Search for nested projects", and do not select "Copy projects into workspace"
 
 The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for Java 17, or does not have CICS Explorer SDK installed with the correct 'Target Platform' set, you might experience local project compile errors. 
@@ -113,6 +113,10 @@ To resolve issues:
 * Set the CICS TS Target Platform to your intended CICS target (Hint: Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...) 
 * Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
 
+### Option 3 - Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven
+
+1. Import the projects into Eclipse as detailed in Option 2. 
+2. Use the Eclipse support for Maven or Gradle to build the project using the supplied build files.
 
 ---
 
@@ -129,22 +133,22 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 #### Option 1 - Deploying CICS Bundle Maven/Gradle plugin builds
 1. Upload the built CICS bundle ZIP file from your *target* or */build/distributions* directory to zFS in binary.
 2. Connect to USS on the host system (e.g. SSH).
-3. Create the bundle directory for the project.
+3. Create the bundle directory in zFS for the project
 4. Copy the CICS bundle ZIP file into the bundle directory.
 5. Extract the CICS bundle ZIP file. This can be done using the `jar` command. For example:
    ```shell
    jar -xvf bundle.zip
    ```
 
-#### Option 2 - Deploying using CICS Explorer (Remote System Explorer) and CICS Bundle ZIP
-1. Connect to USS on the host system
-2. Create the bundle directory for the project.
-3. Copy & paste the built CICS bundle ZIP file from your *target* or *build/distributions* directory to zFS on the host system into the bundle directory.
+#### Option 2 - Deploying using CICS Explorer SDK and the CICS bundle projects
+1. Deploy each CICS bundle project from CICS Explorer to zFS using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and optionally the transaction and bundle resources to run the sample.
+
+
+#### Option 3 - Deploying using Eclipse and z/OS Explorer 
+1. Connect to the host system using the Remote Systems view in z/OS Explorer 
+2. Create the bundle directory in zFS
+3. Copy & paste the built CICS bundle ZIP file from your *target* or *build/distributions* directory in the local workstation to the bundle directory on zFS. 
 4. Extract the ZIP by right-clicking on the ZIP file > User Action > unjar...
-5. Refresh the bundle directory
-  
-#### Option 3 - Deploying using CICS Explorer SDK and the provided CICS bundle project
-1. Deploy the CICS bundle project from CICS Explorer using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and optionally the transaction and bundle resources to run the sample.
 
 
 
