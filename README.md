@@ -104,12 +104,17 @@ Ensure you check "Search for nested projects", and do not select **Copy projects
 
 The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for Java 17, or does not have CICS Explorer SDK installed with the correct *Target Platform* set, you might experience local project compile errors. 
 
-To resolve issues:
+To resolve build issues:
 * Ensure you have the latest CICS Explorer SDK plug-in installed
 * Set the CICS TS Target Platform to your intended CICS target (Hint: **Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...**) 
 * Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
-
-
+* The TS, TD, VSAM and LINK sample projects manipulate byte-oriented record structures using Java classes
+generated using the IBM Record Generator for Java. The generated classes can be found packaged in a JAR
+file, found in the `lib/` subdirectory of the relevant project.  Only the compiled helper classes are
+required to compile and run the application, however the generated source files are included for reference.
+If you are manually adding source files to your Eclipse development environment, you will need to add the
+generated JAR file to the build path in order to compile the samples, using the project context menu
+**Build Path** -> **Configure Build Path** -> **Libraries**.
 ---
 
 
@@ -139,7 +144,7 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 #### Option 3 - Deploying using Eclipse and z/OS Explorer 
 1. Connect to the host system using the Remote Systems view in z/OS Explorer 
 2. Create the bundle directory in zFS
-3. Copy & paste the built CICS bundle ZIP file from your *target* or *build/distributions* directory in the local workstation to the bundle directory on zFS. 
+3. Copy & paste the built CICS bundle ZIP file from your *target* or *build/distributions* directory on the local workstation to the bundle directory on zFS. 
 4. Extract the ZIP by right-clicking on the ZIP file > User Action > unjar...
 
 
