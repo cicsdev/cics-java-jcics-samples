@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sample JCICS code for use of temporary storage queues
+Bundle-SymbolicName: com.ibm.cicsdev.vsam
+Bundle-Version: 1.0.1
+Bundle-Vendor: IBM
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+CICS-MainClass: com.ibm.cicsdev.vsam.ksds.KsdsExample1,
+ com.ibm.cicsdev.vsam.ksds.KsdsExample2,
+ com.ibm.cicsdev.vsam.ksds.KsdsExample3,
+ com.ibm.cicsdev.vsam.ksds.KsdsExample4,
+ com.ibm.cicsdev.vsam.ksds.KsdsExample5,
+ com.ibm.cicsdev.vsam.esds.EsdsExample1,
+ com.ibm.cicsdev.vsam.esds.EsdsExample2,
+ com.ibm.cicsdev.vsam.esds.EsdsExample3,
+ com.ibm.cicsdev.vsam.esds.EsdsExample4,
+ com.ibm.cicsdev.vsam.esds.EsdsExample5,
+ com.ibm.cicsdev.vsam.rrds.RrdsExample1,
+ com.ibm.cicsdev.vsam.rrds.RrdsExample2,
+ com.ibm.cicsdev.vsam.rrds.RrdsExample3,
+ com.ibm.cicsdev.vsam.rrds.RrdsExample4,
+ com.ibm.cicsdev.vsam.rrds.RrdsExample5
+Import-Package: com.ibm.cics.server;version="[1.700.0,3.0.0)",
+ com.ibm.jzos.fields;resolution:=optional
+Automatic-Module-Name: com.ibm.cicsdev.vsam
+Bundle-ClassPath: lib/cics-java-jcics-vsam-record-1.0.jar,
+ .
