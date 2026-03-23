@@ -164,10 +164,6 @@ See the individual project directories for any additional supporting resources r
 
 1. Install the groups containing the JVMSERVER, TRANSACTION and PROGRAM resources and ensure the JVM server becomes enabled along with all associated bundles.
 
- 
-## License
-
-This project is licensed under [Apache License Version 2.0](LICENSE).  
 
 ## Reference
 
@@ -175,3 +171,12 @@ This project is licensed under [Apache License Version 2.0](LICENSE).
 * For further details on using the IBM Record Generator for Java see this [tutorial](https://developer.ibm.com/tutorials/build-java-records-from-cobol-with-ibm-record-generator/)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](https://www.ibm.com/docs/en/cics-ts/5.5.0?topic=server-configuring-osgi-jvm)
 * Developer works tutorial archive [Getting to Grips with JCICS](blog/blog.md)
+
+## License
+
+This project is licensed under [Apache License Version 2.0](LICENSE).  
+
+## Usage terms
+By downloading, installing, and/or using this sample, you acknowledge that separate license terms may apply to any dependencies that might be required as part of the installation and/or execution and/or automated build of the sample, including the following IBM license terms for relevant IBM components:
+
+• IBM CICS development components terms: https://www.ibm.com/support/customer/csol/terms/?id=L-ACRR-BBZLGX
