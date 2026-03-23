@@ -103,14 +103,14 @@ A JAR file for each CICS bundle project is created inside the application projec
 
 To import the sample into Eclipse either
 1. Clone the repository using your IDEs support, such as the Eclipse Git plugin,**or**
-2. Use the **File > Import > Existing Projects into Workspace** wizard and select the expanded zip archive directory as the root directory
-Ensure you check "Search for nested projects", and do not select "Copy projects into workspace"
+2. Use the **File > Import > Existing Projects into Workspace** wizard and select the expanded zip archive directory as the root directory. 
+Ensure you check "Search for nested projects", and do not select **Copy projects into workspace**
 
-The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for Java 17, or does not have CICS Explorer SDK installed with the correct 'Target Platform' set, you might experience local project compile errors. 
+The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target Platform. When you initially import the project to your IDE, if your IDE is not configured for Java 17, or does not have CICS Explorer SDK installed with the correct *Target Platform* set, you might experience local project compile errors. 
 
 To resolve issues:
 * Ensure you have the latest CICS Explorer SDK plug-in installed
-* Set the CICS TS Target Platform to your intended CICS target (Hint: Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...) 
+* Set the CICS TS Target Platform to your intended CICS target (Hint: **Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...**) 
 * Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
 
 ### Option 3 - Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven
@@ -159,7 +159,7 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 1. CICS resource definitions for the bundle, programs, transactions are supplied as a DFHCSDUP sample input for each sub-project in the `etc` directory, for instance [`etc/Link/DFHCSD.txt`](etc/Link/DFHCSD.txt). Alternatively they can be installed using the bundle parts supplied with the Eclipse CICS bundle projects in the [`cics_bundle_projects`](etc/cics_bundle_projects) directory. 
 See the individual project directories for any additional supporting resources required.
 
-1. Install the groups containing the JVMSERVER, TRANSACTION and PROGRAM resourceS and ensure the JVM server becomes enabled along with all associated bundles.
+1. Install the groups containing the JVMSERVER, TRANSACTION and PROGRAM resources and ensure the JVM server becomes enabled along with all associated bundles.
 
  
 ## License
