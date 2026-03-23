@@ -11,13 +11,6 @@ java
 	targetCompatibility = java_version     
 }
 
-// Add the IRG generated JAR as a repository
-/*repositories {
-    flatDir {
-        dirs("local-repo")
-    }
-} */
-
 
 dependencies {
 

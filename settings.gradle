@@ -1,14 +1,16 @@
 rootProject.name = 'cics-java-jcics-samples'
-include(':cics-java-jcics-serialize-app')
-include(':cics-java-jcics-serialize-bundle')
-include(':cics-java-jcics-terminal-app')
-include(':cics-java-jcics-terminal-bundle')
 include(':cics-java-jcics-link-app')
 include(':cics-java-jcics-link-bundle')
+include(':cics-java-jcics-serialize-app')
+include(':cics-java-jcics-serialize-bundle')
 include(':cics-java-jcics-tdq-app')
 include(':cics-java-jcics-tdq-bundle')
+include(':cics-java-jcics-terminal-app')
+include(':cics-java-jcics-terminal-bundle')
 include(':cics-java-jcics-tsq-app')
 include(':cics-java-jcics-tsq-bundle')
+include(':cics-java-jcics-vsam-app')
+include(':cics-java-jcics-vsam-bundle')
 
 
 
