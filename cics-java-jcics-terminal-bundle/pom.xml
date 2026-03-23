@@ -9,14 +9,14 @@
     <version>1.0.1</version>
   </parent>
 
-  <artifactId>cics-java-jcics-tdq-bundle</artifactId>
+  <artifactId>cics-java-jcics-terminal-bundle</artifactId>
   <packaging>cics-bundle</packaging>
-  <name>CICS Java JCICS TDQ sample - CICS bundle</name>
+  <name>CICS Java JCICS Terminal sample - CICS bundle</name>
 
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>cics-java-jcics-tdq-app</artifactId>
+      <artifactId>cics-java-jcics-terminal-app</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

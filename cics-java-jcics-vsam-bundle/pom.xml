@@ -9,14 +9,14 @@
     <version>1.0.1</version>
   </parent>
 
-  <artifactId>cics-java-jcics-tsq-bundle</artifactId>
+  <artifactId>cics-java-jcics-vsan-bundle</artifactId>
   <packaging>cics-bundle</packaging>
-  <name>CICS Java JCICS TSQ sample - CICS bundle</name>
+  <name>CICS Java JCICS VSAM sample - CICS bundle</name>
 
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>cics-java-jcics-tsq-app</artifactId>
+      <artifactId>cics-java-jcics-vsam-app</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

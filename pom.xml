@@ -57,7 +57,11 @@
     <module>cics-java-jcics-serialize-bundle</module>
     <module>cics-java-jcics-tdq-app</module>
     <module>cics-java-jcics-tdq-bundle</module>
+    <module>cics-java-jcics-terminal-app</module>
+    <module>cics-java-jcics-terminal-bundle</module>
     <module>cics-java-jcics-tsq-app</module>
     <module>cics-java-jcics-tsq-bundle</module>
+    <module>cics-java-jcics-vsam-app</module>
+    <module>cics-java-jcics-vsam-bundle</module>
   </modules>
 </project>
