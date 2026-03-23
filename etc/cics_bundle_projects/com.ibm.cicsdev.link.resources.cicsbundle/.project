@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>com.ibm.cicsdev.link.resources.cicsbundle</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.ibm.cics.bundle.ui.bundlebuilder</name>
+			<arguments>
+				<dictionary>
+					<key>bundleID</key>
+				</dictionary>
+				<dictionary>
+					<key>majorVersion</key>
+				</dictionary>
+				<dictionary>
+					<key>microVersion</key>
+				</dictionary>
+				<dictionary>
+					<key>minorVersion</key>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.ibm.cics.bundle.ui.bundlenature</nature>
+	</natures>
+</projectDescription>
