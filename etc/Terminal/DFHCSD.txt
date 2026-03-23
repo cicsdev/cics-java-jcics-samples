@@ -1,0 +1,15 @@
+
+ DEFINE PROGRAM(JAVATRM1) GROUP(JCICSAMP)
+        DESCRIPTION(Java terminal sample)
+        CONCURRENCY(REQUIRED) API(CICSAPI) DYNAMIC(NO)
+        JVM(YES) JVMSERVER(DFHJVMS) DATALOCATION(ANY)
+        JVMCLASS(com.ibm.cicsdev.terminal.TerminalExample1)
+
+ DEFINE TRANSACTION(JTM1) GROUP(JCICSAMP) PROGRAM(JAVATRM1)
+        DESCRIPTION(Java terminal sample)
+        TASKDATALOC(ANY)
+
+ DEFINE BUNDLE(JCICTERM) GROUP(JCICSAMP)
+        DESCRIPTION(JCICS terminal sample)
+        BUNDLEDIR(/u/cics1/com.ibm.cicsdev.terminal.cicsbundle_1.0.0)
+
