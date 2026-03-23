@@ -10,6 +10,12 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 * [`cics-java-jcics-serialize-bundle`](cics-java-jcics-serialize-bundle) - CICS bundle plug-in project for cics-java-jcics-serialize-app
 * [`cics-java-jcics-tdq-app`](cics-java-jcics-tdq-app) - Java project covering access to transient data queues using the READQ and WRITEQ commands.
 * [`cics-java-jcics-tdq-bundle`](cics-java-jcics-tdq-bundle) - CICS bundle plug-in project for cics-java-jcics-tdq-app
+* [`ics-java-jcics-tsq-app`](cics-java-jcics-tsq-app) - Java project covering access to temporary storage queues using the READQ and WRITEQ commands.
+* [`cics-java-jcics-tsq-bundle`](cics-java-jcics-tsq-bundle) - CICS bundle plug-in project for cics-java-jcics-tsq-app
+* [`cics-java-jcics-vsam-app`](cics-java-jcics-vsam-app) - Java project covering access to Accessing KSDS, ESDS, and RRDS VSAM files.
+* [`cics-java-jcics-vsam-bundle`](cics-java-jcics-vsam-bundle) - CICS bundle plug-in project for cics-java-jcics-vsam-app
+
+
 
 
 ## Repository structure
