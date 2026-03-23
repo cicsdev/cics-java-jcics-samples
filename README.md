@@ -41,20 +41,16 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 ## Building
 The sample includes an Eclipse project configuration, a Gradle build, a Maven POM, and Gradle/Maven Wrappers offering a wide range of build options with the tooling and IDE of your choice.
 
-Choose from the following approach:
+Choose from the following 2 main approaches:
 
 1. Use the command line to drive the supplied Gradle or Apache Maven Wrappers, this means there is no requirement for Gradle, Maven, Eclipse, or CICS Explorer SDK to be installed.
 2. Use the built-in Eclipse and CICS Explorer SDK capability
-3. Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven.
-
 
 ### Option 1a - Building with Gradle
 
 The sample comes pre-configured with a Gradle wrapper and build files to facilitate automated builds.
 
 The CICS JVM server name should be modified in the  `cics.jvmserver` property in the gradle build file or alternatively can be set on the command line (see below).
-
-If you have the Gradle buildship plug-in available, use the right-click **Run As...** menu on the cics-java-osgi-link project to configure and run the `clean` and `build` tasks. Otherwise choose from the command-line approaches.
 
 **Gradle Wrapper (Linux/Mac):**
 ```shell
@@ -113,10 +109,6 @@ To resolve issues:
 * Set the CICS TS Target Platform to your intended CICS target (Hint: **Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...**) 
 * Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
 
-### Option 3 - Use Eclipse with Buildship (Gradle), or m2e (Maven) to drive Gradle, or Maven
-
-1. Import the projects into Eclipse as detailed in Option 2. 
-2. Use the Eclipse support for Maven or Gradle to build the project using the supplied build files.
 
 ---
 
