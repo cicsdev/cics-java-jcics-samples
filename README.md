@@ -2,7 +2,7 @@
 
 Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM server environment.
 
-## Sample projects overview
+## Projects overview
 
 * [`cics-java-jcics-link-app`](cics-java-jcics-link-app) - Java project covering LINK commands using both COMMAREAs and channels and containers
 * [`cics-java-jcics-link-bundle`](cics-java-jcics-link-bundle) - CICS bundle plug-in project for cics-java-jcics-link-app
@@ -20,11 +20,10 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Repository structure
 
-
 * [`etc/`](etc) - Supporting materials including DFHCSDUP definition files.
 * [`etc/cics_bundle_projects/`](etc/cics_bundle_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
 * [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
-* [`local-repo/`](/local-repo) - Maven repository for COMMAREA wrapper JAR generated from EDUPGM COBOL copybook.
+* [`local-repo/`](/local-repo) - Maven repository for JARs generated using IBM Record Generator for Java.
 * [`gradle/`](gradle) - Gradle wrapper 
 * [`.mvn/`](.mvn/wrapper) - Maven wrapper 
 * [`blog/`](https://github.com/cicsdev/cics-java-jcics-samples/tree/main/blog/blog.md) - Archive of developer works JCICS tutorial.
@@ -116,10 +115,11 @@ To resolve build issues:
 * Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
 * The TS, TD, VSAM and LINK sample projects manipulate byte-oriented record structures using Java classes
 generated using the IBM Record Generator for Java. The generated classes can be found packaged in a JAR
-file, found in the `lib/` subdirectory of the relevant project.  Only the compiled helper classes are
-required to compile and run the application, however the generated source files are included for reference.
-If you are manually adding source files to your Eclipse development environment, you will need to add the
-generated JAR file to the build path in order to compile the samples, using the project context menu
+file, found in the `lib/` subdirectory of the relevant project and are also packaged in a local Maven repository
+to support the Maven and Gradle builds. Only the compiled helper classes are
+required to compile and run the application, however, the generated source files are included for reference.
+If you are manually adding source files to your Eclipse development environment, you will need to add the relevant
+generated JAR file to the build path using the project context menu
 **Build Path** -> **Configure Build Path** -> **Libraries**.
 ---
 
