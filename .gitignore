@@ -45,6 +45,6 @@ gradle-app.setting
 !gradle-wrapper.properties
 
 # VSCode ignores
-.vscode/*
+.vscode/
 .history/
 *.vsix
