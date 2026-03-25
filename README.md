@@ -112,7 +112,7 @@ The sample comes pre-configured for use with Java 17 and the CICS TS V5.5 Target
 
 To resolve build issues:
 * Ensure you have the latest CICS Explorer SDK plug-in installed
-* Set the CICS TS Target Platform to your intended CICS target (Hint: **Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...**) 
+* Set the CICS TS Target Platform to your intended CICS target version (Hint: **Window > Preferences > Plug-in Development > Target Platform > Add > Template > Other...**) 
 * Configure the Project's build-path, and Application Project settings to use your preferred JDK and Java compiler settings
 * The TS, TD, VSAM and LINK sample projects manipulate byte-oriented record structures using Java classes
 generated using the IBM Record Generator for Java. The generated classes can be found packaged in a JAR
@@ -145,7 +145,7 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
    ```
 
 #### Option 2 - Deploying using CICS Explorer SDK and the CICS bundle projects
-1. Deploy each CICS bundle project from CICS Explorer to zFS using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and optionally the transaction and bundle resources to run the sample.
+1. Deploy each CICS bundle project from CICS Explorer to zFS using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and an import for the required JVMSERVER named DFHJVMS. 
 
 
 #### Option 3 - Deploying using Eclipse and z/OS Explorer 
@@ -158,20 +158,20 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 
 ### Deploying to CICS
 
-1. Define an OSGi JVM server resource called `DFHJVMS` based on the CICS-supplied sample definition in the CSD group `DFH$OSGI`.
+1. Define an OSGi JVM server resource called `DFHJVMS` based on the CICS-supplied sample definition in the CSD group `DFH$OSGI` and install. Ensure this resource become enabled.
 
-1. CICS resource definitions for the bundle, programs, transactions are supplied as a DFHCSDUP sample input for each sub-project in the `etc` directory, for instance [`etc/Link/DFHCSD.txt`](etc/Link/DFHCSD.txt). Alternatively they can be installed using the bundle parts supplied with the Eclipse CICS bundle projects in the [`cics_bundle_projects`](etc/cics_bundle_projects) directory. 
-See the individual project directories for any additional supporting resources required.
+1. CICS resource definitions for the bundle, programs, transactions are supplied as a DFHCSDUP sample input for each sub-project in the `etc` directory, for instance [`etc/Link/DFHCSD.txt`](etc/Link/DFHCSD.txt) for the `cics-java-jcics-link-app` project. Use the DFHCSDUP input files to create group JCICSAMP in the CSD. Then group JCICSAMP containing the BUNDLE, TRANSACTION and PROGRAM resources and ensure the bundle resources become enabled.
 
-1. Install the groups containing the JVMSERVER, TRANSACTION and PROGRAM resources and ensure the JVM server becomes enabled along with all associated bundles.
+1. Instead of using the DFHCSDUP process CICS resources can be created using the bundle parts supplied with the Eclipse CICS bundle projects in the [`cics_bundle_projects`](etc/cics_bundle_projects) directory.  See the individual project directories for any additional supporting resources required.
 
 
 ## Reference
 
 
-* For further details on using the IBM Record Generator for Java see this [tutorial](https://developer.ibm.com/tutorials/build-java-records-from-cobol-with-ibm-record-generator/)
 * For details on how to define a CICS OSGi JVM server refer to the Knowledge Center topic [Configuring an OSGi JVM server](https://www.ibm.com/docs/en/cics-ts/5.5.0?topic=server-configuring-osgi-jvm)
 * Developer works tutorial archive [Getting to Grips with JCICS](blog/blog.md)
+* For further details on using the IBM Record Generator for Java see this [tutorial](https://developer.ibm.com/tutorials/build-java-records-from-cobol-with-ibm-record-generator/)
+
 
 ## License
 
