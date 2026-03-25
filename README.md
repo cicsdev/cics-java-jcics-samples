@@ -20,8 +20,9 @@ Sample CICS Java programs demonstrating how to use the JCICS API in an OSGi JVM 
 
 ## Repository structure
 
-* [`etc/`](etc) - Supporting materials including DFHCSDUP definition files.
-* [`etc/cics_bundle_projects/`](etc/cics_bundle_projects) - Eclipse CICS Bundle projects for importing into an Eclipse environment.
+* [`etc/`](etc) - Supporting materials including DFHCSDUP resource definition files.
+* [`etc/cics_bundle_projects/`](etc/cics_bundle_projects) - Additional Eclipse CICS Bundle projects providing
+CICS resource defintions. 
 * [`etc/src/`](etc/src) - Supporting source code for COBOL programs.
 * [`local-repo/`](/local-repo) - Maven repository for JARs generated using IBM Record Generator for Java.
 * [`gradle/`](gradle) - Gradle wrapper 

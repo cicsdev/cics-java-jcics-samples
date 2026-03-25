@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.link.resources.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="1" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+    <meta_directives>
+        <timestamp>2016-11-11T10:54:14.028Z</timestamp>
+    </meta_directives>
+    <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
+    <define name="JAVALIN1" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVALIN1.program"/>
+    <define name="JAVALIN2" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVALIN2.program"/>
+    <define name="JAVALIN3" type="http://www.ibm.com/xmlns/prod/cics/bundle/PROGRAM" path="JAVALIN3.program"/>
+    <define name="JLN1" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JLN1.transaction"/>
+    <define name="JLN2" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JLN2.transaction"/>
+    <define name="JLN3" type="http://www.ibm.com/xmlns/prod/cics/bundle/TRANSACTION" path="JLN3.transaction"/>
+</manifest>
