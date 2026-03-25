@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.vsam.resources.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="1" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.vsam.resources.bundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="1" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
     <meta_directives>
         <timestamp>2016-12-13T15:49:54.727Z</timestamp>
     </meta_directives>

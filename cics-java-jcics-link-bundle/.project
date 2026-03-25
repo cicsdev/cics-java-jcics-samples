@@ -10,7 +10,7 @@
 			<arguments>
 				<dictionary>
 					<key>bundleID</key>
-					<value>com.ibm.cicsdev.link.cicsbundle</value>
+					<value>com.ibm.cicsdev.link.bundle</value>
 				</dictionary>
 				<dictionary>
 					<key>majorVersion</key>
