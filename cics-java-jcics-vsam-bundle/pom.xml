@@ -9,7 +9,7 @@
     <version>1.0.1</version>
   </parent>
 
-  <artifactId>cics-java-jcics-vsan-bundle</artifactId>
+  <artifactId>cics-java-jcics-vsam-bundle</artifactId>
   <packaging>cics-bundle</packaging>
   <name>CICS Java JCICS VSAM sample - CICS bundle</name>
 
