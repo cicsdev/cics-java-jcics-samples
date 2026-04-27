@@ -5,7 +5,7 @@ plugins {
 description = 'CICS Java JCICS link sample - CICS bundle'
 
 dependencies {
-    cicsBundlePart project(path: ':cics-java-jcics-tdq-app', configuration: 'archives')
+    cicsBundlePart project(path: ':cics-java-jcics-terminal-app', configuration: 'archives')
 }
 
 cicsBundle {
