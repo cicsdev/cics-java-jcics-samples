@@ -9,7 +9,7 @@
         DESCRIPTION(Java terminal sample)
         TASKDATALOC(ANY)
 
- DEFINE BUNDLE(JCICTERM) GROUP(JCICSAMP)
+ DEFINE BUNDLE(JCICSTRM) GROUP(JCICSAMP)
         DESCRIPTION(JCICS terminal sample)
         BUNDLEDIR(/u/cics1/com.ibm.cicsdev.terminal.cicsbundle_1.0.0)
 
