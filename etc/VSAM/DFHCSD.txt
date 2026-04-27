@@ -32,7 +32,7 @@
         CONCURRENCY(REQUIRED) API(CICSAPI) DYNAMIC(NO)
         JVM(YES) JVMSERVER(DFHJVMS) DATALOCATION(ANY)
         EXECKEY(CICS)
-        JVMCLASS(com.ibm.cicsdev.vsam.esds.KsdsExample5) 
+        JVMCLASS(com.ibm.cicsdev.vsam.esds.EsdsExample5) 
 
  DEFINE PROGRAM(JAVAVKS1) GROUP(JCICSAMP)
         DESCRIPTION(Java VSAM sample)
