@@ -52,16 +52,16 @@
 
   <modules>
     <module>cics-java-jcics-link-app</module>
-    <module>cics-java-jcics-link-bundle</module>
+    <module>cics-java-jcics-link-cicsbundle</module>
     <module>cics-java-jcics-serialize-app</module>
-    <module>cics-java-jcics-serialize-bundle</module>
+    <module>cics-java-jcics-serialize-cicsbundle</module>
     <module>cics-java-jcics-tdq-app</module>
-    <module>cics-java-jcics-tdq-bundle</module>
+    <module>cics-java-jcics-tdq-cicsbundle</module>
     <module>cics-java-jcics-terminal-app</module>
-    <module>cics-java-jcics-terminal-bundle</module>
+    <module>cics-java-jcics-terminal-cicsbundle</module>
     <module>cics-java-jcics-tsq-app</module>
-    <module>cics-java-jcics-tsq-bundle</module>
+    <module>cics-java-jcics-tsq-cicsbundle</module>
     <module>cics-java-jcics-vsam-app</module>
-    <module>cics-java-jcics-vsam-bundle</module>
+    <module>cics-java-jcics-vsam-cicsbundle</module>
   </modules>
 </project>

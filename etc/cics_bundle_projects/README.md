@@ -6,7 +6,7 @@ Supporting Eclipse projects
 
 ## Overall project structure
 
-* `cics-java-jcics-*-resources-bundle` - Optional Eclipse projects for a CICS bundle containing the required
+* `cics-java-jcics-*-resources-cicsbundle` - Optional Eclipse projects for a CICS bundle containing the required
 program and transaction resources for the sample.
 
 

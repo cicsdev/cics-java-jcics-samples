@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns="http://www.ibm.com/xmlns/prod/cics/bundle" id="com.ibm.cicsdev.tdq.cicsbundle" bundleMajorVer="1" bundleMinorVer="0" bundleMicroVer="1" bundleVersion="1" bundleRelease="0" build="IntB-201511072132">
+    <meta_directives>
+        <timestamp>2016-11-04T15:15:01.777Z</timestamp>
+    </meta_directives>
+    <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
+    <define name="com.ibm.cicsdev.tdq" type="http://www.ibm.com/xmlns/prod/cics/bundle/OSGIBUNDLE" path="com.ibm.cicsdev.tdq.osgibundle"/>
+    <define name="cics-java-jcics-tdq-app-1.0.1" type="http://www.ibm.com/xmlns/prod/cics/bundle/OSGIBUNDLE" path="target/cics-java-jcics-tdq-cicsbundle-1.0.1/cics-java-jcics-tdq-app-1.0.1.osgibundle"/>
+</manifest>
