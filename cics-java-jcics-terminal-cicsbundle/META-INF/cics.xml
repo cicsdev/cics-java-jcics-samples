@@ -5,5 +5,4 @@
     </meta_directives>
     <import name="DFHJVMS" type="http://www.ibm.com/xmlns/prod/cics/bundle/JVMSERVER" optional="false" warn="false"/>
     <define name="com.ibm.cicsdev.terminal" type="http://www.ibm.com/xmlns/prod/cics/bundle/OSGIBUNDLE" path="com.ibm.cicsdev.terminal.osgibundle"/>
-    <define name="cics-java-jcics-terminal-app-1.0.1" type="http://www.ibm.com/xmlns/prod/cics/bundle/OSGIBUNDLE" path="target/cics-java-jcics-terminal-cicsbundle-1.0.1/cics-java-jcics-terminal-app-1.0.1.osgibundle"/>
 </manifest>
