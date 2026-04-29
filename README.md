@@ -70,7 +70,7 @@ gradlew.bat clean build
 
 **Gradle Wrapper setting jvmserver:**
 ```shell
-gradlew clean build -Pcics.jvmserver=MYJVM
+gradlew clean build "-Pcics.jvmserver=MYJVM"
 ```
 
 A JAR file for each CICS bundle project is created inside the application project `build/libs/` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `build/distributions` directory.
@@ -95,7 +95,7 @@ mvnw.cmd clean verify
 
 **Maven Wrapper setting jvmserver:**
 ```shell
-mvnw clean verify -Dcics.jvmserver=MYJVM
+mvnw clean verify "-Dcics.jvmserver=MYJVM"
 ```
 
 A JAR file for each CICS bundle project is created inside the application project  `target` sub-directory and a CICS bundle ZIP file inside the CICS bundle project `target` directory.
