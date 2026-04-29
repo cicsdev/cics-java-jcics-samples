@@ -45,7 +45,7 @@ CICS resource defintions.
 
 
 ## Building
-The sample includes an Eclipse project configuration, a Gradle build, a Maven POM, and Gradle/Maven Wrappers offering a wide range of build options with the tooling and IDE of your choice.
+The sample includes Eclipse project configurations, Gradle and Maven build files and Gradle/Maven Wrappers offering a wide range of build options with the tooling and IDE of your choice. 
 
 Choose from the following 2 main approaches:
 
@@ -146,6 +146,9 @@ The sample Java classes are designed to be added to an OSGi bundle and deployed 
 
 #### Option 2 - Deploying using CICS Explorer SDK and the CICS bundle projects
 1. Deploy each CICS bundle project from CICS Explorer to zFS using the **Export Bundle Project to z/OS UNIX File System** wizard. This CICS bundle includes the osgi bundlepart, and an import for the required JVMSERVER named DFHJVMS. 
+
+Note: The CICS bundle projects also include Maven and Gradle build files which will also be exported to zFS when using the
+CICS Explorer SDK. These build files and any related build artifacts acts can be safely deleted from the CICS bundle projects to prevent them being exported to zFS when deploying using the CICS Explorer SDK.
 
 
 #### Option 3 - Deploying using Eclipse and z/OS Explorer 
