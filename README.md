@@ -168,6 +168,11 @@ CICS Explorer SDK. These build files and any related build artifacts acts can be
 1. Instead of using the DFHCSDUP process CICS resources can be created using the bundle parts supplied with the Eclipse CICS bundle projects in the [`cics_bundle_projects`](etc/cics_bundle_projects) directory.  See the individual project directories for any additional supporting resources required.
 
 
+## Usage terms
+By downloading, installing, and/or using this sample, you acknowledge that separate license terms may apply to any dependencies that might be required as part of the installation and/or execution and/or automated build of the sample, including the following IBM license terms for relevant IBM components:
+
+- IBM CICS development components terms: https://www.ibm.com/support/customer/csol/terms/?id=L-ACRR-BBZLGX 
+
 ## Reference
 
 
