@@ -1,0 +1,30 @@
+
+description = 'CICS Java JCICS samples'
+
+//Define variables for sub projects 
+ext {
+  bom = "com.ibm.cics:com.ibm.cics.ts.bom:5.5-20200519131930-PH25409"
+  java_version=JavaVersion.VERSION_17
+  localRepo = file('local-repo')
+}
+
+allprojects {
+    group = 'com.ibm.cicsdev'
+    version = '1.0.1'
+
+    repositories {
+
+        mavenCentral()
+        
+        // Local Maven repo for IRG generated JARs
+        maven {
+           url = uri("file:///${localRepo}")
+           } 
+    }
+}
+
+
+    
+
+
+

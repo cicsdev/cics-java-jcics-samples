@@ -10,7 +10,7 @@
         DESCRIPTION(Java synchronization sample)
         TASKDATALOC(ANY)
 
- DEFINE BUNDLE(JCICSYNC) GROUP(JCICSAMP)
+ DEFINE BUNDLE(JCICSSYN) GROUP(JCICSAMP)
         DESCRIPTION(JCICS synchronization sample)
         BUNDLEDIR(/u/cics1/com.ibm.cicsdev.serialize.cicsbundle_1.0.0)
 

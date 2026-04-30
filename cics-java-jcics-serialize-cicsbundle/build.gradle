@@ -1,0 +1,17 @@
+plugins {
+    id 'com.ibm.cics.bundle' version "1.0.8"    
+}
+
+description = 'CICS Java JCICS serialize sample - CICS bundle'
+
+dependencies {
+    cicsBundlePart project(path: ':cics-java-jcics-serialize-app', configuration: 'archives')
+}
+
+cicsBundle {
+    build {
+        defaultJVMServer = project.findProperty("cics.jvmserver") ?: "DFHJVMS"
+    }
+}
+
+

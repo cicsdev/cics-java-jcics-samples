@@ -1,0 +1,50 @@
+# Maven ignores
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle ignores
+.gradle
+**/build/
+!src/**/build/
+
+#Eclipse ignores
+bin/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Cache of project
+.gradletasknamecache
+
+# Java ignores
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Avoid ignoring Gradle wrapper jar and properties 
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# VSCode ignores
+.vscode/
+.history/
+*.vsix

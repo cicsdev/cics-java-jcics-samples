@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.ibm.cicsdev</groupId>
+    <artifactId>cics-java-jcics-samples</artifactId>
+    <version>1.0.1</version>
+  </parent>
+
+  <artifactId>cics-java-jcics-serialize-cicsbundle</artifactId>
+  <packaging>cics-bundle</packaging>
+  <name>CICS Java JCICS serialize sample - CICS bundle</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>cics-java-jcics-serialize-app</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- CICS bundle plugin for generating CICS bundles -->
+      <plugin>
+        <groupId>com.ibm.cics</groupId>
+        <artifactId>cics-bundle-maven-plugin</artifactId>
+        <version>1.0.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <defaultjvmserver>${cics.jvmserver}</defaultjvmserver>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
