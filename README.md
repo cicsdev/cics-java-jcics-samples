@@ -40,7 +40,7 @@ CICS resource defintions.
 
 ## Downloading
 
-- Download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/cicsts/v5.5.zip) and unzip onto the workstation **or** clone the repository using a git client.
+- Download the sample as a [ZIP](https://github.com/cicsdev/cics-java-jcics-samples/archive/refs/heads/main.zip) and unzip onto the workstation **or** clone the repository using a git client.
 
 
 
