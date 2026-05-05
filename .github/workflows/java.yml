@@ -1,0 +1,68 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  check-copyright:
+    runs-on: ubuntu-latest
+    name: Check Copyright
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: copyright-action
+        uses: cicsdev/.github/.github/actions/samples-copyright-checker@4134522d8109169bb8c460db841f94167ec2802f
+        with:
+          directory: './cics-java-jcics-samples/'
+          file-extensions: '*.java'
+          base-copyright: 'Copyright IBM Corp. 2026'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  build-mvnw:
+    name: Build Maven Wrapper
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: [17, 21]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK ${{ matrix.jdk }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.jdk }}
+          distribution: "semeru"
+          cache: maven
+      - name: Make mvnw executable
+        run: chmod +x ./mvnw
+      - name: Build with Maven
+        run: ./mvnw --batch-mode --update-snapshots --file pom.xml -Djava.version=${{ matrix.jdk }} verify          
+      
+
+  build-gradlew:
+    name: Build Gradle Wrapper
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: [17, 21]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK ${{ matrix.jdk }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.jdk }}
+        distribution: 'semeru'
+    - uses: gradle/actions/setup-gradle@v4
+      with: 
+        gradle-version: 8.6
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+    - name: Build with Gradle
+      run: ./gradlew clean build -Pjava_version=${{ matrix.jdk }}    
