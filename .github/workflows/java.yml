@@ -39,6 +39,8 @@ jobs:
           java-version: ${{ matrix.jdk }}
           distribution: "semeru"
           cache: maven
+      - name: Make mvnw executable
+        run: chmod +x ./mvnw
       - name: Build with Maven
         run: ./mvnw --batch-mode --update-snapshots --file pom.xml -Djava.version=${{ matrix.jdk }} verify          
       
@@ -60,5 +62,7 @@ jobs:
     - uses: gradle/actions/setup-gradle@v4
       with: 
         gradle-version: 8.6
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
     - name: Build with Gradle
       run: ./gradlew clean build -Pjava_version=${{ matrix.jdk }}    
