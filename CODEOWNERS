@@ -1,0 +1,5 @@
+# CODEOWNERS - Defines maintainers for this CICS sample
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# Last reviewed: 2026-07
+
+* @cicsdev/cics-java-maintainers
